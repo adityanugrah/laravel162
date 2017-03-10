@@ -10,36 +10,41 @@
         
                 <form class="form-horizontal" method="POST" action="/seragam" enctype="multipart/form-data">
                      {{ csrf_field() }}
-                    
                     <div class="form-group {{ $errors->has('kodeseragam') ? 'has-error has-feedback' : '' }}">
                       {!! Form::label('kodeseragam', 'Kode Seragam :', ['class' => 'col-md-3 control-label']) !!}
-                      <div class="col-md-8">
+                      <div class="col-md-6">
                         <div class="input-group">
-                          {!! Form::text('kodeseragam',null,['class'=>'form-control']) !!}
-                          {!! $errors->first('kodeseragam', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                        {!! Form::text('kodeseragam',null,['class'=>'form-control']) !!}
+                        {!! $errors->first('kodeseragam', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                         </div>
                       </div>
                     </div>
-                    <div class="form-group {{$errors->has('namaseragam')?'has-error has-feedback' : ''}}">
-                        <label class="col-md-3 control-label" for="namaseragam">Nama Seragam</label>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control" id="namaseragam" name="namaseragam" value="{{ old('namaseragam') ? old('namaseragam'):(isset($seragam->namaseragam) ? $seragam->namaseragam : '') }}">
-                        <?php echo $errors->first('namaseragam','<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); ?>
+                    <div class="form-group {{ $errors->has('namaseragam') ? 'has-error has-feedback' : '' }}">
+                      {!! Form::label('namaseragam', 'Nama Seragam :', ['class' => 'col-md-3 control-label']) !!}
+                      <div class="col-md-6">
+                        <div class="input-group">
+                        {!! Form::text('namaseragam',null,['class'=>'form-control']) !!}
+                        {!! $errors->first('namaseragam', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                         </div>
+                      </div>
                     </div>
-                    <div class="form-group {{$errors->has('keterangan')?'has-error has-feedback' : ''}}">
-                        <label class="col-md-3 control-label" for="keterangan">Keterangan</label>
-                        <div class="col-md-6">
-                          <textarea class="form-control" id="keterangan" name="keterangan">{{ old('keterangan') ? old('keterangan'):(isset($seragam->keterangan) ? $seragam->keterangan : '') }}</textarea>
-                        <?php echo $errors->first('keterangan','<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); ?>
+                    <div class="form-group {{ $errors->has('keterangan') ? 'has-error has-feedback' : '' }}">
+                      {!! Form::label('keterangan', 'Keterangan :', ['class' => 'col-md-3 control-label']) !!}
+                      <div class="col-md-6">
+                        <div class="input-group">
+                        {!! Form::text('keterangan',null,['class'=>'form-control']) !!}
+                        {!! $errors->first('keterangan', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                         </div>
+                      </div>
                     </div>
-                    <div class="form-group {{$errors->has('picture')?'has-error has-feedback' : ''}}">
-                        <label class="col-md-3 control-label" for="picture">Picture</label>
-                        <div class="col-md-6">
-                          <input type="file" class="form-control" id="picture" name="picture" value="{{old('picture') ? old('picture'): (isset($seragam->picture) ? $seragam->picture : '') }}">
-                          <?php echo $errors->first('picture','<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); ?>
+                    <div class="form-group {{ $errors->has('picture') ? 'has-error has-feedback' : '' }}">
+                      {!! Form::label('picture', 'Picture :', ['class' => 'col-md-3 control-label']) !!}
+                      <div class="col-md-6">
+                        <div class="input-group">
+                        {!! Form::file('picture',null,['class'=>'form-control']) !!}
+                        {!! $errors->first('picture', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                         </div>
+                      </div>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
