@@ -6,8 +6,7 @@
         <h4 class="modal-title" id="myModalLabel">Tambah Barang</h4>
           </div>
             <div class="modal-body"> <!-- /.body -->
-                <div class="row"> <!-- Form tambah -->
-        
+              <div class="row"> <!-- Form tambah -->
                 <form class="form-horizontal" method="POST" action="/seragam" enctype="multipart/form-data">
                      {{ csrf_field() }}
                     <div class="form-group {{ $errors->has('kodeseragam') ? 'has-error has-feedback' : '' }}">
@@ -51,7 +50,6 @@
                       <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                   </form>
-
                 </div> <!-- Batas Form -->
             </div> <!-- /.modal-body -->
         </div> <!-- /.modal-content -->
