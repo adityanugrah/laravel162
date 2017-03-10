@@ -10,12 +10,15 @@
         
                 <form class="form-horizontal" method="POST" action="/seragam" enctype="multipart/form-data">
                      {{ csrf_field() }}
-                    <div class="form-group {{$errors->has('kodeseragam')?'has-error has-feedback' : ''}}">
-                        <label class="col-md-3 control-label" for="kodeseragam">Kode Seragam</label>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="kodeseragam" name="kodeseragam" value="{{ old('kodeseragam') ? old('kodeseragam'):(isset($seragam->kodeseragam) ? $seragam->kodeseragam : '') }}">
-                        <?php echo $errors->first('kodeseragam','<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); ?>
+                    
+                    <div class="form-group {{ $errors->has('kodeseragam') ? 'has-error has-feedback' : '' }}">
+                      {!! Form::label('kodeseragam', 'Kode Seragam :', ['class' => 'col-md-3 control-label']) !!}
+                      <div class="col-md-8">
+                        <div class="input-group">
+                          {!! Form::text('kodeseragam',null,['class'=>'form-control']) !!}
+                          {!! $errors->first('kodeseragam', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                         </div>
+                      </div>
                     </div>
                     <div class="form-group {{$errors->has('namaseragam')?'has-error has-feedback' : ''}}">
                         <label class="col-md-3 control-label" for="namaseragam">Nama Seragam</label>
