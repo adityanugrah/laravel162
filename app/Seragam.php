@@ -8,15 +8,15 @@ class Seragam extends Model
 {
     protected $table = 'seragam';
 
-    protected $primaryKey = 'kodeseragam';
+    protected $primaryKey = 'KodeSeragam';
 
     public $incrementing = false;
 
     public $timestamps = false;
 
-    protected $fillable = [
-    'kodeseragam',
-	'namaseragam',
-    'keterangan'
+    public $fillable = [
+	'NamaSeragam',
+    'Keterangan',
+    'StokSeragam'
 	];
 }

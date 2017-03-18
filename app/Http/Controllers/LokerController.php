@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Loker;
+use Validator;
+
 
 class LokerController extends Controller
 {
@@ -13,7 +16,8 @@ class LokerController extends Controller
      */
     public function index()
     {
-        //
+        $lokers = Loker::orderBy('KodeLoker')->get(); 
+        return view('loker.index', compact('lokers'));
     }
 
     /**
@@ -34,7 +38,29 @@ class LokerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $loker = new Loker;
+            $loker->KodeLoker   = $request->KodeLoker;
+            $loker->NamaLoker   = $request->NamaLoker;
+            $loker->Keterangan  = $request->Keterangan;  
+
+            $photo=$request->file('Picture');
+            $destination=base_path().'/public/img/loker';
+            $filename=time().'.'.$photo->getClientOriginalExtension();          
+            $photo->move($destination,$filename);           
+            $loker['Picture']=$filename; 
+        
+            $loker->save();
+            return redirect('databarang/loker')->with('pesan_sukses', 'Data loker has been saved.');
+        
+            if ($validator -> fails()) {
+                    return redirect('databarang/loker')->withErrors($validator)->withInput();
+            }
+
+        } 
+        catch (Exception $e) {
+            return redirect('databarang/loker')->with('pesan_gagal', $e->getMessage());
+        }
     }
 
     /**
@@ -45,7 +71,8 @@ class LokerController extends Controller
      */
     public function show($id)
     {
-        //
+        $loker = Loker::where('KodeLoker', $id)->first();
+        return view('loker.show', compact('loker'));
     }
 
     /**
@@ -68,7 +95,36 @@ class LokerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $loker = Loker::find($id);
+            $loker->KodeLoker   = $request->KodeLoker;
+            $loker->NamaLoker   = $request->NamaLoker;
+            $loker->Keterangan  = $request->Keterangan;  
+
+            if ($request->hasFile('Picture')) {
+                $img = Loker::find($id);
+                $path = base_path().'/public/img/loker/' .$img->Picture;
+                
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+                
+                $photo=$request->file('Picture');
+                $destination=base_path().'/public/img/loker/';
+                $filename=time().'.'.$photo->getClientOriginalExtension();              
+                $photo->move($destination,$filename);               
+                $loker['Picture']=$filename;
+            }
+
+            $loker->save();
+            return redirect('databarang/loker')->with('pesan_sukses', 'Data berhasil.');
+
+            if ($validator -> fails()) {
+                    return redirect('databarang/loker')->withErrors($validator)->withInput();
+            }
+        } catch (Exception $e) {
+            return redirect('databarang/loker')->with('pesan_gagal', $e->getMessage());
+        }
     }
 
     /**
@@ -79,6 +135,17 @@ class LokerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            
+            $photo=Loker::find($id);
+            $location=base_path().'/public/img/loker/' .$photo->Picture;
+            $cc = unlink($location);
+            
+            Loker::find($id)->delete();          
+            return redirect('databarang/loker')->with('pesan_sukses', 'Data loker successfully removed .');
+        }
+        catch(Exception $e) {
+            return redirect('databarang/loker')->with('pesan_gagal', $e->getMessage());
+        }
     }
 }

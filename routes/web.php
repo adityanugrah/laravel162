@@ -19,7 +19,26 @@ Route::get('/', ['as'=>'dashboard', function () {
 	return View::make('include.dashboard');
 }]);
 
-Route::resource('seragam', 'SeragamController');
-Route::resource('preused', 'PreusedController');
-Route::resource('loker', 'LokerController');
-Route::resource('tools', 'ToolsController');
+Route::resource('databarang/seragam', 'SeragamController');
+Route::resource('databarang/preused', 'PreusedController');
+Route::resource('databarang/loker', 'LokerController');
+Route::resource('databarang/tools', 'ToolsController');
+
+Route::resource('supplier', 'SupplierController');
+
+Route::get('importExport', 'ImportSeragamController@importExport');
+Route::post('importSeragam', 'ImportSeragamController@importSeragam');
+
+Route::get('importExport', 'ImportPreusedController@importExport');
+Route::post('importPreused', 'ImportPreusedController@importPreused');
+
+Route::get('importExport', 'ImportLokerController@importExport');
+Route::post('importLoker', 'ImportLokerController@importLoker');
+
+Route::get('importExport', 'ImportToolsController@importExport');
+Route::post('importTools', 'ImportToolsController@importTools');
+
+Route::get('importExport', 'ImportToolsController@importExport');
+Route::post('importSupplier', 'ImportSupplierController@importSupplier');
+
+Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');

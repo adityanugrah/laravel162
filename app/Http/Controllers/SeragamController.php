@@ -15,7 +15,7 @@ class SeragamController extends Controller
      */
     public function index()
     {
-        $seragams = Seragam::orderBy('kodeseragam')->get(); 
+        $seragams = Seragam::orderBy('KodeSeragam')->get(); 
         return view('seragam.index', compact('seragams'));
     }
 
@@ -39,26 +39,26 @@ class SeragamController extends Controller
     {
         try {
             $seragam = new Seragam;
-            $seragam->kodeseragam = $request->kodeseragam;
-            $seragam->namaseragam = $request->namaseragam;
-            $seragam->keterangan  = $request->keterangan;   
+            $seragam->KodeSeragam = $request->KodeSeragam;
+            $seragam->NamaSeragam = $request->NamaSeragam;
+            $seragam->Keterangan  = $request->Keterangan;   
 
-            $photo=$request->file('picture');
+            $photo=$request->file('Picture');
             $destination=base_path().'/public/img/seragam';
             $filename=time().'.'.$photo->getClientOriginalExtension();          
             $photo->move($destination,$filename);           
-            $seragam['picture']=$filename; 
+            $seragam['Picture']=$filename; 
         
             $seragam->save();
-            return redirect('seragam')->with('pesan_sukses', 'Data seragam has been saved.');
+            return redirect('databarang/seragam')->with('pesan_sukses', 'Data seragam has been saved.');
         
             if ($validator -> fails()) {
-                    return redirect('seragam')->withErrors($validator)->withInput();
+                    return redirect('databarang/seragam')->withErrors($validator)->withInput();
             }
 
         } 
         catch (Exception $e) {
-            return redirect('seragam')->with('pesan_gagal', $e->getMessage());
+            return redirect('databarang/seragam')->with('pesan_gagal', $e->getMessage());
         }
     }
 
@@ -70,7 +70,7 @@ class SeragamController extends Controller
      */
     public function show($id)
     {
-        $seragam = Seragam::where('kodeseragam', $id)->first();
+        $seragam = Seragam::where('KodeSeragam', $id)->first();
         return view('seragam.show', compact('seragam'));
     }
 
@@ -96,30 +96,33 @@ class SeragamController extends Controller
     {
         try {
             $seragam = Seragam::find($id);
-            $seragam->kodeseragam = $request->kodeseragam;
-            $seragam->namaseragam = $request->namaseragam;
-            $seragam->keterangan  = $request->keterangan;
+            $seragam->KodeSeragam = $request->KodeSeragam;
+            $seragam->NamaSeragam = $request->NamaSeragam;
+            $seragam->Keterangan  = $request->Keterangan;  
 
-            // if ($request->hasFile('picture')) {
-            //     $seragam=Seragam::find($id);
-            //     $location=public_path().'/img/seragam/' .$seragam->picture;
-            //     $cc = unlink($location);
-
-            //     $imageName = time().'.'.$request->picture->getClientOriginalExtension();
-            //     $request->picture->move(public_path('img/seragam'), $imageName);
-            //     $seragam->picture = $imageName;
-            // } else {
-            //     $seragam->picture = "picture.jpg";
-            // }
+            if ($request->hasFile('Picture')) {
+                $img = Seragam::find($id);
+                $path = base_path().'/public/img/seragam/' .$img->Picture;
+                
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+                
+                $photo=$request->file('Picture');
+                $destination=base_path().'/public/img/seragam/';
+                $filename=time().'.'.$photo->getClientOriginalExtension();              
+                $photo->move($destination,$filename);               
+                $seragam['Picture']=$filename;
+            }
 
             $seragam->save();
-            return redirect('seragam')->with('pesan_sukses', 'Data berhasil.');
+            return redirect('databarang/seragam')->with('pesan_sukses', 'Data berhasil.');
 
             if ($validator -> fails()) {
-                    return redirect('seragam')->withErrors($validator)->withInput();
+                    return redirect('databarang/seragam')->withErrors($validator)->withInput();
             }
         } catch (Exception $e) {
-            return redirect('seragam')->with('pesan_gagal', $e->getMessage());
+            return redirect('databarang/seragam')->with('pesan_gagal', $e->getMessage());
         }
     }
 
@@ -133,15 +136,15 @@ class SeragamController extends Controller
     {
         try {
             
-            $seragam=Seragam::find($id);
-            $location=public_path().'/img/seragam/' .$seragam->picture;
+            $photo=Seragam::find($id);
+            $location=base_path().'/public/img/seragam/' .$photo->Picture;
             $cc = unlink($location);
-
+            
             Seragam::find($id)->delete();          
-            return redirect('seragam')->with('pesan_sukses', 'Data Seragam successfully removed .');
+            return redirect('databarang/seragam')->with('pesan_sukses', 'Data seragam successfully removed .');
         }
         catch(Exception $e) {
-            return redirect('seragam')->with('pesan_gagal', $e->getMessage());
+            return redirect('databarang/seragam')->with('pesan_gagal', $e->getMessage());
         }
     }
 }

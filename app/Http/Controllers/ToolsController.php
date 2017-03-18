@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Tools;
+use Validator;
 
 class ToolsController extends Controller
 {
@@ -13,7 +15,8 @@ class ToolsController extends Controller
      */
     public function index()
     {
-        //
+        $tool = Tools::orderBy('KodeTools')->get(); 
+        return view('tools.index', compact('tool'));
     }
 
     /**
@@ -34,7 +37,29 @@ class ToolsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $tools = new Tools;
+            $tools->KodeTools  = $request->KodeTools;
+            $tools->NamaTools  = $request->NamaTools;
+            $tools->Keterangan  = $request->Keterangan;   
+
+            $photo=$request->file('Picture');
+            $destination=base_path().'/public/img/tools';
+            $filename=time().'.'.$photo->getClientOriginalExtension();          
+            $photo->move($destination,$filename);           
+            $tools['Picture']=$filename; 
+        
+            $tools->save();
+            return redirect('databarang/tools')->with('pesan_sukses', 'Data tools has been saved.');
+        
+            if ($validator -> fails()) {
+                    return redirect('databarang/tools')->withErrors($validator)->withInput();
+            }
+
+        } 
+        catch (Exception $e) {
+            return redirect('databarang/tools')->with('pesan_gagal', $e->getMessage());
+        }
     }
 
     /**
@@ -45,7 +70,8 @@ class ToolsController extends Controller
      */
     public function show($id)
     {
-        //
+        $tools = Tools::where('KodeTools', $id)->first();
+        return view('tools.show', compact('tools'));
     }
 
     /**
@@ -68,7 +94,36 @@ class ToolsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $tools = Tools::find($id);
+            $tools->KodeTools  = $request->KodeTools;
+            $tools->NamaTools  = $request->NamaTools;
+            $tools->Keterangan  = $request->Keterangan;   
+
+            if ($request->hasFile('Picture')) {
+                $img = Tools::find($id);
+                $path = base_path().'/public/img/tools/' .$img->Picture;
+                
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+                
+                $photo=$request->file('Picture');
+                $destination=base_path().'/public/img/tools/';
+                $filename=time().'.'.$photo->getClientOriginalExtension();              
+                $photo->move($destination,$filename);               
+                $tools['Picture']=$filename;
+            }
+
+            $tools->save();
+            return redirect('databarang/tools')->with('pesan_sukses', 'Data berhasil.');
+
+            if ($validator -> fails()) {
+                    return redirect('databarang/tools')->withErrors($validator)->withInput();
+            }
+        } catch (Exception $e) {
+            return redirect('databarang/tools')->with('pesan_gagal', $e->getMessage());
+        }
     }
 
     /**
@@ -79,6 +134,17 @@ class ToolsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            
+            $photo=Tools::find($id);
+            $location=base_path().'/public/img/tools/' .$photo->Picture;
+            $cc = unlink($location);
+            
+            Tools::find($id)->delete();          
+            return redirect('databarang/tools')->with('pesan_sukses', 'Data tools successfully removed .');
+        }
+        catch(Exception $e) {
+            return redirect('databarang/tools')->with('pesan_gagal', $e->getMessage());
+        }
     }
 }
