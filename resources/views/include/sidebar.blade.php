@@ -23,18 +23,18 @@
             </li>
             <li class="{{ Request::is('supplier') || Request::is('supplier/*') ? 'active' : '' }}">
                 <a href="{{ url('/supplier') }}">
-                <i class="fa fa-bar-chart-o"></i> 
+                <i class="fa fa-shopping-cart"></i> 
                 <span class="nav-label">Data Supplier</span></a>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Transaksi</span><span class="fa arrow"></span></a>
+            <li class="{{ Request::is('transaksi') || Request::is('transaksi/*') ? 'active' : '' }}">
+                <a href="#"><i class="fa fa-exchange"></i> <span class="nav-label">Transaksi</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li class="{{ Request::is('databarang/tools') || Request::is('databarang/tools/*') ? 'active' : '' }}"><a href="form_basic.html">Transaksi Masuk</a></li>
-                    <li class="{{ Request::is('databarang/tools') || Request::is('databarang/tools/*') ? 'active' : '' }}"><a href="form_advanced.html">Transaksi Keluar</a></li>
+                    <li class="{{ Request::is('transaksimasuk') || Request::is('transaksimasuk/*') ? 'active' : '' }}"><a href="{{ url('transaksimasuk/') }}">Transaksi Masuk</a></li>
+                    <li class="{{ Request::is('transaksikeluar') || Request::is('transaksikeluar/*') ? 'active' : '' }}"><a href="{{ url('transaksikeluar/') }}">Transaksi Keluar</a></li>
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">Laporan</span><span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-print"></i> <span class="nav-label">Laporan</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li class="{{ Request::is('databarang/tools') || Request::is('databarang/tools/*') ? 'active' : '' }}"><a href="form_basic.html">Laporan Bulanan</a></li>
                     <li class="{{ Request::is('databarang/tools') || Request::is('databarang/tools/*') ? 'active' : '' }}"><a href="form_advanced.html">Laporan Mingguan</a></li>

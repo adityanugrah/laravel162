@@ -51,7 +51,7 @@
 	                    		{{ $i++ }}
 	                    		</td>
 		                        <td>
-		                        	<a href="supplier/{{ $supplier->KodeSupplier }}">{{ $supplier->KodeSupplier }}</a>
+		                        	<a href="/supplier/{{ $supplier->KodeSupplier }}">{{ $supplier->KodeSupplier }}</a>
 		                        </td>
 		                        <td>{{ $supplier->NamaSupplier }}</td>
 		                        <td>{{ $supplier->Keterangan }}</td>
@@ -59,13 +59,13 @@
                                     <button class="btn fa fa-pencil" data-toggle="modal" data-target="#myModals<?php echo $i ?>" title="Ubah Data">
                                         <span class="lnr lnr-pencil"></span>
                                     </button> 
-                                    @include('supplier.edit')
-			                      	<form method="POST" action="/supplier/{{ $supplier->KodeSupplier }}" style="display: inline;">
+                                    <form method="POST" action="/supplier/{{ $supplier->KodeSupplier }}" style="display: inline;">
 			                          {{ method_field('DELETE') }}{{csrf_field()}}
 			                          <button type="submit" class="btn btn-danger fa fa-trash delete-confirm" title="Hapus Data">
 			                          	<span class="lnr lnr-trash"></span>
 			                          </button>
 			                      	</form>
+                                    @include('supplier.edit')
 		                        </td>
 		                    </tr>
 		                    @endforeach
