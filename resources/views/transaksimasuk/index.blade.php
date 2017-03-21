@@ -21,9 +21,10 @@
     <div class="ibox-content m-b-sm border-bottom">
         <div class="row">
             <div class="col-sm-4">
-                <div class="form-group">
-                    <label class="control-label" for="order_id">Kode Transaksi</label>
-                    <input type="text" id="order_id" name="order_id" value="" placeholder="Kode Transaksi" class="form-control">
+                <div class="form-group {{ $errors->has('KodeTransaksi') ? 'has-error has-feedback' : '' }}">
+                    {!! Form::label('KodeTransaksi', 'Kode Transaksi') !!}
+                    {!! Form::text('KodeTransaksi',null,['class'=>'form-control', 'placeholder'=>'Kode Transaksi', 'required']) !!}
+                    {!! $errors->first('KodeTools', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
             <div class="col-sm-4">
@@ -35,9 +36,10 @@
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group">
-                    <label class="control-label" for="customer">Kode Supplier</label>
-                    <input type="text" id="customer" name="customer" value="" placeholder="Kode Supplier" class="form-control">
+                <div class="form-group {{ $errors->has('KodeSupplier') ? 'has-error has-feedback' : '' }}">
+                    {!! Form::label('KodeSupplier', 'Kode Supplier') !!}
+                    {!! Form::text('KodeSupplier',null,['class'=>'form-control', 'placeholder'=>'Kode Supplier', 'required']) !!}
+                    {!! $errors->first('KodeSupplier', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
         </div>
