@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\TransaksiMasuk;
+use Validator;
 
 class TransaksiMasukController extends Controller
 {
@@ -13,7 +15,8 @@ class TransaksiMasukController extends Controller
      */
     public function index()
     {
-        //
+        $masuk = TransaksiMasuk::orderBy('KodeTransaksiM')->get(); 
+        return view('transaksimasuk.index', compact('masuk'));
     }
 
     /**

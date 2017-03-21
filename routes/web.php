@@ -26,8 +26,8 @@ Route::resource('databarang/tools', 'ToolsController');
 
 Route::resource('supplier', 'SupplierController');
 
-Route::resource('transaksimasuk', 'TransaksiMasukController');
-Route::resource('transaksikeluar', 'TransaksiKeluarController');
+Route::resource('transaksi/transaksimasuk', 'TransaksiMasukController');
+Route::resource('transaksi/transaksikeluar', 'TransaksiKeluarController');
 
 Route::get('importExport', 'ImportSeragamController@importExport');
 Route::post('importSeragam', 'ImportSeragamController@importSeragam');

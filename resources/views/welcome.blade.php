@@ -12,7 +12,12 @@
     <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{url('font-awesome/css/font-awesome.css')}}" rel="stylesheet">
 
+    <!-- FooTable -->
+    <link href="{{url('css/plugins/footable/footable.core.css')}}" rel="stylesheet">
+
     <link href="{{url('css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
+
+    <link href="{{url('css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
 
     <link href="{{url('css/animate.css')}}" rel="stylesheet">
     <link href="{{url('css/style.css')}}" rel="stylesheet">
@@ -78,9 +83,33 @@
     <script src="{{url('js/inspinia.js')}}"></script>
     <script src="{{url('js/plugins/pace/pace.min.js')}}"></script>
 
+    <!-- Data picker -->
+    <script src="{{url('js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
+
+    <!-- FooTable -->
+    <script src="{{url('js/plugins/footable/footable.all.min.js')}}"></script>
+
     <!-- Page-Level Scripts -->
     <script>
         $(document).ready(function(){
+            $('.footable').footable();
+
+            $('#date_added').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+            });
+
+            $('#date_modified').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+            });
+            
             $('.dataTables-example').DataTable({
                 dom: '<"html5buttons"B>lTfgitp',
                 buttons: [

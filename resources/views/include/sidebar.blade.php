@@ -6,7 +6,7 @@
                     <img alt="image" class="img-circle" src="{{url('/img/profile_small.png')}}" />
                 </div>
                 <div class="logo-element">
-                    IN+
+                    KP
                 </div>
             </li>
             <li class="{{ Request::is('dashboard') || Request::is('dashboard/*') ? 'active' : '' }}">
@@ -29,8 +29,8 @@
             <li class="{{ Request::is('transaksi') || Request::is('transaksi/*') ? 'active' : '' }}">
                 <a href="#"><i class="fa fa-exchange"></i> <span class="nav-label">Transaksi</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li class="{{ Request::is('transaksimasuk') || Request::is('transaksimasuk/*') ? 'active' : '' }}"><a href="{{ url('transaksimasuk/') }}">Transaksi Masuk</a></li>
-                    <li class="{{ Request::is('transaksikeluar') || Request::is('transaksikeluar/*') ? 'active' : '' }}"><a href="{{ url('transaksikeluar/') }}">Transaksi Keluar</a></li>
+                    <li class="{{ Request::is('transaksi/transaksimasuk') || Request::is('transaksi/transaksimasuk/*') ? 'active' : '' }}"><a href="{{ url('transaksi/transaksimasuk') }}">Transaksi Masuk</a></li>
+                    <li class="{{ Request::is('transaksi/transaksikeluar') || Request::is('transaksi/transaksikeluar/*') ? 'active' : '' }}"><a href="{{ url('transaksi/transaksikeluar') }}">Transaksi Keluar</a></li>
                 </ul>
             </li>
             <li>
