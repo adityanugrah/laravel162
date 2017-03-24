@@ -8,15 +8,20 @@ class TransaksiMasuk extends Model
 {
     protected $table = 'transaksimasuk';
 
-    protected $primaryKey = 'KodeTransaksiM';
+    protected $primaryKey = 'KodeMasuk';
 
     public $incrementing = false;
 
     public $timestamps = false;
 
     public $fillable = [
-	'TglTransaksiM',
-    'KodeSupplierM',
-    'NamaSupplierM'
+    'Tgl_Masuk',
+    'KodeSupplier',
+    'NamaSupplier',
+    'JenisBrg',
+    'KodeBrg',
+    'NamaBrg',
+    'JumlahBrg',
+    'HargaBrg'
 	];
 }

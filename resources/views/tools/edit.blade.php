@@ -13,37 +13,29 @@
                     <div class="form-group {{ $errors->has('KodeTools') ? 'has-error has-feedback' : '' }}">
                       {!! Form::label('KodeTools', 'Kode Tools :', ['class' => 'col-md-3 control-label']) !!}
                       <div class="col-md-6">
-                        <div class="input-group">
                         {!! Form::text('KodeTools',null,['class'=>'form-control', 'readonly']) !!}
                         {!! $errors->first('KodeTools', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
-                        </div>
                       </div>
                     </div>
                     <div class="form-group {{ $errors->has('NamaTools') ? 'has-error has-feedback' : '' }}">
                       {!! Form::label('NamaTools', 'Nama Tools :', ['class' => 'col-md-3 control-label']) !!}
-                      <div class="col-md-7">
-                        <div class="input-group">
+                      <div class="col-md-6">
                         {!! Form::text('NamaTools',null,['class'=>'form-control', 'required']) !!}
                         {!! $errors->first('NamaTools', '<span class="fa fa-times form-control-feedback"></span><span class="help-block">:message</span>'); !!}
-                        </div>
                       </div>
                     </div>
                     <div class="form-group {{ $errors->has('Keterangan') ? 'has-error has-feedback' : '' }}">
                       {!! Form::label('Keterangan', 'Keterangan :', ['class' => 'col-md-3 control-label']) !!}
                       <div class="col-md-6">
-                        <div class="input-group">
                         {!! Form::textarea('Keterangan',null,['class'=>'form-control', 'required']) !!}
                         {!! $errors->first('Keterangan', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
-                        </div>
                       </div>
                     </div>
                     <div class="form-group {{ $errors->has('Picture') ? 'has-error has-feedback' : '' }}">
                       {!! Form::label('Picture', 'Picture :', ['class' => 'col-md-3 control-label']) !!}
                       <div class="col-md-6">
-                        <div class="input-group">
                         {!! Form::file('Picture',null,['class'=>'form-control', 'required']) !!}
                         {!! $errors->first('Picture', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
-                        </div>
                       </div>
                     </div>
                     <div class="modal-footer">

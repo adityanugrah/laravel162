@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TransaksiMasuk;
+use App\Supplier;
+use App\Seragam;
 use Validator;
 
 class TransaksiMasukController extends Controller
@@ -15,8 +17,13 @@ class TransaksiMasukController extends Controller
      */
     public function index()
     {
-        $masuk = TransaksiMasuk::orderBy('KodeTransaksiM')->get(); 
-        return view('transaksimasuk.index', compact('masuk'));
+        $supplierz = Supplier::orderBy('KodeSupplier')->get(); 
+
+        $seragamz = Seragam::orderBy('KodeSeragam')->get(); 
+
+        $masukz = TransaksiMasuk::orderBy('KodeMasuk')->get(); 
+
+        return view('transaksimasuk.index', compact('masukz','supplierz','seragamz'));
     }
 
     /**
@@ -37,7 +44,29 @@ class TransaksiMasukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $seragam = new Seragam;
+            $seragam->KodeSeragam = $request->KodeSeragam;
+            $seragam->NamaSeragam = $request->NamaSeragam;
+            $seragam->Keterangan  = $request->Keterangan;   
+
+            $photo=$request->file('Picture');
+            $destination=base_path().'/public/img/seragam';
+            $filename=time().'.'.$photo->getClientOriginalExtension();          
+            $photo->move($destination,$filename);           
+            $seragam['Picture']=$filename; 
+        
+            $seragam->save();
+            return redirect('databarang/seragam')->with('pesan_sukses', 'Data seragam has been saved.');
+        
+            if ($validator -> fails()) {
+                    return redirect('databarang/seragam')->withErrors($validator)->withInput();
+            }
+
+        } 
+        catch (Exception $e) {
+            return redirect('databarang/seragam')->with('pesan_gagal', $e->getMessage());
+        }
     }
 
     /**

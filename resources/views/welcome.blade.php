@@ -33,16 +33,25 @@
                     <div class="navbar-header">
                         <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
                     </div>
-                    <ul class="nav navbar-top-links navbar-right">
+                    <ul class="nav navbar-top-links navbar-right"  style="margin-top: 2%">
                         <li>
                             <div class="dropdown profile-element">
-                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                    <span class="clear"> 
-                                        <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong><b class="caret"></b></span>
-                                    </span> 
+                                <a data-toggle="dropdown" class="dropdown-toggle" >
+                                    <strong class="font-bold">{{ Auth::user()->name }} </strong>
+                                    <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                    <li><a href="login.html">Logout</a></li>
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         </li>

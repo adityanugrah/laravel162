@@ -19,12 +19,13 @@
 
 <div class="wrapper wrapper-content animated fadeInRight ecommerce">
     <div class="ibox-content m-b-sm border-bottom">
+     {!! Form::open(['url' => '/transaksi/transaksimasuk']) !!}
         <div class="row">
             <div class="col-sm-4">
-                <div class="form-group {{ $errors->has('KodeTransaksi') ? 'has-error has-feedback' : '' }}">
-                    {!! Form::label('KodeTransaksi', 'Kode Transaksi') !!}
-                    {!! Form::text('KodeTransaksi',null,['class'=>'form-control', 'placeholder'=>'Kode Transaksi', 'required']) !!}
-                    {!! $errors->first('KodeTools', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                <div class="form-group {{ $errors->has('KodeMasuk') ? 'has-error has-feedback' : '' }}">
+                    {!! Form::label('KodeMasuk', 'KodeMasuk') !!}
+                    {!! Form::text('KodeMasuk',null,['class'=>'form-control', 'placeholder'=>'KodeMasuk', 'required']) !!}
+                    {!! $errors->first('KodeMasuk', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
             <div class="col-sm-4">
@@ -37,60 +38,73 @@
             </div>
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('KodeSupplier') ? 'has-error has-feedback' : '' }}">
-                    {!! Form::label('KodeSupplier', 'Kode Supplier') !!}
-                    {!! Form::text('KodeSupplier',null,['class'=>'form-control', 'placeholder'=>'Kode Supplier', 'required']) !!}
-                    {!! $errors->first('KodeSupplier', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
-                </div>
+                <label class="control-label" for="status">Kode Suppleir</label>
+                    <select name="KodeSupplier" onChange="getSupplier()" id="KodeSupplier" class="form-control">
+                        <option>Pilih Kode Supplier</option>
+                        @foreach ($supplierz as $sup)
+                        <option value="{{$sup -> NamaSupplier}}">{{$sup -> KodeSupplier}}</option>
+                        @endforeach
+                    </select>
+                </div>               
             </div>
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <div class="form-group">
-                    <label class="control-label" for="date_added">Nama Supplier</label>
-                    <input type="text" id="customer" name="customer" value="" placeholder="Nama Supplier" class="form-control">
+                <div class="form-group {{ $errors->has('NamaSupplier') ? 'has-error has-feedback' : '' }}">
+                    {!! Form::label('NamaSupplier', 'Nama Supplier') !!}
+                    {!! Form::text('NamaSupplier',null,['class'=>'form-control', 'id'=>'NamaSupplier', 'placeholder'=>'Nama Supplier', 'required']) !!}
+                    {!! $errors->first('NamaSupplier', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group">
+               <div class="form-group {{ $errors->has('JenisBrg') ? 'has-error has-feedback' : '' }}">
                     <label class="control-label" for="date_modified">Jenis Barang</label>
-                    <select name="status" id="status" class="form-control">
-                        <option value="0" selected>Seragam Baru</option>
-                        <option value="1">Pre-Used</option>
-                        <option value="2">Loker</option>
-                        <option value="3">Tools</option>
+                    <select name="status" id="JenisBrg"  onChange="getJenis()" class="form-control">
+                        <option >Pilih</option>
+                        <option value="Seragam" >Seragam Baru</option>
+                        <option value="Pre-Used">Pre-Used</option>
+                        <option value="Loker">Loker</option>
+                        <option value="Tools">Tools</option>
                     </select>
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group">
-                    <label class="control-label" for="amount">Kode Barang</label>
-                    <input type="text" id="amount" name="amount" value="" placeholder="Kode Barang" class="form-control">
+                <div class="form-group {{ $errors->has('KodeBrg') ? 'has-error has-feedback' : '' }}">
+                <label class="control-label" for="status">Kode Barang</label>
+                    <select name="KodeBrg" id="KodeBrg" class="form-control" required="true">
+                        <option value="">Pilih Kode Barang</option>
+                        <!-- @foreach ($seragamz as $ser)
+                            <option value="{{$ser -> NamaSeragam}}">{{$ser -> KodeSeragam}}</option>
+                        @endforeach -->
+                    </select>
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group">
-                    <label class="control-label" for="amount">Nama Barang</label>
-                    <input type="text" id="amount" name="amount" value="" placeholder="Nama Barang" class="form-control">
+                <div class="form-group {{ $errors->has('NamaBrg') ? 'has-error has-feedback' : '' }}">
+                    {!! Form::label('NamaBrg', 'Nama Barang') !!}
+                    {!! Form::text('NamaBrg',null,['class'=>'form-control', 'id'=>'NamaBrg', 'placeholder'=>'Nama Barang', 'required']) !!}
+                    {!! $errors->first('NamaBrg', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group">
-                    <label class="control-label" for="amount">Jumlah Barang</label>
-                    <input type="text" id="amount" name="amount" value="" placeholder="Jumlah Barang" class="form-control">
+                <div class="form-group {{ $errors->has('JumlahBrg') ? 'has-error has-feedback' : '' }}">
+                    {!! Form::label('JumlahBrg', 'Jumlah Barang') !!}
+                    {!! Form::text('JumlahBrg',null,['class'=>'form-control', 'placeholder'=>'Jumlah Barang', 'required']) !!}
+                    {!! $errors->first('JumlahBrg', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group">
-                    <label class="control-label" for="amount">Harga Barang</label>
-                    <input type="text" id="amount" name="amount" value="" placeholder="Harga Barang" class="form-control">
+                <div class="form-group {{ $errors->has('HargaBrg') ? 'has-error has-feedback' : '' }}">
+                    {!! Form::label('HargaBrg', 'Harga Barang') !!}
+                    {!! Form::text('HargaBrg',null,['class'=>'form-control', 'placeholder'=>'Harga Barang', 'required']) !!}
+                    {!! $errors->first('HargaBrg', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Save changes</button>
         </div>
-
+        {!! Form::close() !!}
     </div>
 
     <div class="row">
@@ -101,6 +115,7 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                         <thead>
                         <tr>
+                            <th>No.</th>
                             <th>Kode Transaksi</th>
                             <th data-hide="phone">Tanggal Transaksi</th>
                             <th data-hide="phone">Nama Barang</th>
@@ -110,21 +125,26 @@
                         </tr>
                         </thead>
                             <tbody>
+                            <?php $i = 1; ?>
+                            @foreach($masukz as $masuk)
                                 <tr>
                                     <td>
-                                       <a href="/">3214</a>
+                                        {{ $i++ }}
                                     </td>
                                     <td>
-                                        Customer example
+                                       <a href="/transaksi/transaksimasuk{{ $masuk->KodeMasuk }}">{{ $masuk->KodeTransaksiM }}</a>
                                     </td>
                                     <td>
-                                        $500.00
+                                       {{ $masuk->Tgl_Masuk }}
                                     </td>
                                     <td>
-                                        03/04/2015
+                                        {{ $masuk->KodeSupplier }}
                                     </td>
                                     <td>
-                                        03/05/2015
+                                        {{ $masuk->NamaSupplier }}
+                                    </td>
+                                    <td>
+                                       null
                                     </td>
                                     <td class="center">
                                         <button class="btn fa fa-pencil" data-toggle="modal" data-target="#myModals" title="Ubah Data">
@@ -139,6 +159,7 @@
                                         </form>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         <tfoot>
                             <tr>
@@ -153,7 +174,33 @@
             </div>
         </div>
     </div>
-
-
 </div>
+
+<script type="text/javascript">
+    function getSupplier() {
+        var x = document.getElementById ("KodeSupplier").value;
+        document.getElementById("NamaSupplier").value = x;
+    }
+</script>
+
+<script type="text/javascript">
+    function getSeragam() {
+        var x = document.getElementById ("KodeSeragam").value;
+        document.getElementById("NamaSeragam").value = x;
+    }
+</script>
+
+<script type="text/javascript">
+    function getJenis() {
+        var jenis = document.getElementById ("JenisBrg").value;
+
+            if (jenis == "Seragam" ) {
+                //var x = document.getElementById ("KodeBrg").value;
+                document.getElementById("KodeBrg").value ="ok";
+                alert('asa');
+            } else {
+                alert('tidak ada');
+            }
+    }
+</script>
 @endsection

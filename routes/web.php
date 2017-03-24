@@ -14,6 +14,7 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/', ['as'=>'dashboard', function () {
 	return View::make('include.dashboard');
@@ -45,3 +46,10 @@ Route::get('importExport', 'ImportToolsController@importExport');
 Route::post('importSupplier', 'ImportSupplierController@importSupplier');
 
 Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');
+
+
+Route::get('/home', 'HomeController@index');
+
+});
+
+Auth::routes();
