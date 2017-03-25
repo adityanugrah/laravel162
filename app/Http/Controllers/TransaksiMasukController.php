@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\TransaksiMasuk;
 use App\Supplier;
 use App\Seragam;
+use App\Preused;
+use App\Tools;
+use App\Loker;
 use Validator;
 
 class TransaksiMasukController extends Controller
@@ -26,6 +29,21 @@ class TransaksiMasukController extends Controller
         return view('transaksimasuk.index', compact('masukz','supplierz','seragamz'));
     }
 
+    public function cobaSeragam($id){
+        if($id=="Seragam") {
+            $data=Seragam::orderBy('KodeSeragam')->get();
+        } else if ($id=="Preused") {
+            $data=Preused::orderBy('KodePreused')->get(); 
+        } else if ($id=="Loker") {
+
+        } else if ($id=="Tools") {
+
+        } else {
+
+        }
+
+        return view('transaksimasuk.coba',compact('data'));
+    }
     /**
      * Show the form for creating a new resource.
      *

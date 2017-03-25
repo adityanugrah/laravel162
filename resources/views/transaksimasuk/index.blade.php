@@ -59,24 +59,21 @@
             <div class="col-sm-4">
                <div class="form-group {{ $errors->has('JenisBrg') ? 'has-error has-feedback' : '' }}">
                     <label class="control-label" for="date_modified">Jenis Barang</label>
-                    <select name="status" id="JenisBrg"  onChange="getJenis()" class="form-control">
-                        <option >Pilih</option>
+                    <select name="JenisBrg" id="JenisBrg"  onChange="getJenis(this.id)" class="form-control">
+                        <option >Pilih Jenis Barang</option>
                         <option value="Seragam" >Seragam Baru</option>
-                        <option value="Pre-Used">Pre-Used</option>
+                        <option value="Preused">Pre-Used</option>
                         <option value="Loker">Loker</option>
                         <option value="Tools">Tools</option>
                     </select>
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group {{ $errors->has('KodeBrg') ? 'has-error has-feedback' : '' }}">
+                <div class="form-group {{ $errors->has('KodeBrg') ? 'has-error has-feedback' : '' }}" id="temp">
                 <label class="control-label" for="status">Kode Barang</label>
-                    <select name="KodeBrg" id="KodeBrg" class="form-control" required="true">
-                        <option value="">Pilih Kode Barang</option>
-                        <!-- @foreach ($seragamz as $ser)
-                            <option value="{{$ser -> NamaSeragam}}">{{$ser -> KodeSeragam}}</option>
-                        @endforeach -->
-                    </select>
+                <select name="KodeBrg" id="KodeBrg" class="form-control" required="true">
+                    
+                </select>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -191,16 +188,18 @@
 </script>
 
 <script type="text/javascript">
-    function getJenis() {
-        var jenis = document.getElementById ("JenisBrg").value;
-
-            if (jenis == "Seragam" ) {
-                //var x = document.getElementById ("KodeBrg").value;
-                document.getElementById("KodeBrg").value ="ok";
-                alert('asa');
-            } else {
-                alert('tidak ada');
-            }
+    function getJenis(s1) {
+        var s1 = document.getElementById (s1);
+        //var s2 = document.getElementById (s2);
+        //s2.innerHTML="";
+        $("#temp").load("/transaksi/cobaSeragam/"+s1.value);
+            //alert('asa');
+        /*if (s1.value == "Seragam" ) {
+            //document.getElementById("KodeBrg").value ="ok";
+            
+        } else {
+            alert('tidak ada');
+        }*/
     }
 </script>
 @endsection

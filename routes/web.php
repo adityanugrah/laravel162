@@ -47,6 +47,7 @@ Route::post('importSupplier', 'ImportSupplierController@importSupplier');
 
 Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');
 
+Route::get('transaksi/cobaSeragam/{id}', 'TransaksiMasukController@cobaSeragam');
 
 Route::get('/home', 'HomeController@index');
 
