@@ -30,21 +30,22 @@ class TransaksiMasukController extends Controller
     }
 
     public function cobaSeragam($id){
+
         if($id=="Seragam") {
             $data=Seragam::orderBy('KodeSeragam')->get();
         } else if ($id=="Preused") {
             $data=Preused::orderBy('KodePreused')->get(); 
         } else if ($id=="Loker") {
-
+            $data=Loker::orderBy('KodeLoker')->get(); 
         } else if ($id=="Tools") {
-
+            $data=Tools::orderBy('KodeTools')->get(); 
         } else {
-
+            $data = "Tidak Ada Data";
         }
 
-        return view('transaksimasuk.coba',compact('data'));
+        return view('transaksimasuk.coba',compact('data','id'));
     }
-    /**
+    /**qexd
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -60,30 +61,36 @@ class TransaksiMasukController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
     public function store(Request $request)
     {
         try {
-            $seragam = new Seragam;
-            $seragam->KodeSeragam = $request->KodeSeragam;
-            $seragam->NamaSeragam = $request->NamaSeragam;
-            $seragam->Keterangan  = $request->Keterangan;   
+            $masuk = new TransaksiMasuk;
+            $masuk->KodeMasuk       = $request->KodeMasuk;
+            $masuk->Tgl_Masuk       = $request->Tgl_Masuk;
+            $masuk->KodeSupplier    = $request->KodeSupplier;   
+            $masuk->NamaSupplier    = $request->NamaSupplier;   
+            $masuk->JenisBrg        = $request->JenisBrg;   
+            $masuk->KodeBrg         = $request->KodeBrg;   
+            $masuk->NamaBrg         = $request->NamaBrg;   
+            $masuk->JumlahBrg       = $request->JumlahBrg;   
+            $masuk->HargaBrg        = $request->HargaBrg;   
 
-            $photo=$request->file('Picture');
-            $destination=base_path().'/public/img/seragam';
-            $filename=time().'.'.$photo->getClientOriginalExtension();          
-            $photo->move($destination,$filename);           
-            $seragam['Picture']=$filename; 
-        
+            $seragam = Seragam::find($request->KodeBrg);
+            //return $request->KodeBrg;
+            $seragam->StokSeragam = $seragam->StokSeragam + $request->JumlahBrg;
+
             $seragam->save();
-            return redirect('databarang/seragam')->with('pesan_sukses', 'Data seragam has been saved.');
+            $masuk->save();
+            return redirect('transaksi/transaksimasuk')->with('pesan_sukses', 'Transaksi Masuk has been saved.');
         
             if ($validator -> fails()) {
-                    return redirect('databarang/seragam')->withErrors($validator)->withInput();
+                    return redirect('transaksi/transaksimasuk')->withErrors($validator)->withInput();
             }
 
         } 
         catch (Exception $e) {
-            return redirect('databarang/seragam')->with('pesan_gagal', $e->getMessage());
+            return redirect('transaksi/transaksimasuk')->with('pesan_gagal', $e->getMessage());
         }
     }
 

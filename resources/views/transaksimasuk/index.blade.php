@@ -23,17 +23,16 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('KodeMasuk') ? 'has-error has-feedback' : '' }}">
-                    {!! Form::label('KodeMasuk', 'KodeMasuk') !!}
-                    {!! Form::text('KodeMasuk',null,['class'=>'form-control', 'placeholder'=>'KodeMasuk', 'required']) !!}
+                    {!! Form::label('KodeMasuk', 'Kode Masuk') !!}
+                    {!! Form::text('KodeMasuk',null,['class'=>'form-control', 'placeholder'=>'Kode Masuk', 'required']) !!}
                     {!! $errors->first('KodeMasuk', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group">
-                    <label class="control-label" for="status">Tanggal Transaksi</label>
-                    <div class="input-group date">
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date_added" type="text" class="form-control" value="03/04/2014">
-                    </div>
+                <div class="form-group {{ $errors->has('Tgl_Masuk') ? 'has-error has-feedback' : '' }}">
+                    {!! Form::label('Tgl_Masuk', 'Tanggal Masuk') !!}
+                    {!! Form::date('Tgl_Masuk',null,['class'=>'form-control', 'placeholder'=>'Tgl_Masuk', 'required']) !!}
+                    {!! $errors->first('Tgl_Masuk', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
             <div class="col-sm-4">
@@ -42,7 +41,7 @@
                     <select name="KodeSupplier" onChange="getSupplier()" id="KodeSupplier" class="form-control">
                         <option>Pilih Kode Supplier</option>
                         @foreach ($supplierz as $sup)
-                        <option value="{{$sup -> NamaSupplier}}">{{$sup -> KodeSupplier}}</option>
+                        <option value="{{$sup -> KodeSupplier}}">{{$sup -> KodeSupplier}}</option>
                         @endforeach
                     </select>
                 </div>               
@@ -72,7 +71,7 @@
                 <div class="form-group {{ $errors->has('KodeBrg') ? 'has-error has-feedback' : '' }}" id="temp">
                 <label class="control-label" for="status">Kode Barang</label>
                 <select name="KodeBrg" id="KodeBrg" class="form-control" required="true">
-                    
+                    <option>Pilih Kode Barang</option>
                 </select>
                 </div>
             </div>
@@ -176,30 +175,16 @@
 <script type="text/javascript">
     function getSupplier() {
         var x = document.getElementById ("KodeSupplier").value;
-        document.getElementById("NamaSupplier").value = x;
-    }
-</script>
-
-<script type="text/javascript">
-    function getSeragam() {
-        var x = document.getElementById ("KodeSeragam").value;
-        document.getElementById("NamaSeragam").value = x;
+        $.get("/transaksi/getSupplier/"+x,function(data){
+            document.getElementById("NamaSupplier").value = data;
+        });
     }
 </script>
 
 <script type="text/javascript">
     function getJenis(s1) {
         var s1 = document.getElementById (s1);
-        //var s2 = document.getElementById (s2);
-        //s2.innerHTML="";
         $("#temp").load("/transaksi/cobaSeragam/"+s1.value);
-            //alert('asa');
-        /*if (s1.value == "Seragam" ) {
-            //document.getElementById("KodeBrg").value ="ok";
-            
-        } else {
-            alert('tidak ada');
-        }*/
     }
 </script>
 @endsection
