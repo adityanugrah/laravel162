@@ -51,7 +51,7 @@
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('NamaSupplier') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('NamaSupplier', 'Nama Supplier') !!}
-                    {!! Form::text('NamaSupplier',null,['class'=>'form-control', 'id'=>'NamaSupplier', 'placeholder'=>'Nama Supplier', 'required']) !!}
+                    {!! Form::text('NamaSupplier',null,['class'=>'form-control', 'id'=>'NamaSupplier', 'placeholder'=>'Nama Supplier','readonly','required']) !!}
                     {!! $errors->first('NamaSupplier', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
@@ -78,7 +78,7 @@
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('NamaBrg') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('NamaBrg', 'Nama Barang') !!}
-                    {!! Form::text('NamaBrg',null,['class'=>'form-control', 'id'=>'NamaBrg', 'placeholder'=>'Nama Barang', 'required']) !!}
+                    {!! Form::text('NamaBrg',null,['class'=>'form-control', 'id'=>'NamaBrg', 'placeholder'=>'Nama Barang', 'readonly', 'required']) !!}
                     {!! $errors->first('NamaBrg', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
@@ -171,6 +171,16 @@
         </div>
     </div>
 </div>
+
+<script src="{{url('js/jquery-2.1.1.js')}}"></script>
+
+<script>
+    $(document).ready(function(){
+        $.get("/transaksi/getKodeMasuk",function(data){
+            document.getElementById("KodeMasuk").value = data;
+        });
+    });
+</script>
 
 <script type="text/javascript">
     function getSupplier() {

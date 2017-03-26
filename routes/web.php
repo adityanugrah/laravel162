@@ -55,6 +55,8 @@ Route::get('/transaksi/getSupplier/{id}', 'getSupplierController@ambilNamaSuppli
 
 Route::get('/transaksi/getBarang/{id}/{kode}', 'getBarangController@ambilNamaBarang');
 
+Route::get('/transaksi/getKodeMasuk', 'KodeMasukController@index');
+
 });
 
 Auth::routes();
