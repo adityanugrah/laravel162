@@ -24,7 +24,7 @@
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('KodeMasuk') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('KodeMasuk', 'Kode Masuk') !!}
-                    {!! Form::text('KodeMasuk',null,['class'=>'form-control', 'placeholder'=>'Kode Masuk', 'required']) !!}
+                    {!! Form::text('KodeMasuk',null,['class'=>'form-control', 'placeholder'=>'Kode Masuk', 'readonly','required']) !!}
                     {!! $errors->first('KodeMasuk', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>

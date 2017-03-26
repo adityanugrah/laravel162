@@ -6,17 +6,46 @@ use Illuminate\Http\Request;
 
 use App\Supplier;
 
-class getSupplierController extends Controller
+use App\Seragam;
+use App\Preused;
+use App\Loker;
+use App\Tools;
+
+class getDataController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function ambilNamaSupplier($id){
         $sup = Supplier::find($id);
         return $sup->NamaSupplier;
     }
+
+
+    public function ambilNamaBarang($id,$kode){
+
+        if($kode=="Seragam") {
+            $kode = Seragam::find($id);
+            return $kode->NamaSeragam;
+        } else if ($kode=="Preused") {
+            $kode = Preused::find($id);
+            return $kode->NamaPreused; 
+        } else if ($kode=="Loker") {
+            $kode = Loker::find($id);
+            return $kode->NamaLoker;
+        } else if ($kode=="Tools") {
+            $kode = Tools::find($id);
+            return $kode->NamaTools;
+        } else {
+            $kode = "Tidak Ada Data";
+            return $kode;
+        }
+        
+    }
+    
 
     public function index()
     {

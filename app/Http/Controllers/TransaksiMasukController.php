@@ -11,6 +11,8 @@ use App\Tools;
 use App\Loker;
 use Validator;
 
+use DB;
+
 class TransaksiMasukController extends Controller
 {
     /**
@@ -20,6 +22,7 @@ class TransaksiMasukController extends Controller
      */
     public function index()
     {
+
         $supplierz = Supplier::orderBy('KodeSupplier')->get(); 
 
         $seragamz = Seragam::orderBy('KodeSeragam')->get(); 
