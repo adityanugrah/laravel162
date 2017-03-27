@@ -12,6 +12,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url('font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+
+    <link href="{{url('css/animate.css')}}" rel="stylesheet">
+    <link href="{{url('css/style.css')}}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -20,7 +25,7 @@
         ]) !!};
     </script>
 </head>
-<body>
+<body class="gray-bg">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">

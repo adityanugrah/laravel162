@@ -105,67 +105,50 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="ibox">
+            <div class="ibox float-e-margins">
                 <div class="ibox-content">
-
-                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                    <table class="table table-striped table-bordered table-hover dataTables-example" >
                         <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Kode Transaksi</th>
-                            <th data-hide="phone">Tanggal Transaksi</th>
-                            <th data-hide="phone">Nama Barang</th>
-                            <th data-hide="phone">Jumlah Barang</th>
-                            <th data-hide="phone,tablet" >Harga Barang</th>
-                            <th class="center">Action</th>
-                        </tr>
+                            <tr>
+                                <th>No.</th>
+                                <th>Kode Transaksi</th>
+                                <th>Tanggal Transaksi</th>
+                                <th>Nama Supplier</th>
+                                <th>Nama Barang</th>
+                                <th>Jumlah Barang</th>
+                                <th>Action</th>
+                            </tr>
                         </thead>
-                            <tbody>
+                        <tbody>
                             <?php $i = 1; ?>
                             @foreach($masukz as $masuk)
-                                <tr>
-                                    <td>
-                                        {{ $i++ }}
-                                    </td>
-                                    <td>
-                                       <a href="/transaksi/transaksimasuk{{ $masuk->KodeMasuk }}">{{ $masuk->KodeTransaksiM }}</a>
-                                    </td>
-                                    <td>
-                                       {{ $masuk->Tgl_Masuk }}
-                                    </td>
-                                    <td>
-                                        {{ $masuk->KodeSupplier }}
-                                    </td>
-                                    <td>
-                                        {{ $masuk->NamaSupplier }}
-                                    </td>
-                                    <td>
-                                       null
-                                    </td>
-                                    <td class="center">
-                                        <button class="btn fa fa-pencil" data-toggle="modal" data-target="#myModals" title="Ubah Data">
-                                            <span class="lnr lnr-pencil"></span>
-                                        </button> 
+                            <tr class="gradeA">
+                                <td>
+                                {{ $i++ }}
+                                </td>
+                                <td>
+                                    <a href="/transaksi/transaksimasuk/{{ $masuk->KodeMasuk }}">{{ $masuk->KodeMasuk }}</a>
+                                </td>
+                                <td>{{ $masuk->Tgl_Masuk }}</td>
+                                <td>{{ $masuk->NamaSupplier }}</td>
+                                <td>{{ $masuk->NamaBrg }}</td>
+                                <td>{{ $masuk->JumlahBrg }}</td>
+                                <td class="center">
+                                    <button class="btn fa fa-pencil" data-toggle="modal" data-target="#myModals<?php echo $i ?>" title="Ubah Data">
+                                        <span class="lnr lnr-pencil"></span>
+                                    </button> 
 
-                                        <form method="POST" action="/" style="display: inline;">
-                                          {{ method_field('DELETE') }}{{csrf_field()}}
-                                          <button type="submit" class="btn btn-danger fa fa-trash delete-confirm" title="Hapus Data">
-                                            <span class="lnr lnr-trash"></span>
-                                          </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <ul class="pagination pull-right"></ul>
+                                    <form method="POST" action="/transaksi/transaksimasuk/{{ $masuk->KodeMasuk }}" style="display: inline;">
+                                      {{ method_field('DELETE') }}{{csrf_field()}}
+                                      <button type="submit" class="btn btn-danger fa fa-trash delete-confirm" title="Hapus Data">
+                                        <span class="lnr lnr-trash"></span>
+                                      </button>
+                                    </form>
                                 </td>
                             </tr>
-                        </tfoot>
+                            @endforeach
+                        </tbody>
                     </table>
-
                 </div>
             </div>
         </div>

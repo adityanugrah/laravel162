@@ -9,18 +9,22 @@
 
     <title>Kerja Praktik</title>
 
-    <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{url('font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+    <link href="{{url('/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url('/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
 
     <!-- FooTable -->
-    <link href="{{url('css/plugins/footable/footable.core.css')}}" rel="stylesheet">
+    <link href="{{url('/css/plugins/footable/footable.core.css')}}" rel="stylesheet">
 
-    <link href="{{url('css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
+    <link href="{{url('/css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
 
-    <link href="{{url('css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
+    <link href="{{url('/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
 
-    <link href="{{url('css/animate.css')}}" rel="stylesheet">
-    <link href="{{url('css/style.css')}}" rel="stylesheet">
+    <link href="{{url('/css/animate.css')}}" rel="stylesheet">
+    <link href="{{url('/css/style.css')}}" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="{{ url('/css/sticky-footer-navbar.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('/css/sweetalert2.min.css') }}">
 
 </head>
 
@@ -80,23 +84,27 @@
     </div>
 
     <!-- Mainly scripts -->
-    <script src="{{url('js/jquery-2.1.1.js')}}"></script>
-    <script src="{{url('js/bootstrap.min.js')}}"></script>
-    <script src="{{url('js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
-    <script src="{{url('js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
-    <script src="{{url('js/plugins/jeditable/jquery.jeditable.js')}}"></script>
+    <script src="{{url('/js/jquery-2.1.1.js')}}"></script>
+    <script src="{{url('/js/bootstrap.min.js')}}"></script>
+    <script src="{{url('/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
+    <script src="{{url('/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <script src="{{url('/js/plugins/jeditable/jquery.jeditable.js')}}"></script>
 
-    <script src="{{url('js/plugins/dataTables/datatables.min.js')}}"></script>
+    <script src="{{url('/js/plugins/dataTables/datatables.min.js')}}"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="{{url('js/inspinia.js')}}"></script>
-    <script src="{{url('js/plugins/pace/pace.min.js')}}"></script>
+    <script src="{{url('/js/inspinia.js')}}"></script>
+    <script src="{{url('/js/plugins/pace/pace.min.js')}}"></script>
 
     <!-- Data picker -->
-    <script src="{{url('js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
+    <script src="{{url('/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
 
     <!-- FooTable -->
-    <script src="{{url('js/plugins/footable/footable.all.min.js')}}"></script>
+    <script src="{{url('/js/plugins/footable/footable.all.min.js')}}"></script>
+
+
+    <script type="text/javascript" src="{{ url('/js/sweetalert2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url('/js/common.js') }}"></script>
 
     <!-- Page-Level Scripts -->
     <script>

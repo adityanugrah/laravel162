@@ -139,6 +139,15 @@ class TransaksiMasukController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            
+            $photo=TransaksiMasuk::find($id);
+            
+            TransaksiMasuk::find($id)->delete();          
+            return redirect('transaksi/transaksimasuk')->with('pesan_sukses', 'Data successfully removed .');
+        }
+        catch(Exception $e) {
+            return redirect('transaksi/transaksimasuk')->with('pesan_gagal', $e->getMessage());
+        }
     }
 }
