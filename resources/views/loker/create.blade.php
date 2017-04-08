@@ -23,6 +23,16 @@
                         {!! $errors->first('NamaLoker', '<span class="fa fa-times form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                       </div>
                     </div>
+                    <div class="form-group {{ $errors->has('JenisKar') ? 'has-error has-feedback' : '' }}">
+                      {!! Form::label('JenisKar', 'Jenis Karyawan :', ['class' => 'col-md-3 control-label']) !!}
+                      <div class="col-md-6">
+                        <select name="JenisKar" id="JenisKar" class="form-control">
+                            <option >Pilih Jenis Karyawan</option>
+                            <option value="Subcon">Subcon</option>
+                            <option value="Employee">Employee</option>
+                        </select>
+                      </div>
+                    </div>
                     <div class="form-group {{ $errors->has('Keterangan') ? 'has-error has-feedback' : '' }}">
                       {!! Form::label('Keterangan', 'Keterangan :', ['class' => 'col-md-3 control-label']) !!}
                       <div class="col-md-6">

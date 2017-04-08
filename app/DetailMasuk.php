@@ -4,20 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TransaksiMasuk extends Model
+class DetailMasuk extends Model
 {
-    protected $table = 'transaksimasuk';
-
-    protected $primaryKey = 'KodeMasuk';
+    protected $table = 'detailmasuk';
 
     public $incrementing = false;
 
     public $timestamps = false;
 
     public $fillable = [
-    'Tgl_Masuk',
-    'NamaSupplier',
-    'JenisBrg',
+    'KodeMasuk',
+    'KodeBrg',
     'NamaBrg',
     'JumlahBrg',
     'HargaBrg'

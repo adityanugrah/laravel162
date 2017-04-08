@@ -57,6 +57,13 @@
                                                 <td><h4>{{ $loker->NamaLoker }}</h4></td>
                                             </tr>
                                             <tr>
+                                                <td><h4>Jenis karyawan</h4></td>
+                                                <td> </td>
+                                                <td><h4>:</h4></td>
+                                                <td> </td>
+                                                <td><h4>{{ $loker->Jeniskar }}</h4></td>
+                                            </tr>
+                                            <tr>
                                                 <td><h4>Keteragan</h4></td>
                                                 <td></td>
                                                 <td><h4>:</h4></td>

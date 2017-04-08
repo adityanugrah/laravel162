@@ -42,6 +42,7 @@ class LokerController extends Controller
             $loker = new Loker;
             $loker->KodeLoker   = $request->KodeLoker;
             $loker->NamaLoker   = $request->NamaLoker;
+            $loker->JenisKar    = $request->JenisKar;
             $loker->Keterangan  = $request->Keterangan;  
 
             $photo=$request->file('Picture');
@@ -99,7 +100,8 @@ class LokerController extends Controller
             $loker = Loker::find($id);
             $loker->KodeLoker   = $request->KodeLoker;
             $loker->NamaLoker   = $request->NamaLoker;
-            $loker->Keterangan  = $request->Keterangan;  
+            $loker->JenisKar    = $request->JenisKar;
+            $loker->Keterangan  = $request->Keterangan;   
 
             if ($request->hasFile('Picture')) {
                 $img = Loker::find($id);

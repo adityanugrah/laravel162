@@ -11,7 +11,6 @@
 		<table>
 			<tr>				
 				<form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('importSeragam') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-
 					<input type="file" name="import_file" />
 					{{ csrf_field() }}
 					<br/>
@@ -34,11 +33,12 @@
 	        <div class="ibox float-e-margins">
 	            <div class="ibox-content">
                     <table class="table table-striped table-bordered table-hover dataTables-example" >
-	                    <thead>
+                     	<thead>
 		                    <tr>
 		                    	<th>No.</th>
 		                        <th>Kode Seragam</th>
 		                        <th>Nama Seragam</th>
+		                        <th>Stok Seragam</th>
 		                        <th>Keterangan</th>
 		                        <th>Action</th>
 		                    </tr>
@@ -54,6 +54,7 @@
 		                        	<a href="seragam/{{ $seragam->KodeSeragam }}">{{ $seragam->KodeSeragam }}</a>
 		                        </td>
 		                        <td>{{ $seragam->NamaSeragam }}</td>
+		                        <td>{{ $seragam->StokSeragam }}</td>
 		                        <td>{{ $seragam->Keterangan }}</td>
 		                        <td class="center">
                                     <button class="btn fa fa-pencil" data-toggle="modal" data-target="#myModals<?php echo $i ?>" title="Ubah Data">
@@ -62,7 +63,7 @@
                                     @include('seragam.edit')
 			                      	<form method="POST" action="/databarang/seragam/{{ $seragam->KodeSeragam }}" style="display: inline;">
 			                          {{ method_field('DELETE') }}{{csrf_field()}}
-			                          <button type="submit" class="btn btn-danger fa fa-trash delete-confirm" title="Hapus Data">
+			                          <button type="submit" class="btn btn-danger fa fa-trash delete-confirm demo4" title="Hapus Data">
 			                          	<span class="lnr lnr-trash"></span>
 			                          </button>
 			                      	</form>

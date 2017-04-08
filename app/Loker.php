@@ -16,6 +16,7 @@ class Loker extends Model
 
     public $fillable = [
 	'NamaLoker',
+	'Jeniskar',
     'Keterangan',
     'StokLoker'
 	];

@@ -13,5 +13,10 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         'seragam', 'seragam/*',
+        'preused', 'preused/*',
+        'tools', 'tools/*',
+        'loker', 'loker/*',
+        'transaksimasuk', 'transaksimasuk/*',
+        'transaksikeluar', 'transaksikeluar/*',
     ];
 }

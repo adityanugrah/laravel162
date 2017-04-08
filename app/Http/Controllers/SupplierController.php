@@ -145,7 +145,7 @@ class SupplierController extends Controller
             $cc = unlink($location);
             
             Supplier::find($id)->delete();          
-            return redirect('/supplier')->with('pesan_sukses', 'Data supplier successfully removed .');
+            return redirect('/supplier')->with('Data supplier successfully removed .');
         }
         catch(Exception $e) {
             return redirect('/supplier')->with('pesan_gagal', $e->getMessage());

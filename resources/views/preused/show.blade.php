@@ -57,6 +57,27 @@
                                                 <td><h4>{{ $preused->NamaPreused }}</h4></td>
                                             </tr>
                                             <tr>
+                                                <td><h4>Jenis Karyawan</h4></td>
+                                                <td></td>
+                                                <td><h4>:</h4></td>
+                                                <td></td>
+                                                <td><h4>{{ $preused->JenisKar }}</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4>Status</h4></td>
+                                                <td></td>
+                                                <td><h4>:</h4></td>
+                                                <td></td>
+                                                <td><h4>{{ $preused->Status }}</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4>Ukuran</h4></td>
+                                                <td></td>
+                                                <td><h4>:</h4></td>
+                                                <td></td>
+                                                <td><h4>{{ $preused->Ukuran }}</h4></td>
+                                            </tr>
+                                            <tr>
                                                 <td><h4>Keteragan</h4></td>
                                                 <td></td>
                                                 <td><h4>:</h4></td>

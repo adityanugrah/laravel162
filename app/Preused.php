@@ -16,7 +16,11 @@ class Preused extends Model
 
     public $fillable = [
 	'NamaPreused',
+	'JenisKar',
+    'Status',
+    'Ukuran',
     'Keterangan',
-    'StokPreused'
+    'StokPreused',
+    'Picture'
 	];
 }

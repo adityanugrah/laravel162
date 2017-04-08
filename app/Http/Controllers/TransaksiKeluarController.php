@@ -4,6 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\TransaksiKeluar;
+use App\Supplier;
+use App\Seragam;
+use App\Preused;
+use App\Tools;
+use App\Loker;
+use Validator;
+
 class TransaksiKeluarController extends Controller
 {
     /**
@@ -13,7 +21,8 @@ class TransaksiKeluarController extends Controller
      */
     public function index()
     {
-        //
+        $keluar = TransaksiKeluar::orderBy('KodeKeluar')->get(); 
+        return view('transaksikeluar.index', compact('keluar'));
     }
 
     /**

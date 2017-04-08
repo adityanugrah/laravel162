@@ -41,6 +41,9 @@ class PreusedController extends Controller
             $preused = new Preused;
             $preused->KodePreused = $request->KodePreused;
             $preused->NamaPreused = $request->NamaPreused;
+            $preused->JenisKar    = $request->JenisKar;
+            $preused->Status      = $request->Status;
+            $preused->Ukuran      = $request->Ukuran;
             $preused->Keterangan  = $request->Keterangan;   
 
             $photo=$request->file('Picture');
@@ -98,7 +101,10 @@ class PreusedController extends Controller
             $preused = Preused::find($id);
             $preused->KodePreused = $request->KodePreused;
             $preused->NamaPreused = $request->NamaPreused;
-            $preused->Keterangan  = $request->Keterangan;  
+            $preused->JenisKar    = $request->JenisKar;
+            $preused->Status      = $request->Status;
+            $preused->Ukuran      = $request->Ukuran;
+            $preused->Keterangan  = $request->Keterangan;    
 
             if ($request->hasFile('Picture')) {
                 $img = Preused::find($id);

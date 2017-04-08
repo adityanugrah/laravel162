@@ -16,11 +16,14 @@
 
     </div>
 </div>
-
+<?php
+    session_start();
+?>
 <div class="wrapper wrapper-content animated fadeInRight ecommerce">
     <div class="ibox-content m-b-sm border-bottom">
      {!! Form::open(['url' => '/transaksi/transaksimasuk']) !!}
         <div class="row">
+            <input type="hidden" name="aksi" value="0"/>
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('KodeMasuk') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('KodeMasuk', 'Kode Masuk') !!}
@@ -36,25 +39,18 @@
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group {{ $errors->has('KodeSupplier') ? 'has-error has-feedback' : '' }}">
-                <label class="control-label" for="status">Kode Suppleir</label>
-                    <select name="KodeSupplier" onChange="getSupplier()" id="KodeSupplier" class="form-control">
-                        <option>Pilih Kode Supplier</option>
+                <div class="form-group {{ $errors->has('NamaSupplier') ? 'has-error has-feedback' : '' }}">
+                <label class="control-label" for="status">Nama Suppleir</label>
+                    <select name="NamaSupplier" id="NamaSupplier" class="form-control">
+                        <option>Pilih Nama Supplier</option>
                         @foreach ($supplierz as $sup)
-                        <option value="{{$sup -> KodeSupplier}}">{{$sup -> KodeSupplier}}</option>
+                        <option value="{{$sup -> NamaSupplier}}">{{$sup -> NamaSupplier}}</option>
                         @endforeach
                     </select>
                 </div>               
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group {{ $errors->has('NamaSupplier') ? 'has-error has-feedback' : '' }}">
-                    {!! Form::label('NamaSupplier', 'Nama Supplier') !!}
-                    {!! Form::text('NamaSupplier',null,['class'=>'form-control', 'id'=>'NamaSupplier', 'placeholder'=>'Nama Supplier','readonly','required']) !!}
-                    {!! $errors->first('NamaSupplier', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
-                </div>
-            </div>
             <div class="col-sm-4">
                <div class="form-group {{ $errors->has('JenisBrg') ? 'has-error has-feedback' : '' }}">
                     <label class="control-label" for="date_modified">Jenis Barang</label>
@@ -68,18 +64,11 @@
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group {{ $errors->has('KodeBrg') ? 'has-error has-feedback' : '' }}" id="temp">
-                <label class="control-label" for="status">Kode Barang</label>
-                <select name="KodeBrg" id="KodeBrg" class="form-control" required="true">
-                    <option>Pilih Kode Barang</option>
+                <div class="form-group {{ $errors->has('NamaBrg') ? 'has-error has-feedback' : '' }}" id="temp">
+                <label class="control-label" for="status">Nama Barang</label>
+                <select name="NamaBrg" id="NamaBrg" class="form-control" required="true">
+                    <option>Pilih Nama Barang</option>
                 </select>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group {{ $errors->has('NamaBrg') ? 'has-error has-feedback' : '' }}">
-                    {!! Form::label('NamaBrg', 'Nama Barang') !!}
-                    {!! Form::text('NamaBrg',null,['class'=>'form-control', 'id'=>'NamaBrg', 'placeholder'=>'Nama Barang', 'readonly', 'required']) !!}
-                    {!! $errors->first('NamaBrg', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
             <div class="col-sm-4">
@@ -98,61 +87,106 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="submit" class="btn btn-primary">Tambah Barang</button>
         </div>
         {!! Form::close() !!}
     </div>
+
+    <!-- @if(isset($_SESSION['isi']))
+    <table class="table table-striped">
+            @for ($i=0;$i<=$_SESSION['isi'];$i++)
+                <tr>
+                    <td><?php echo $_SESSION['data'][$i][0]; ?></td>
+                    <td><?php echo $_SESSION['data'][$i][1]; ?></td>
+                    <td><?php echo $_SESSION['data'][$i][2]; ?></td>
+                    <td><?php echo $_SESSION['data'][$i][3]; ?></td>
+                    <td><?php echo $_SESSION['data'][$i][4]; ?></td>
+                    <td><?php echo $_SESSION['data'][$i][5]; ?></td>
+                    <td><?php echo $_SESSION['data'][$i][6]; ?></td>
+                </tr>
+            @endfor
+    </table>
+
+
+     {!! Form::open(['url' => '/transaksi/transaksimasuk']) !!}
+
+            <input type="hidden" name="aksi" value="1"/>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+
+     {!! Form::close() !!}
+     {!! Form::open(['url' => '/transaksi/transaksimasuk']) !!}
+
+            <input type="hidden" name="aksi" value="2"/>
+            <button type="submit" class="btn btn-primary">Bersihkan</button>
+
+     {!! Form::close() !!}
+    @endif -->
 
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
+                <?php $grand_total=0;$no=1 ?>
+                @if(isset($_SESSION['isi']))
                     <table class="table table-striped table-bordered table-hover dataTables-example" >
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Kode Transaksi</th>
-                                <th>Tanggal Transaksi</th>
+                                <th>Tanggal</th>
                                 <th>Nama Supplier</th>
+                                <th>Jenis Barang</th>
                                 <th>Nama Barang</th>
                                 <th>Jumlah Barang</th>
+                                <th>Harga Barang</th>
+                                <th>Jumlah Biaya</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php $i = 1; ?>
-                            @foreach($masukz as $masuk)
+                        <tbody>                       
+                            @for ($i=0;$i<=$_SESSION['isi'];$i++)
                             <tr class="gradeA">
-                                <td>
-                                {{ $i++ }}
-                                </td>
-                                <td>
-                                    <a href="/transaksi/transaksimasuk/{{ $masuk->KodeMasuk }}">{{ $masuk->KodeMasuk }}</a>
-                                </td>
-                                <td>{{ $masuk->Tgl_Masuk }}</td>
-                                <td>{{ $masuk->NamaSupplier }}</td>
-                                <td>{{ $masuk->NamaBrg }}</td>
-                                <td>{{ $masuk->JumlahBrg }}</td>
+                                <td>{{ $no++ }}</td>
+                                <td><?php echo $_SESSION['data'][$i][1]; ?></td>
+                                <td><?php echo $_SESSION['data'][$i][2]; ?></td>
+                                <td><?php echo $_SESSION['data'][$i][3]; ?></td>
+                                <td><?php echo $_SESSION['data'][$i][4]; ?></td>
+                                <td><?php echo $_SESSION['data'][$i][5]; ?></td>
+                                <td><?php echo $_SESSION['data'][$i][6]; ?></td>
+                                <td><?php echo $_SESSION['data'][$i][5]*$_SESSION['data'][$i][6]; ?></td>
                                 <td class="center">
-                                    <button class="btn fa fa-pencil" data-toggle="modal" data-target="#myModals<?php echo $i ?>" title="Ubah Data">
-                                        <span class="lnr lnr-pencil"></span>
-                                    </button> 
-
-                                    <form method="POST" action="/transaksi/transaksimasuk/{{ $masuk->KodeMasuk }}" style="display: inline;">
-                                      {{ method_field('DELETE') }}{{csrf_field()}}
-                                      <button type="submit" class="btn btn-danger fa fa-trash delete-confirm" title="Hapus Data">
-                                        <span class="lnr lnr-trash"></span>
-                                      </button>
-                                    </form>
+                                   {!! Form::open(['url' => '/transaksi/transaksimasuk']) !!}
+                                        <input type="hidden" name="aksi" value="2"/>
+                                        <button type="submit" class="btn btn-danger fa fa-trash delete-confirm"></button>
+                                    {!! Form::close() !!}                                 
                                 </td>
                             </tr>
-                            @endforeach
+                            @endfor
+                            <tr>
+                                @for ($i=0;$i<=$_SESSION['isi'];$i++)
+                                    <?php 
+                                    $grand_total = $grand_total + ($_SESSION['data'][$i][5]*$_SESSION['data'][$i][6]);
+                                    $_SESSION['grand_total'] = $grand_total;
+                                    ?>
+                                @endfor
+                                <td colspan="7"> Total Pembayaran </td>
+                                <td><?php echo " Rp. $grand_total";?></td>
+                            </tr>
                         </tbody>
                     </table>
+                    {!! Form::open(['url' => '/transaksi/transaksimasuk']) !!}
+                        <input type="hidden" name="aksi" value="1"/>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    {!! Form::close() !!}
+                    {!! Form::open(['url' => '/transaksi/transaksimasuk']) !!}
+                        <input type="hidden" name="aksi" value="2"/>
+                        <button type="submit" class="btn btn-primary">Bersihkan</button>
+                    {!! Form::close() !!}
+                    @endif
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
+<!-- batas -->
 </div>
 
 <script src="{{url('js/jquery-2.1.1.js')}}"></script>

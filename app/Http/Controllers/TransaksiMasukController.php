@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TransaksiMasuk;
+use App\DetailMasuk;
 use App\Supplier;
 use App\Seragam;
 use App\Preused;
-use App\Tools;
 use App\Loker;
+use App\Tools;
 use Validator;
-
-use DB;
 
 class TransaksiMasukController extends Controller
 {
@@ -64,36 +63,103 @@ class TransaksiMasukController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     
     public function store(Request $request)
     {
-        try {
-            $masuk = new TransaksiMasuk;
-            $masuk->KodeMasuk       = $request->KodeMasuk;
-            $masuk->Tgl_Masuk       = $request->Tgl_Masuk;
-            $masuk->KodeSupplier    = $request->KodeSupplier;   
-            $masuk->NamaSupplier    = $request->NamaSupplier;   
-            $masuk->JenisBrg        = $request->JenisBrg;   
-            $masuk->KodeBrg         = $request->KodeBrg;   
-            $masuk->NamaBrg         = $request->NamaBrg;   
-            $masuk->JumlahBrg       = $request->JumlahBrg;   
-            $masuk->HargaBrg        = $request->HargaBrg;   
 
-            $seragam = Seragam::find($request->KodeBrg);
-            //return $request->KodeBrg;
-            $seragam->StokSeragam = $seragam->StokSeragam + $request->JumlahBrg;
+        if($request->aksi==0)
+        {
+            session_start();
 
-            $seragam->save();
-            $masuk->save();
-            return redirect('transaksi/transaksimasuk')->with('pesan_sukses', 'Transaksi Masuk has been saved.');
-        
-            if ($validator -> fails()) {
-                    return redirect('transaksi/transaksimasuk')->withErrors($validator)->withInput();
+            if (!isset($_SESSION["isi"])){
+                        $_SESSION["isi"]=0;
+                    }else{
+                        $_SESSION["isi"]++;
+                    }
+            $_SESSION['data'][$_SESSION["isi"]] = array(
+                $request->KodeMasuk,
+                $request->Tgl_Masuk,
+                $request->NamaSupplier,
+                $request->JenisBrg,
+                $request->NamaBrg,
+                $request->JumlahBrg,
+                $request->HargaBrg);
+            return redirect('transaksi/transaksimasuk');
+        } else 
+        if($request->aksi==2)
+        {
+            session_start();
+            session_destroy();
+
+            return redirect('transaksi/transaksimasuk');
+        } else {
+            try {
+
+                session_start();
+                $grand_total=0;
+                // $StokSeragam;
+
+                for ($i=0;$i<=$_SESSION['isi'];$i++) {
+                    //jumlah*harga
+                    $grand_total = $grand_total + ($_SESSION['data'][$i][5]*$_SESSION['data'][$i][6]);
+
+                    $masuk = new TransaksiMasuk;
+                    $masuk->KodeMasuk       = $_SESSION['data'][$i][0];
+                    $masuk->Tgl_Masuk       = $_SESSION['data'][$i][1];  
+                    $masuk->NamaSupplier    = $_SESSION['data'][$i][2]; 
+                    $masuk->GrandTotal      = $grand_total;
+
+                    $detail = new DetailMasuk;  
+                    $detail->KodeMasuk       = $_SESSION['data'][$i][0];
+                    $detail->JenisBrg        = $_SESSION['data'][$i][3];      
+                    $detail->NamaBrg         = $_SESSION['data'][$i][4];   
+                    $detail->JumlahBrg       = $_SESSION['data'][$i][5];   
+                    $detail->HargaBrg        = $_SESSION['data'][$i][6];
+                    $detail->save();
+
+                    if($_SESSION['data'][$i][3]=="Seragam") {
+                        $seragam = Seragam::where('NamaSeragam',$_SESSION['data'][$i][4])->first(); //kodebarang
+                        $seragam->StokMasuk = $seragam->StokMasuk+$_SESSION['data'][$i][5]; //jumlabarang
+                        $seragam->StokAkhir = $seragam->StokMasuk+$seragam->StokSeragam;
+                        $seragam->save();
+                    } else if ($_SESSION['data'][$i][3]=="Preused") {
+                        $Preused = Preused::where('NamaPreused',$_SESSION['data'][$i][4])->first(); //kodebarang
+                        $Preused->StokMasuk = $Preused->StokMasuk+$_SESSION['data'][$i][5]; //jumlabarang
+                        $Preused->StokAkhir = $Preused->StokMasuk+$Preused->StokPreused;
+                        $Preused->save();
+                    } else if ($_SESSION['data'][$i][3]=="Loker") {
+                        $Loker = Loker::where('NamaLoker',$_SESSION['data'][$i][4])->first(); //kodebarang
+                        $Loker->StokMasuk = $Loker->StokMasuk+$_SESSION['data'][$i][5]; //jumlabarang
+                        $Loker->StokAkhir = $Loker->StokMasuk+$Preused->StokLoker;
+                        $Loker->save();
+                    } else if ($_SESSION['data'][$i][3]=="Tools") {
+                        $Tools = Tools::where('NamaTools',$_SESSION['data'][$i][4])->first(); //kodebarang
+                        $Tools->StokMasuk = $Tools->StokMasuk+$_SESSION['data'][$i][5]; //jumlabarang
+                        $Tools->StokAkhir = $Tools->StokMasuk+$Tools->StokTools;
+                        $Tools->save();
+                    } else {
+                        $data = "Tidak Ada Data";   
+                    }
+
+                }
+
+                $masuk->save(); 
+
+                session_destroy();
+                return redirect('transaksi/transaksimasuk')->with('pesan_sukses', 'Transaksi Masuk has been saved.');
+            
+                if ($validator -> fails()) {
+                        return redirect('transaksi/transaksimasuk')->withErrors($validator)->withInput();
+                }
+
+            } 
+            catch (Exception $e) {
+                return redirect('transaksi/transaksimasuk')->with('pesan_gagal', $e->getMessage());
             }
+//             session_start();
 
-        } 
-        catch (Exception $e) {
-            return redirect('transaksi/transaksimasuk')->with('pesan_gagal', $e->getMessage());
+// print_r($_SESSION['data']);
         }
     }
 
@@ -105,7 +171,8 @@ class TransaksiMasukController extends Controller
      */
     public function show($id)
     {
-        //
+        $masuk = TransaksiMasuk::where('KodeMasuk', $id)->first();
+        return view('transaksimasuk.show', compact('masuk'));
     }
 
     /**

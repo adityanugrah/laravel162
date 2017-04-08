@@ -11,9 +11,7 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
 Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/', ['as'=>'dashboard', function () {

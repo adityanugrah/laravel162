@@ -58,13 +58,13 @@
                             </a>
 
                             <label>
-                                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                <small><input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me</small>
                             </label>
                         </div>
 
                     </form>
                     <p class="m-t">
-                        <small>Institut Bisnis Dan Informatika Stikom Surabaya &copy; 2017</small>
+                        <small>Kerja Praktik &copy; 2017</small>
                     </p>
                     
                 </div>
@@ -73,7 +73,7 @@
         <hr/>
         <div class="row">
             <div class="col-md-6">
-                Copyright Developer Junior
+                Copyright Developer
             </div>
             <div class="col-md-6 text-right">
                <small>© 2014-2015</small>

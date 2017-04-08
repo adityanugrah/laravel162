@@ -28,7 +28,7 @@
                 </div>
                 <div>
                     <div class="ibox-content no-padding border-left-right">
-                        <img alt="image" class="img-responsive" src="/img/seragam/{{$seragam->Picture}}"" style="width:345px; height:230px">
+                        <img alt="image" class="img-responsive" src="/img/seragam/{{$seragam->Picture}}"" style="width:345px; height:250px">
                     </div>     
                 </div>
             </div>
@@ -57,7 +57,28 @@
                                                 <td><h4>{{ $seragam->NamaSeragam }}</h4></td>
                                             </tr>
                                             <tr>
-                                                <td><h4>Keteragan</h4></td>
+                                                <td><h4>Jenis Karyawan</h4></td>
+                                                <td></td>
+                                                <td><h4>:</h4></td>
+                                                <td></td>
+                                                <td><h4>{{ $seragam->JenisKar }}</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4>Status</h4></td>
+                                                <td></td>
+                                                <td><h4>:</h4></td>
+                                                <td></td>
+                                                <td><h4>{{ $seragam->Status }}</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4>Ukuran</h4></td>
+                                                <td></td>
+                                                <td><h4>:</h4></td>
+                                                <td></td>
+                                                <td><h4>{{ $seragam->Ukuran }}</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4>Keterangan</h4></td>
                                                 <td></td>
                                                 <td><h4>:</h4></td>
                                                 <td></td>
@@ -68,7 +89,7 @@
                                                 <td></td>
                                                 <td><h4>:</h4></td>
                                                 <td></td>
-                                                <td><h4>{{ $seragam->StokSeragam }}</h4></td>
+                                                <td><h4>{{ $seragam->StokAkhir }}</h4></td>
                                             </tr>
                                         </thead>
                                     </table>

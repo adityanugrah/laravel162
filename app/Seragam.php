@@ -16,7 +16,14 @@ class Seragam extends Model
 
     public $fillable = [
 	'NamaSeragam',
+    'JenisKar',
+    'Status',
+    'Ukuran',
     'Keterangan',
-    'StokSeragam'
+    'StokSeragam',
+    'StokMasuk',
+    'StokKeluar',
+    'StokAkhir',
+    'Picture'
 	];
 }
