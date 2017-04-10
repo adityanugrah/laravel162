@@ -54,7 +54,7 @@
 		                        	<a href="seragam/{{ $seragam->KodeSeragam }}">{{ $seragam->KodeSeragam }}</a>
 		                        </td>
 		                        <td>{{ $seragam->NamaSeragam }}</td>
-		                        <td>{{ $seragam->StokSeragam }}</td>
+		                        <td>{{ $seragam->StokAkhir }}</td>
 		                        <td>{{ $seragam->Keterangan }}</td>
 		                        <td class="center">
                                     <button class="btn fa fa-pencil" data-toggle="modal" data-target="#myModals<?php echo $i ?>" title="Ubah Data">

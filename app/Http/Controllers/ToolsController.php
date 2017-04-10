@@ -39,9 +39,11 @@ class ToolsController extends Controller
     {
         try {
             $tools = new Tools;
-            $tools->KodeTools  = $request->KodeTools;
-            $tools->NamaTools  = $request->NamaTools;
-            $tools->Keterangan  = $request->Keterangan;   
+            $tools->KodeTools   = $request->KodeTools;
+            $tools->NamaTools   = $request->NamaTools;
+            $tools->Keterangan  = $request->Keterangan;
+            $tools->StokTools   = $request->StokTools;
+            $tools->StokAkhir   = $tools->StokTools;     
 
             $photo=$request->file('Picture');
             $destination=base_path().'/public/img/tools';
@@ -98,7 +100,9 @@ class ToolsController extends Controller
             $tools = Tools::find($id);
             $tools->KodeTools  = $request->KodeTools;
             $tools->NamaTools  = $request->NamaTools;
-            $tools->Keterangan  = $request->Keterangan;   
+            $tools->Keterangan  = $request->Keterangan;  
+            $tools->StokTools   = $request->StokTools;
+            $tools->StokAkhir   = $tools->StokTools; 
 
             if ($request->hasFile('Picture')) {
                 $img = Tools::find($id);

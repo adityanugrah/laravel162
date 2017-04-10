@@ -28,7 +28,7 @@
                 </div>
                 <div>
                     <div class="ibox-content no-padding border-left-right">
-                        <img alt="image" class="img-responsive" src="/img/tools/{{$tools->Picture}}"" style="width:345px; height:230px">
+                        <img alt="image" class="img-responsive" src="/img/tools/{{$tools->Picture}}" style="width:345px; height:250px">
                     </div>     
                 </div>
             </div>
@@ -68,7 +68,7 @@
                                                 <td></td>
                                                 <td><h4>:</h4></td>
                                                 <td></td>
-                                                <td><h4>{{ $tools->StokTools }}</h4></td>
+                                                <td><h4>{{ $tools->StokAkhir }}</h4></td>
                                             </tr>
                                         </thead>
                                     </table>

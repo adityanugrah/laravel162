@@ -39,6 +39,7 @@
 		                    	<th>No.</th>
 		                        <th>Kode Preused</th>
 		                        <th>Nama Peused</th>
+		                        <th>Stok Peused</th>
 		                        <th>Keterangan</th>
 		                        <th>Action</th>
 		                    </tr>
@@ -54,6 +55,7 @@
 		                        	<a href="preused/{{ $preused->KodePreused }}">{{ $preused->KodePreused }}</a>
 		                        </td>
 		                        <td>{{ $preused->NamaPreused }}</td>
+		                        <td>{{ $preused->StokAkhir }}</td>
 		                        <td>{{ $preused->Keterangan }}</td>
 		                        <td class="center">
                                     <button class="btn fa fa-pencil" data-toggle="modal" data-target="#myModals<?php echo $i ?>" title="Ubah Data">

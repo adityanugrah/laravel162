@@ -8,21 +8,21 @@
 
     <title>Kerja Praktik</title>
 
-    <link href="{{asset('/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('/css/font-awesome/css/font-awesome.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url('/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url('/css/font-awesome/css/font-awesome.css')}}" rel="stylesheet" type="text/css">
 
     <!-- FooTable -->
-    <link href="{{asset('/css/plugins/footable/footable.core.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url('/css/plugins/footable/footable.core.css')}}" rel="stylesheet" type="text/css">
 
-    <link href="{{asset('/css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
+    <link href="{{url('/css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
 
-    <link href="{{asset('/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
+    <link href="{{url('/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
 
-    <link href="{{asset('/css/animate.css')}}" rel="stylesheet">
-    <link href="{{asset('/css/style.css')}}" rel="stylesheet">
+    <link href="{{url('/css/animate.css')}}" rel="stylesheet">
+    <link href="{{url('/css/style.css')}}" rel="stylesheet">
 
     <!-- Sweet Alert -->
-    <link href="{{asset('/css/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet">
+    <link href="{{url('/css/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet">
 
     <!-- <link rel="stylesheet" type="text/css" href="{{ url('/css/sticky-footer-navbar.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url('/css/sweetalert2.min.css') }}"> -->

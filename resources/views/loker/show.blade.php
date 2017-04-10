@@ -28,7 +28,7 @@
                 </div>
                 <div>
                     <div class="ibox-content no-padding border-left-right">
-                        <img alt="image" class="img-responsive" src="/img/loker/{{$loker->Picture}}"" style="width:345px; height:230px">
+                        <img alt="image" class="img-responsive" src="/img/loker/{{$loker->Picture}}" style="width:345px; height:250px">
                     </div>     
                 </div>
             </div>

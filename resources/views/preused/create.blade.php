@@ -10,24 +10,33 @@
                 {!! Form::open(['url' => 'databarang/preused','files'=>true, 'enctype'=>'multipart/form-data', 'class' => 'form-horizontal']) !!}
                     {{ csrf_field() }}
                     <div class="form-group {{ $errors->has('KodePreused') ? 'has-error has-feedback' : '' }}">
-                      {!! Form::label('KodePreused', 'Kode Preused :', ['class' => 'col-md-3 control-label']) !!}
-                      <div class="col-md-6">
-                        {!! Form::text('KodePreused',null,['class'=>'form-control', 'required']) !!}
+                      <div class = "col-md-3">
+                      {!! Form::label('KodePreused', 'Kode Preused', ['class' => 'control-label']) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        {!! Form::text('KodePreused',null,['class'=>'form-control','placeholder'=>'Kode Preused', 'required']) !!}
                         {!! $errors->first('KodePreused', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                       </div>
                     </div>
                     <div class="form-group {{ $errors->has('NamaPreused') ? 'has-error has-feedback' : '' }}">
-                      {!! Form::label('NamaPreused', 'Nama Preused :', ['class' => 'col-md-3 control-label']) !!}
-                      <div class="col-md-6">
-                        {!! Form::text('NamaPreused',null,['class'=>'form-control', 'required']) !!}
+                      <div class = "col-md-3">
+                      {!! Form::label('NamaPreused', 'Nama Preused', ['class' => 'control-label']) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        {!! Form::text('NamaPreused',null,['class'=>'form-control','placeholder'=>'Nama Preused', 'required']) !!}
                         {!! $errors->first('NamaPreused', '<span class="fa fa-times form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                       </div>
                     </div>
                     <div class="form-group {{ $errors->has('JenisKar') ? 'has-error has-feedback' : '' }}">
-                      {!! Form::label('JenisKar', 'Jenis Karyawan :', ['class' => 'col-md-3 control-label']) !!}
-                      <div class="col-md-6">
-                        <select name="JenisKar" id="JenisKar" class="form-control">
-                            <option >Pilih Jenis Karyawan</option>
+                      <div class = "col-md-3">
+                      {!! Form::label('JenisKar', 'Jenis Karyawan', ['class' => 'control-label']) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        <select required name="JenisKar" id="JenisKar" class="form-control">
+                            <option value="">Pilih Jenis Karyawan</option>
                             <option value="OJT" >OJT</option>
                             <option value="Subcon">Subcon</option>
                             <option value="Employee">Employee</option>
@@ -35,41 +44,65 @@
                       </div>
                     </div>
                     <div class="form-group {{ $errors->has('Status') ? 'has-error has-feedback' : '' }}">
-                      {!! Form::label('Status', 'Status Karyawan :', ['class' => 'col-md-3 control-label','rows'=>3 ]) !!}
-                      <div class="col-md-6">
-                        <select name="Status" id="Status" class="form-control">
-                            <option >Pilih Status Karyawan</option>
+                      <div class = "col-md-3">
+                      {!! Form::label('Status', 'Status', ['class' => 'control-label','rows'=>3 ]) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        <select required name="Status" id="Status" class="form-control">
+                            <option value="">Pilih Status Karyawan</option>
                             <option value="Staff" >Staff</option>
                             <option value="NonStaff">Non - Staff</option>
-                            <option value="">Null</option>
+                            <option value="null"> </option>
                         </select>
                       </div>
                     </div>
                     <div class="form-group {{ $errors->has('Ukuran') ? 'has-error has-feedback' : '' }}">
-                      {!! Form::label('Ukuran', 'Ukuran Seragam :', ['class' => 'col-md-3 control-label']) !!}
-                      <div class="col-md-6">
-                        <select name="Ukuran" id="Ukuran" class="form-control">
-                            <option >Pilih Ukuran Seragam</option>
-                            <option value="S" >S</option>
+                      <div class = "col-md-3">
+                      {!! Form::label('Ukuran', 'Ukuran Seragam', ['class' => 'control-label']) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        <select required name="Ukuran" id="Ukuran" class="form-control">
+                            <option value="">Pilih Ukuran Seragam</option>
+                            <option value="S">S</option>
                             <option value="L">L</option>
                             <option value="XL">XL</option>
                         </select>
                       </div>
                     </div>
                     <div class="form-group {{ $errors->has('Keterangan') ? 'has-error has-feedback' : '' }}">
-                      {!! Form::label('Keterangan', 'Keterangan :', ['class' => 'col-md-3 control-label']) !!}
-                      <div class="col-md-6">
-                        {!! Form::textarea('Keterangan',null,['class'=>'form-control','rows'=>5 , 'required']) !!}
+                      <div class = "col-md-3">
+                      {!! Form::label('Keterangan', 'Keterangan', ['class' => 'control-label']) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        {!! Form::textarea('Keterangan',null,['class'=>'form-control','rows'=>5 , 'placeholder'=>'Keterangan', 'required']) !!}
                         {!! $errors->first('Keterangan', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                       </div>
                     </div>
-                    <div class="form-group {{ $errors->has('Picture') ? 'has-error has-feedback' : '' }}">
-                      {!! Form::label('Picture', 'Picture :', ['class' => 'col-md-3 control-label']) !!}
-                      <div class="col-md-6">
-                        {!! Form::file('Picture',null,['class'=>'form-control', 'required']) !!}
-                        {!! $errors->first('Picture', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                    <div class="form-group {{ $errors->has('StokPreused') ? 'has-error has-feedback' : '' }}">
+                      <div class = "col-md-3">
+                      {!! Form::label('StokPreused', 'Stok Preused', ['class' => 'control-label']) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        {!! Form::text('StokPreused',null,['class'=>'form-control','rows'=>5, 'placeholder'=>'Stok Seragam', 'required']) !!}
+                        {!! $errors->first('StokPreused', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                       </div>
                     </div>
+                    <div class="form-group {{ $errors->has('Picture') ? 'has-error has-feedback' : '' }}">
+                      <div class = "col-md-3">
+                      {!! Form::label('Picture', 'Picture', ['class' => 'control-label']) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        {!! Form::file('Picture', ['class'=>'form-control', 'required']) !!}
+                        {!! $errors->first('Picture', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                        <small>Jenis File : PNG, JPG,   </small>
+                      </div>
+                    </div>
+                    <small style= "color : red;">* : Required/Harus Diisi.</small>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                       <button type="submit" class="btn btn-primary">Save changes</button>

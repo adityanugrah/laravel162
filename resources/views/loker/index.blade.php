@@ -39,6 +39,7 @@
 		                    	<th>No.</th>
 		                        <th>Kode Loker</th>
 		                        <th>Nama Loker</th>
+		                        <th>Stok Loker</th>
 		                        <th>Keterangan</th>
 		                        <th>Action</th>
 		                    </tr>
@@ -54,6 +55,7 @@
 		                        	<a href="loker/{{ $loker->KodeLoker }}">{{ $loker->KodeLoker }}</a>
 		                        </td>
 		                        <td>{{ $loker->NamaLoker }}</td>
+		                        <td>{{ $loker->StokAkhir }}</td>
 		                        <td>{{ $loker->Keterangan }}</td>
 		                        <td class="center">
                                     <button class="btn fa fa-pencil" data-toggle="modal" data-target="#myModals<?php echo $i ?>" title="Ubah Data">

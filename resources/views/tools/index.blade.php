@@ -39,6 +39,7 @@
 		                    	<th>No.</th>
 		                        <th>Kode Tools</th>
 		                        <th>Nama Tools</th>
+		                        <th>Stok Tools</th>
 		                        <th>Keterangan</th>
 		                        <th>Action</th>
 		                    </tr>
@@ -54,6 +55,7 @@
 		                        	<a href="tools/{{ $tools->KodeTools }}">{{ $tools->KodeTools }}</a>
 		                        </td>
 		                        <td>{{ $tools->NamaTools }}</td>
+		                        <td>{{ $tools->StokAkhir }}</td>
 		                        <td>{{ $tools->Keterangan }}</td>
 		                        <td class="center">
                                     <button class="btn fa fa-pencil" data-toggle="modal" data-target="#myModals<?php echo $i ?>" title="Ubah Data">

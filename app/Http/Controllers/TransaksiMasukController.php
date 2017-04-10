@@ -72,6 +72,32 @@ class TransaksiMasukController extends Controller
         {
             session_start();
 
+
+            $ada=false;
+
+              if (isset($_SESSION["isi"])  ) {
+                
+            
+                for ($i=0;$i<=$_SESSION['isi'];$i++) {
+                    if( ($_SESSION['data'][$i][1] == $request->Tgl_Masuk) &&
+                        ($_SESSION['data'][$i][2] == $request->NamaSupplier) &&
+                        ($_SESSION['data'][$i][3] == $request->JenisBrg) &&
+                        ($_SESSION['data'][$i][4] == $request->NamaBrg) 
+                         ){
+                        // echo $_SESSION['data'][$i][1] ."  ---   ".$request->Tgl_Masuk." ------ $i  <br>" ;
+                        // echo $_SESSION['data'][$i][2] ."  ---   ".$request->NamaSupplier." ------  <br>" ;
+                        // echo $_SESSION['data'][$i][3] ."  ---   ".$request->JenisBrg." ------  <br>" ;
+                        // echo $_SESSION['data'][$i][4] ."  ---   ".$request->NamaBrg." ------  <br>" ;
+                         $_SESSION['data'][$i][5]= $_SESSION['data'][$i][5]+$request->JumlahBrg;
+                            $ada=true;
+                    }
+
+                }
+            }
+            
+          
+            if($ada==false){
+
             if (!isset($_SESSION["isi"])){
                         $_SESSION["isi"]=0;
                     }else{
@@ -85,13 +111,22 @@ class TransaksiMasukController extends Controller
                 $request->NamaBrg,
                 $request->JumlahBrg,
                 $request->HargaBrg);
+        }
             return redirect('transaksi/transaksimasuk');
         } else 
         if($request->aksi==2)
         {
             session_start();
             session_destroy();
-
+            
+            return redirect('transaksi/transaksimasuk');
+        } else  if($request->aksi==3)
+        {
+            session_start();
+            unset($_SESSION['data'][$_SESSION['id_hapus']]);
+            $_SESSION['isi']=$_SESSION['isi']-1;
+            $_SESSION['data']=array_values($_SESSION['data']);    
+            // print_r(array_values($_SESSION['data']));    
             return redirect('transaksi/transaksimasuk');
         } else {
             try {
@@ -106,14 +141,14 @@ class TransaksiMasukController extends Controller
 
                     $masuk = new TransaksiMasuk;
                     $masuk->KodeMasuk       = $_SESSION['data'][$i][0];
-                    $masuk->Tgl_Masuk       = $_SESSION['data'][$i][1];  
-                    $masuk->NamaSupplier    = $_SESSION['data'][$i][2]; 
+                    $masuk->Tgl_Masuk       = $_SESSION['data'][$i][1];  //
+                    $masuk->NamaSupplier    = $_SESSION['data'][$i][2];   //
                     $masuk->GrandTotal      = $grand_total;
 
                     $detail = new DetailMasuk;  
                     $detail->KodeMasuk       = $_SESSION['data'][$i][0];
-                    $detail->JenisBrg        = $_SESSION['data'][$i][3];      
-                    $detail->NamaBrg         = $_SESSION['data'][$i][4];   
+                    $detail->JenisBrg        = $_SESSION['data'][$i][3];   //  
+                    $detail->NamaBrg         = $_SESSION['data'][$i][4];   //
                     $detail->JumlahBrg       = $_SESSION['data'][$i][5];   
                     $detail->HargaBrg        = $_SESSION['data'][$i][6];
                     $detail->save();

@@ -46,7 +46,7 @@ class SeragamController extends Controller
             $seragam->Ukuran      = $request->Ukuran;
             $seragam->Keterangan  = $request->Keterangan;
             $seragam->StokSeragam = $request->StokSeragam;
-            $seragam->StokAkhir   = $seragam->StokAkhir+$request->StokSeragam;
+            $seragam->StokAkhir   = $request->StokSeragam;
 
             $photo=$request->file('Picture');
             $destination=base_path().'/public/img/seragam';
@@ -106,7 +106,9 @@ class SeragamController extends Controller
             $seragam->JenisKar    = $request->JenisKar;
             $seragam->Status      = $request->Status;
             $seragam->Ukuran      = $request->Ukuran;
-            $seragam->Keterangan  = $request->Keterangan;  
+            $seragam->Keterangan  = $request->Keterangan; 
+            $seragam->StokSeragam = $request->StokSeragam;
+            $seragam->StokAkhir   = $request->StokSeragam; 
 
             if ($request->hasFile('Picture')) {
                 $img = Seragam::find($id);

@@ -92,35 +92,6 @@
         {!! Form::close() !!}
     </div>
 
-    <!-- @if(isset($_SESSION['isi']))
-    <table class="table table-striped">
-            @for ($i=0;$i<=$_SESSION['isi'];$i++)
-                <tr>
-                    <td><?php echo $_SESSION['data'][$i][0]; ?></td>
-                    <td><?php echo $_SESSION['data'][$i][1]; ?></td>
-                    <td><?php echo $_SESSION['data'][$i][2]; ?></td>
-                    <td><?php echo $_SESSION['data'][$i][3]; ?></td>
-                    <td><?php echo $_SESSION['data'][$i][4]; ?></td>
-                    <td><?php echo $_SESSION['data'][$i][5]; ?></td>
-                    <td><?php echo $_SESSION['data'][$i][6]; ?></td>
-                </tr>
-            @endfor
-    </table>
-
-
-     {!! Form::open(['url' => '/transaksi/transaksimasuk']) !!}
-
-            <input type="hidden" name="aksi" value="1"/>
-            <button type="submit" class="btn btn-primary">Simpan</button>
-
-     {!! Form::close() !!}
-     {!! Form::open(['url' => '/transaksi/transaksimasuk']) !!}
-
-            <input type="hidden" name="aksi" value="2"/>
-            <button type="submit" class="btn btn-primary">Bersihkan</button>
-
-     {!! Form::close() !!}
-    @endif -->
 
     <div class="row">
         <div class="col-lg-12">
@@ -155,7 +126,10 @@
                                 <td><?php echo $_SESSION['data'][$i][5]*$_SESSION['data'][$i][6]; ?></td>
                                 <td class="center">
                                    {!! Form::open(['url' => '/transaksi/transaksimasuk']) !!}
-                                        <input type="hidden" name="aksi" value="2"/>
+                                        <input type="hidden" name="aksi" value="3"/>
+                                        <?php
+                                            $_SESSION['id_hapus'] = $i;
+                                        ?>
                                         <button type="submit" class="btn btn-danger fa fa-trash delete-confirm"></button>
                                     {!! Form::close() !!}                                 
                                 </td>
