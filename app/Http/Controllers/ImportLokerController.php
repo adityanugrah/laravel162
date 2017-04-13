@@ -36,7 +36,16 @@ class ImportLokerController extends Controller
                 foreach ($data->toArray() as $key => $value) {
                     if(!empty($value)){
                         foreach ($value as $v) {        
-                            $insert[] = ['KodeLoker' => $v['kodeloker'], 'NamaLoker' => $v['namaloker'],'Keterangan' => $v['keterangan'], 'StokLoker' => $v['stokloker'], 'Picture' => $v['picture']];
+                            $insert[] = [
+                            'KodeLoker' => $v['kodeloker'],
+                            'NamaLoker' => $v['namaloker'],
+                            'Jeniskar' => $v['jeniskaryawan'],
+                            'Keterangan' => $v['keterangan'],
+                            'StokLoker' => $v['stokloker'],
+                            'StokMasuk' => $v['stokmasuk'],
+                            'StokKeluar' => $v['stokkeluar'],
+                            'StokAkhir' => $v['stokakhir'],
+                            'Picture' => $v['picture']];
                         }
                     }
                 }

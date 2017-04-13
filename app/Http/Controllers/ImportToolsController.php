@@ -36,7 +36,16 @@ class ImportToolsController extends Controller
                 foreach ($data->toArray() as $key => $value) {
                     if(!empty($value)){
                         foreach ($value as $v) {        
-                            $insert[] = ['KodeTools' => $v['kodetools'], 'NamaTools' => $v['namatools'],'Keterangan' => $v['keterangan'], 'StokTools' => $v['stoktools'], 'Picture' => $v['picture']];
+                            $insert[] = [
+                            'KodeTools' => $v['kodetools'], 
+                            'NamaTools' => $v['namatools'],
+                            'Jeniskar' => $v['jeniskaryawan'],
+                            'Keterangan' => $v['keterangan'],
+                            'StokTools' => $v['stoktools'],
+                            'StokMasuk' => $v['stokmasuk'],
+                            'StokKeluar' => $v['stokkeluar'],
+                            'StokAkhir' => $v['stokakhir'],
+                            'Picture' => $v['picture']];
                         }
                     }
                 }

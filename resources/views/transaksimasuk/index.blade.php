@@ -97,7 +97,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
-                <?php $grand_total=0;$no=1 ?>
+                <?php $grand_total=0;$no=1;$delete=0 ?>
                 @if(isset($_SESSION['isi']))
                     <table class="table table-striped table-bordered table-hover dataTables-example" >
                         <thead>
@@ -125,12 +125,14 @@
                                 <td><?php echo $_SESSION['data'][$i][6]; ?></td>
                                 <td><?php echo $_SESSION['data'][$i][5]*$_SESSION['data'][$i][6]; ?></td>
                                 <td class="center">
+                                    <button class="btn fa fa-pencil" data-toggle="modal" data-target="#myModals<?php echo $i ?>" title="Ubah Data">
+                                        <span class="lnr lnr-pencil"></span>
+                                    </button> 
                                    {!! Form::open(['url' => '/transaksi/transaksimasuk']) !!}
                                         <input type="hidden" name="aksi" value="3"/>
-                                        <?php
-                                            $_SESSION['id_hapus'] = $i;
-                                        ?>
-                                        <button type="submit" class="btn btn-danger fa fa-trash delete-confirm"></button>
+                                        <input type="hidden" name="idelete" value="{{$i}}"/>
+                                        <button type="submit" class="btn btn-danger fa fa-trash delete-confirm hapus">
+                                        </button>
                                     {!! Form::close() !!}                                 
                                 </td>
                             </tr>

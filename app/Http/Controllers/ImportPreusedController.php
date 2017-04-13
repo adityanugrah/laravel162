@@ -36,7 +36,18 @@ class ImportPreusedController extends Controller
                 foreach ($data->toArray() as $key => $value) {
                     if(!empty($value)){
                         foreach ($value as $v) {        
-                            $insert[] = ['KodePreused' => $v['kodepreused'], 'NamaPreused' => $v['namapreused'],'Keterangan' => $v['keterangan'], 'StokPreused' => $v['stokpreused'], 'Picture' => $v['picture']];
+                            $insert[] = [
+                            'KodePreused' => $v['kodepreused'], 
+                            'NamaPreused' => $v['namapreused'],
+                            'jenisKar' => $v['jeniskaryawan'], 
+                            'Status' => $v['status'], 
+                            'Ukuran' => $v['ukuran'], 
+                            'Keterangan' => $v['keterangan'], 
+                            'StokPreused' => $v['stokpreused'], 
+                            'StokMasuk' => $v['stokmasuk'], 
+                            'StokKeluar' => $v['stokkeluar'], 
+                            'StokAkhir' => $v['stokakhir'], 
+                            'Picture' => $v['picture']];
                         }
                     }
                 }

@@ -123,10 +123,9 @@ class TransaksiMasukController extends Controller
         } else  if($request->aksi==3)
         {
             session_start();
-            unset($_SESSION['data'][$_SESSION['id_hapus']]);
+            unset($_SESSION['data'][$request->idelete]);
             $_SESSION['isi']=$_SESSION['isi']-1;
-            $_SESSION['data']=array_values($_SESSION['data']);    
-            // print_r(array_values($_SESSION['data']));    
+            $_SESSION['data']=array_values($_SESSION['data']);  
             return redirect('transaksi/transaksimasuk');
         } else {
             try {

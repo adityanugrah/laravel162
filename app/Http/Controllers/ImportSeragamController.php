@@ -36,7 +36,18 @@ class ImportSeragamController extends Controller
                 foreach ($data->toArray() as $key => $value) {
                     if(!empty($value)){
                         foreach ($value as $v) {        
-                            $insert[] = ['KodeSeragam' => $v['kodeseragam'], 'NamaSeragam' => $v['namaseragam'],'Keterangan' => $v['keterangan'], 'StokSeragam' => $v['stokseragam'], 'Picture' => $v['picture']];
+                            $insert[] = [
+                            'KodeSeragam' => $v['kodeseragam'], 
+                            'NamaSeragam' => $v['namaseragam'],
+                            'jenisKar' => $v['jeniskaryawan'], 
+                            'Status' => $v['status'], 
+                            'Ukuran' => $v['ukuran'], 
+                            'Keterangan' => $v['keterangan'], 
+                            'StokSeragam' => $v['stokseragam'], 
+                            'StokMasuk' => $v['stokmasuk'], 
+                            'StokKeluar' => $v['stokkeluar'], 
+                            'StokAkhir' => $v['stokakhir'], 
+                            'Picture' => $v['picture']];
                         }
                     }
                 }

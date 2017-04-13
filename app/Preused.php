@@ -20,7 +20,10 @@ class Preused extends Model
     'Status',
     'Ukuran',
     'Keterangan',
-    'StokPreused',
+    'StokSeragam',
+    'StokMasuk',
+    'StokKeluar',
+    'StokAkhir',
     'Picture'
 	];
 }

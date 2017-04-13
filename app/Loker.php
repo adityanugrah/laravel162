@@ -18,6 +18,10 @@ class Loker extends Model
 	'NamaLoker',
 	'Jeniskar',
     'Keterangan',
-    'StokLoker'
+    'StokLoker',
+    'StokMasuk',
+    'StokKeluar',
+    'StokAkhir',
+    'Picture'
 	];
 }

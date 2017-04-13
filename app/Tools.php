@@ -16,7 +16,12 @@ class Tools extends Model
 
     public $fillable = [
 	'NamaTools',
+	'JenisKar',
     'Keterangan',
-    'StokTools'
+    'StokTools',
+    'StokMasuk',
+    'StokKeluar',
+    'StokAkhir',
+    'Picture'
 	];
 }
