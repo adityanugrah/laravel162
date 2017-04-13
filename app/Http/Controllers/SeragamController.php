@@ -107,8 +107,8 @@ class SeragamController extends Controller
             $seragam->Status      = $request->Status;
             $seragam->Ukuran      = $request->Ukuran;
             $seragam->Keterangan  = $request->Keterangan; 
-            $seragam->StokSeragam = $request->StokSeragam;
-            $seragam->StokAkhir   = $request->StokSeragam; 
+            $seragam->StokAkhir   = $request->StokAkhir;
+            $seragam->StokSeragam = ($seragam->StokAkhir+$seragam->StokKeluar)-$seragam->StokMasuk;
 
             if ($request->hasFile('Picture')) {
                 $img = Seragam::find($id);

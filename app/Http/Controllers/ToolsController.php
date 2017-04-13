@@ -101,8 +101,8 @@ class ToolsController extends Controller
             $tools->KodeTools  = $request->KodeTools;
             $tools->NamaTools  = $request->NamaTools;
             $tools->Keterangan  = $request->Keterangan;  
-            $tools->StokTools   = $request->StokTools;
-            $tools->StokAkhir   = $tools->StokTools; 
+            $tools->StokAkhir   = $request->StokAkhir;
+            $tools->StokTools = ($tools->StokAkhir+$tools->StokKeluar)-$tools->StokMasuk;
 
             if ($request->hasFile('Picture')) {
                 $img = Tools::find($id);

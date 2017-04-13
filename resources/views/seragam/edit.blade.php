@@ -81,14 +81,14 @@
                         {!! $errors->first('Keterangan', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                       </div>
                     </div>
-                    <div class="form-group {{ $errors->has('StokSeragam') ? 'has-error has-feedback' : '' }}">
+                    <div class="form-group {{ $errors->has('StokAkhir') ? 'has-error has-feedback' : '' }}">
                       <div class = "col-md-3">
-                      {!! Form::label('StokSeragam', 'Stok Seragam', ['class' => 'control-label']) !!}
+                      {!! Form::label('StokAkhir', 'Stok Seragam', ['class' => 'control-label']) !!}
                       <span style="color: red">*</span>
                       </div>
                       <div class="col-md-7">
-                        {!! Form::text('StokSeragam',null,['class'=>'form-control','rows'=>5, 'placeholder'=>'Stok Seragam', 'required']) !!}
-                        {!! $errors->first('StokSeragam', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                        {!! Form::text('StokAkhir',null,['class'=>'form-control','rows'=>5, 'placeholder'=>'Stok Seragam', 'required']) !!}
+                        {!! $errors->first('StokAkhir', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                       </div>
                     </div>
                     <div class="form-group">

@@ -104,8 +104,8 @@ class LokerController extends Controller
             $loker->NamaLoker   = $request->NamaLoker;
             $loker->JenisKar    = $request->JenisKar;
             $loker->Keterangan  = $request->Keterangan;
-            $loker->StokLoker   = $request->StokLoker;
-            $loker->StokAkhir   = $loker->StokLoker;    
+            $loker->StokAkhir   = $request->StokAkhir;
+            $loker->StokLoker = ($loker->StokAkhir+$loker->StokKeluar)-$loker->StokMasuk;   
 
             if ($request->hasFile('Picture')) {
                 $img = Loker::find($id);

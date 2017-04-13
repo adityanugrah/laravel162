@@ -107,8 +107,8 @@ class PreusedController extends Controller
             $preused->Status      = $request->Status;
             $preused->Ukuran      = $request->Ukuran;
             $preused->Keterangan  = $request->Keterangan;
-            $preused->StokPreused = $request->StokPreused;
-            $preused->StokAkhir   = $preused->StokPreused;      
+            $preused->StokAkhir   = $request->StokAkhir;
+            $preused->StokPreused = ($preused->StokAkhir+$preused->StokKeluar)-$preused->StokMasuk;
 
             if ($request->hasFile('Picture')) {
                 $img = Preused::find($id);
