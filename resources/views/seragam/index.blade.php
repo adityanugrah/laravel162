@@ -51,7 +51,7 @@
 	                    		{{ $i++ }}
 	                    		</td>
 		                        <td>
-		                        	<a href="seragam/{{ $seragam->KodeSeragam }}">{{ $seragam->KodeSeragam }}</a>
+		                        	<a href="/seragam/{{ $seragam->KodeSeragam }}">{{ $seragam->KodeSeragam }}</a>
 		                        </td>
 		                        <td>{{ $seragam->NamaSeragam }}</td>
 		                        <td>{{ $seragam->StokAkhir }}</td>

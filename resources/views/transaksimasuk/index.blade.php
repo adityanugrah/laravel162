@@ -92,7 +92,6 @@
         {!! Form::close() !!}
     </div>
 
-
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
@@ -165,7 +164,7 @@
 <!-- batas -->
 </div>
 
-<script src="{{url('js/jquery-2.1.1.js')}}"></script>
+<!-- <script src="{{url('js/jquery-2.1.1.js')}}"></script>
 
 <script>
     $(document).ready(function(){
@@ -173,9 +172,9 @@
             document.getElementById("KodeMasuk").value = data;
         });
     });
-</script>
+</script> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     function getSupplier() {
         var x = document.getElementById ("KodeSupplier").value;
         $.get("/transaksi/getSupplier/"+x,function(data){
@@ -189,5 +188,5 @@
         var s1 = document.getElementById (s1);
         $("#temp").load("/transaksi/cobaSeragam/"+s1.value);
     }
-</script>
+</script> -->
 @endsection

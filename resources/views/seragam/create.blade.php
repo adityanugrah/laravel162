@@ -99,7 +99,7 @@
                       <div class="col-md-7">
                         {!! Form::file('Picture', ['class'=>'form-control', 'required']) !!}
                         {!! $errors->first('Picture', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
-                        <small>Jenis File : PNG, JPG,   </small>
+                        <small class="help-block">Jenis File : PNG, JPG,   </small>
                       </div>
                     </div>
                      <small style= "color : red;">* : Required/Harus Diisi.</small>

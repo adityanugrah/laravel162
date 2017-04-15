@@ -1,38 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Kerja Praktik</title>
 
-    <link href="{{url('/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{url('/css/font-awesome/css/font-awesome.css')}}" rel="stylesheet" type="text/css">
-
-    <!-- FooTable -->
-    <link href="{{url('/css/plugins/footable/footable.core.css')}}" rel="stylesheet" type="text/css">
-
-    <link href="{{url('/css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
-
-    <link href="{{url('/css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
-
-    <link href="{{url('/css/animate.css')}}" rel="stylesheet">
-    <link href="{{url('/css/style.css')}}" rel="stylesheet">
-
-    <!-- Sweet Alert -->
-    <link href="{{url('/css/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet">
-
-    <!-- <link rel="stylesheet" type="text/css" href="{{ url('/css/sticky-footer-navbar.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url('/css/sweetalert2.min.css') }}"> -->
-    
+    <link href="{{ asset('/css/bootstrap.min.css') }}" rel='stylesheet' type='text/css'>
+    <link href="{{ asset('/font-awesome/css/font-awesome.css') }}" rel='stylesheet' type='text/css'>
+    <link href="{{ asset('/css/plugins/footable/footable.core.css') }}" rel='stylesheet' type='text/css'>
+    <link href="{{ asset('/css/plugins/dataTables/datatables.min.css') }}" rel='stylesheet' type='text/css'>
+    <link href="{{ asset('/css/plugins/datapicker/datepicker3.css') }}" rel='stylesheet' type='text/css'>
+    <link href="{{ asset('/css/animate.css') }}" rel='stylesheet' type='text/css'>
+    <link href="{{ asset('/css/style.css') }}" rel='stylesheet' type='text/css'>
+    <link href="{{ asset ('/css/plugins/sweetalert/sweetalert.css') }}" rel='stylesheet' type='text/css'>
+    <link href="{{ asset ('/css/sticky-footer-navbar.css') }}" rel='stylesheet' type='text/css'>
+    <link href="{{ asset ('/css/sweetalert2.min.css') }}" rel='stylesheet' type='text/css'>
 </head>
 
 <body>
     <div id="wrapper">
     @include('include.sidebar')
-
         <div id="page-wrapper" class="gray-bg">
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
@@ -50,67 +39,58 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- Mainly scripts -->
-    <script src="{{url('/js/jquery-2.1.1.js')}}"></script>
-    <script src="{{url('/js/bootstrap.min.js')}}"></script>
-    <script src="{{url('/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
-    <script src="{{url('/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
-    <script src="{{url('/js/plugins/jeditable/jquery.jeditable.js')}}"></script>
+    <script src="{{ asset('js/jquery-2.1.1.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/plugins/metisMenu/jquery.metisMenu.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/plugins/slimscroll/jquery.slimscroll.min.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/plugins/jeditable/jquery.jeditable.js') }}" type='text/javascript'></script>
 
-    <script src="{{url('/js/plugins/dataTables/datatables.min.js')}}"></script>
-
+    <script src="{{ asset('js/plugins/dataTables/datatables.min.js') }}"></script>
     <!-- Custom and plugin javascript -->
-    <script src="{{url('/js/inspinia.js')}}"></script>
-    <script src="{{url('/js/plugins/pace/pace.min.js')}}"></script>
-
+    <script src="{{ asset('js/inspinia.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/plugins/pace/pace.min.js') }}" type='text/javascript'></script>
     <!-- Sweet alert -->
-    <script src="{{url('/js/plugins/sweetalert/sweetalert.min.js')}}"></script>
-
+    <script src="{{ asset('js/plugins/sweetalert/sweetalert.min.js') }}" type='text/javascript'></script>
     <!-- Data picker -->
-    <script src="{{url('/js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
-
+    <script src="{{ asset('js/plugins/datapicker/bootstrap-datepicker.js') }}" type='text/javascript'></script>
     <!-- FooTable -->
-    <script src="{{url('/js/plugins/footable/footable.all.min.js')}}"></script>
-
-    <script src="{{ url('/js/sweetalert2.min.js') }}" type="text/javascript"></script>
-    <script src="{{ url('/js/common.js') }}" type="text/javascript"></script>
-
+    <script src="{{ asset('js/plugins/footable/footable.all.min.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/sweetalert2.min.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/common.js') }}" type='text/javascript'></script>
     <!-- Flot -->
-    <script src="{{ url('/js/plugins/flot/jquery.flot.js') }}" type="text/javascript"></script>
-    <script src="{{ url('/js/plugins/flot/jquery.flot.tooltip.min.js') }}" type="text/javascript"></script>
-    <script src="{{ url('/js/plugins/flot/jquery.flot.spline.js') }}" type="text/javascript"></script>
-    <script src="{{ url('/js/plugins/flot/jquery.flot.resize.js') }}" type="text/javascript"></script>
-    <script src="{{ url('/js/plugins/flot/jquery.flot.pie.js') }}" type="text/javascript"></script>
-    <script src="{{ url('/js/plugins/flot/jquery.flot.symbol.js') }}" type="text/javascript"></script>
-    <script src="{{ url('/js/plugins/flot/jquery.flot.time.js') }}" type="text/javascript"></script>
-
+    <script src="{{ asset('js/plugins/flot/jquery.flot.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/plugins/flot/jquery.flot.tooltip.min.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/plugins/flot/jquery.flot.spline.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/plugins/flot/jquery.flot.resize.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/plugins/flot/jquery.flot.pie.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/plugins/flot/jquery.flot.symbol.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/plugins/flot/jquery.flot.time.js') }}" type='text/javascript'></script>
     <!-- Peity -->
-    <script src="{{ url('/js/plugins/peity/jquery.peity.min.js') }}" type="text/javascript"></script>
-    <script src="{{ url('/js/demo/peity-demo.js') }}" type="text/javascript"></script>
-
+    <script src="{{ asset('js/plugins/peity/jquery.peity.min.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/demo/peity-demo.js') }}" type='text/javascript'></script>
     <!-- jQuery UI -->
-    <script src="{{ url('/js/plugins/jquery-ui/jquery-ui.min.js') }}" type="text/javascript"></script>
-
+    <script src="{{ asset('js/plugins/jquery-ui/jquery-ui.min.js') }}" type='text/javascript'></script>
     <!-- Jvectormap -->
-    <script src="{{ url('/js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js') }}" type="text/javascript"></script>
-    <script src="{{ url('/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}" type="text/javascript"></script>
-
+    <script src="{{ asset('js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}" type='text/javascript'></script>
     <!-- EayPIE -->
-    <script src="{{ url('/js/plugins/easypiechart/jquery.easypiechart.js') }}" type="text/javascript"></script>
-
+    <script src="{{ asset('js/plugins/easypiechart/jquery.easypiechart.js') }}" type='text/javascript'></script>
     <!-- Sparkline -->
-    <script src="{{ url('/js/plugins/sparkline/jquery.sparkline.min.js') }}" type="text/javascript"></script>
-
+    <script src="{{ asset('js/plugins/sparkline/jquery.sparkline.min.js') }}" type='text/javascript'></script>
     <!-- Sparkline demo data  -->
-    <script src="{{ url('/js/demo/sparkline-demo.js') }}" type="text/javascript"></script>
-
+    <script src="{{ asset('js/demo/sparkline-demo.js') }}" type='text/javascript'></script>
     <!-- Page-Level Scripts -->
     <script>
         $(document).ready(function(){
+            $.get("/transaksi/getKodeMasuk",function(data){
+                document.getElementById("KodeMasuk").value = data;
+            });
+
             $('.footable').footable();
+
             $('#date_added').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
@@ -118,6 +98,7 @@
                 calendarWeeks: true,
                 autoclose: true
             });
+
             $('#date_modified').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
@@ -169,6 +150,16 @@
                 "New row",
                 "New row",
                 "New row" ] );
+        }
+        function getSupplier() {
+            var x = document.getElementById ("KodeSupplier").value;
+            $.get("/transaksi/getSupplier/"+x,function(data){
+                document.getElementById("NamaSupplier").value = data;
+            });
+        }
+        function getJenis(s1) {
+            var s1 = document.getElementById (s1);
+            $("#temp").load("/transaksi/cobaSeragam/"+s1.value);
         }
     </script>
 </body>

@@ -53,12 +53,11 @@
                     <li class="{{ Request::is('transaksi/transaksikeluar') || Request::is('transaksi/transaksikeluar/*') ? 'active' : '' }}"><a href="{{ url('transaksi/transaksikeluar') }}">Transaksi Keluar</a></li>
                 </ul>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-print"></i> <span class="nav-label">Laporan</span><span class="fa arrow"></span></a>
+             <li class="{{ Request::is('laporan') || Request::is('laporan/*') ? 'active' : '' }}">
+                <a href="#"><i class="fa fa-exchange"></i> <span class="nav-label">Laporan</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li class="{{ Request::is('databarang/tools') || Request::is('databarang/tools/*') ? 'active' : '' }}"><a href="form_basic.html">Laporan Bulanan</a></li>
-                    <li class="{{ Request::is('databarang/tools') || Request::is('databarang/tools/*') ? 'active' : '' }}"><a href="form_advanced.html">Laporan Mingguan</a></li>
-                    <li class="{{ Request::is('databarang/tools') || Request::is('databarang/tools/*') ? 'active' : '' }}"><a href="form_wizard.html">Laporan Harian</a></li>
+                    <li class="{{ Request::is('laporan/laporanmasuk') || Request::is('laporan/laporanmasuk/*') ? 'active' : '' }}"><a href="{{ url('laporan/laporanmasuk') }}">Laporan Masuk</a></li>
+                    <li class="{{ Request::is('laporan/laporankeluar') || Request::is('laporan/laporankeluar/*') ? 'active' : '' }}"><a href="{{ url('laporan/laporankeluar') }}">Laporan Keluar</a></li>
                 </ul>
             </li>
         </ul>
