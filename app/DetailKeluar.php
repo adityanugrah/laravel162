@@ -4,18 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TransaksiKeluar extends Model
+class DetailKeluar extends Model
 {
-    protected $table = 'transaksikeluar';
-
-    protected $primaryKey = 'KodeKeluar';
+    protected $table = 'detailkeluar';
 
     public $incrementing = false;
 
     public $timestamps = false;
 
     public $fillable = [
-    'Tgl_Pinjam',
-    'Tgl_Kembali'   
+    'KodeKeluar',
+    'NamaKaryawan',
+    'JenisBrg',
+    'NamaBrg',
+    'JumlahBrg'
 	];
 }

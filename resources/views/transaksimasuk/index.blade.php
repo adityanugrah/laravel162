@@ -97,7 +97,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
-                <?php $grand_total=0;$no=1;$delete=0 ?>
+                <?php $grand_total=0;$no=1?>
                 @if(isset($_SESSION['isi']))
                     <table class="table table-striped table-bordered table-hover dataTables-example" >
                         <thead>

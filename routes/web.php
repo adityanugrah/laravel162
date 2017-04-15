@@ -45,7 +45,7 @@ Route::post('importSupplier', 'ImportSupplierController@importSupplier');
 
 Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');
 
-// baru
+//TransaksiMasuk
 
 Route::get('transaksi/cobaSeragam/{id}', 'TransaksiMasukController@cobaSeragam');
 
@@ -56,6 +56,10 @@ Route::get('/transaksi/getSupplier/{id}', 'getDataController@ambilNamaSupplier')
 Route::get('/transaksi/getBarang/{id}/{kode}', 'getDataController@ambilNamaBarang');
 
 Route::get('/transaksi/getKodeMasuk', 'KodeMasukController@index');
+
+//TransaksiKeluar
+
+Route::get('/transaksi/getKodeKeluar', 'KodeKeluarController@index');
 
 });
 
