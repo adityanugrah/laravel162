@@ -27,6 +27,7 @@
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('KodeMasuk') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('KodeMasuk', 'Kode Masuk') !!}
+                    <span style="color: red">*</span>
                     {!! Form::text('KodeMasuk',null,['class'=>'form-control', 'placeholder'=>'Kode Masuk', 'readonly','required']) !!}
                     {!! $errors->first('KodeMasuk', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
@@ -34,6 +35,7 @@
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('Tgl_Masuk') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('Tgl_Masuk', 'Tanggal Masuk') !!}
+                    <span style="color: red">*</span>
                     {!! Form::date('Tgl_Masuk',null,['class'=>'form-control', 'placeholder'=>'Tgl_Masuk', 'required']) !!}
                     {!! $errors->first('Tgl_Masuk', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
@@ -41,8 +43,9 @@
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('NamaSupplier') ? 'has-error has-feedback' : '' }}">
                 <label class="control-label" for="status">Nama Suppleir</label>
-                    <select name="NamaSupplier" id="NamaSupplier" class="form-control">
-                        <option>Pilih Nama Supplier</option>
+                <span style="color: red">*</span>
+                    <select required name="NamaSupplier" id="NamaSupplier" class="form-control">
+                        <option value="">Pilih Nama Supplier</option>
                         @foreach ($supplierz as $sup)
                         <option value="{{$sup -> NamaSupplier}}">{{$sup -> NamaSupplier}}</option>
                         @endforeach
@@ -54,8 +57,9 @@
             <div class="col-sm-4">
                <div class="form-group {{ $errors->has('JenisBrg') ? 'has-error has-feedback' : '' }}">
                     <label class="control-label" for="date_modified">Jenis Barang</label>
-                    <select name="JenisBrg" id="JenisBrg"  onChange="getJenis(this.id)" class="form-control">
-                        <option >Pilih Jenis Barang</option>
+                    <span style="color: red">*</span>
+                    <select required name="JenisBrg" id="JenisBrg"  onChange="getJenis(this.id)" class="form-control">
+                        <option value="">Pilih Jenis Barang</option>
                         <option value="Seragam" >Seragam Baru</option>
                         <option value="Preused">Pre-Used</option>
                         <option value="Loker">Loker</option>
@@ -66,26 +70,30 @@
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('NamaBrg') ? 'has-error has-feedback' : '' }}" id="temp">
                 <label class="control-label" for="status">Nama Barang</label>
-                <select name="NamaBrg" id="NamaBrg" class="form-control" required="true">
-                    <option>Pilih Nama Barang</option>
+                <span style="color: red">*</span>
+                <select required name="NamaBrg" id="NamaBrg" class="form-control" required="true">
+                    <option value="">Pilih Nama Barang</option>
                 </select>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('JumlahBrg') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('JumlahBrg', 'Jumlah Barang') !!}
-                    {!! Form::text('JumlahBrg',null,['class'=>'form-control', 'placeholder'=>'Jumlah Barang', 'required']) !!}
+                    <span style="color: red">*</span>
+                    {!! Form::number('JumlahBrg',null,['class'=>'form-control', 'placeholder'=>'Jumlah Barang', 'required']) !!}
                     {!! $errors->first('JumlahBrg', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('HargaBrg') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('HargaBrg', 'Harga Barang') !!}
-                    {!! Form::text('HargaBrg',null,['class'=>'form-control', 'placeholder'=>'Harga Barang', 'required']) !!}
+                    <span style="color: red">*</span>
+                    {!! Form::number('HargaBrg',null,['class'=>'form-control', 'placeholder'=>'Harga Barang', 'required']) !!}
                     {!! $errors->first('HargaBrg', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
         </div>
+        <small style= "color : red;">* : Required/Harus Diisi.</small>
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Tambah Barang</button>
         </div>

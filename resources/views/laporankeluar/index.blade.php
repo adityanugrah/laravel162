@@ -66,10 +66,11 @@
 			                        <td>{{ $keluar->Tgl_Pinjam }}</td>
 			                        <td>{{ $keluar->Tgl_Kembali }}</td>
 			                        <td class="center">
-	                                    <button class="btn fa fa-pencil" data-toggle="modal" data-target="#myModals<?php echo $i ?>" title="Ubah Data">
-	                                        <span class="lnr lnr-pencil"></span>
-	                                    </button>
-				                      	</form>
+	                                    <form action="/laporan/laporankeluar/{{ $keluar->KodeKeluar }}" {{ $keluar->KodeKeluar }} ?>
+		                                    <button type="submit" title="Ubah Data">
+		                                        Detail
+		                                    </button>
+					                    </form>
 			                        </td>
 			                    </tr>
 			                    @endforeach

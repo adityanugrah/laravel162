@@ -27,6 +27,7 @@
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('KodeKeluar') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('KodeKeluar', 'Kode Keluar') !!}
+                    <span style="color: red">*</span>
                     {!! Form::text('KodeKeluar',null,['class'=>'form-control', 'placeholder'=>'Kode Keluar', 'readonly','required']) !!}
                     {!! $errors->first('KodeKeluar', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
@@ -34,6 +35,7 @@
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('Tgl_Pinjam') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('Tgl_Pinjam', 'Tanggal Pinjam') !!}
+                    <span style="color: red">*</span>
                     {!! Form::date('Tgl_Pinjam',null,['class'=>'form-control', 'placeholder'=>'Tanggal Pinjam', 'required']) !!}
                     {!! $errors->first('Tgl_Pinjam', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
@@ -41,6 +43,7 @@
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('Tgl_Kembali') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('Tgl_Kembali', 'Tanggal Kembali') !!}
+                    <span style="color: red">*</span>
                     {!! Form::date('Tgl_Kembali',null,['class'=>'form-control', 'placeholder'=>'Tanggal Kembali', 'required']) !!}
                     {!! $errors->first('Tgl_Kembali', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
@@ -50,6 +53,7 @@
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('NamaKaryawan') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('NamaKaryawan', 'Nama Karyawan') !!}
+                    <span style="color: red">*</span>
                     {!! Form::text('NamaKaryawan',null,['class'=>'form-control', 'placeholder'=>'Nama Karyawan ', 'required']) !!}
                     {!! $errors->first('NamaKaryawan', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
@@ -57,8 +61,9 @@
             <div class="col-sm-4">
                <div class="form-group {{ $errors->has('JenisBrg') ? 'has-error has-feedback' : '' }}">
                     <label class="control-label" for="date_modified">Jenis Barang</label>
-                    <select name="JenisBrg" id="JenisBrg"  onChange="getJenis(this.id)" class="form-control">
-                        <option >Pilih Jenis Barang</option>
+                    <span style="color: red">*</span>
+                    <select required name="JenisBrg" id="JenisBrg"  onChange="getJenis(this.id)" class="form-control">
+                        <option value="">Pilih Jenis Barang</option>
                         <option value="Seragam" >Seragam Baru</option>
                         <option value="Preused">Pre-Used</option>
                         <option value="Loker">Loker</option>
@@ -69,19 +74,22 @@
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('NamaBrg') ? 'has-error has-feedback' : '' }}" id="temp">
                 <label class="control-label" for="status">Nama Barang</label>
-                <select name="NamaBrg" id="NamaBrg" class="form-control" required="true">
-                    <option>Pilih Nama Barang</option>
+                <span style="color: red">*</span>
+                <select required="true" name="NamaBrg" id="NamaBrg" class="form-control" required="true">
+                    <option value="">Pilih Nama Barang</option>
                 </select>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('JumlahBrg') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('JumlahBrg', 'Jumlah Barang') !!}
+                    <span style="color: red">*</span>
                     {!! Form::number('JumlahBrg',null,['class'=>'form-control', 'placeholder'=>'Jumlah Barang', 'required']) !!}
                     {!! $errors->first('JumlahBrg', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
         </div>
+        <small style= "color : red;">* : Required/Harus Diisi.</small>
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Tambah Barang</button>
         </div>

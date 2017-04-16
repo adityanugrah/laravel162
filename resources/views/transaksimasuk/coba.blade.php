@@ -1,6 +1,6 @@
 <label class="control-label" for="status">Nama Barang</label>
-<select name="NamaBrg" id="NamaBrg" onChange="getBarang('{{$id}}')" class="form-control" required="true">
-	<option >Pilih Nama Barang</option>
+<select required="true" name="NamaBrg" id="NamaBrg" onChange="getBarang('{{$id}}')" class="form-control" required="true">
+	<option value="">Pilih Nama Barang</option>
 	@foreach ($data as $dat)
 		@if($id=="Seragam")
 		<option value="{{$dat->NamaSeragam}}">{{ $dat->NamaSeragam }}</option>

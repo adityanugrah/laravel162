@@ -68,10 +68,11 @@
 			                        <td>{{ $masuk->NamaSupplier }}</td>
 			                        <td>{{ $masuk->GrandTotal }}</td>
 			                        <td class="center">
-	                                    <button class="btn fa fa-pencil" data-toggle="modal" data-target="#myModals<?php echo $i ?>" title="Ubah Data">
-	                                        Detail
-	                                    </button>
-				                      	</form>
+				                        <form action="/laporan/laporanmasuk/{{ $masuk->KodeMasuk }}" {{ $masuk->KodeMasuk }} ?>
+		                                    <button type="submit" title="Ubah Data">
+		                                        Detail
+		                                    </button>
+					                    </form>
 			                        </td>
 			                    </tr>
 			                    @endforeach
