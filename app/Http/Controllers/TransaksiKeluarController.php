@@ -12,6 +12,7 @@ use App\Preused;
 use App\Tools;
 use App\Loker;
 use Validator;
+use Mail;
 
 class TransaksiKeluarController extends Controller
 {
@@ -112,21 +113,46 @@ class TransaksiKeluarController extends Controller
                             $seragam->StokKeluar = $seragam->StokKeluar+$_SESSION['keluar'][$i][6];
                             $seragam->StokAkhir  = $seragam->StokMasuk+$seragam->StokSeragam-$seragam->StokKeluar;
                             $seragam->save();
+                            if ($seragam->StokAkhir <= 5) { 
+                                $_SESSION['NamaBrg'] = $detailkeluar->NamaBrg;                               
+                                Mail::send(['text'=>'mail'],['name', 'Sarthak'], function($message) {
+                                    $message->to('burgerkillselalu@gmail.com', 'Restok') -> subject('Penting');
+                                    $message->from('burgerkillselalu@gmail.com', 'Bitfumes');
+                                });
+                            }
                         } else if ($_SESSION['keluar'][$i][4]=="Preused") {
                             $Preused = Preused::where('NamaPreused',$_SESSION['keluar'][$i][5])->first();
                             $Preused->StokMasuk = $Preused->StokMasuk+$_SESSION['keluar'][$i][6];
                             $Preused->StokAkhir = $Preused->StokMasuk+$Preused->StokPreused-$Preused->StokKeluar;
                             $Preused->save();
+                            if ($Preused->StokAkhir <= 5) {                                
+                                Mail::send(['text'=>'mail'],['name', 'Sarthak'], function($message) {
+                                    $message->to('burgerkillselalu@gmail.com', 'Restok') -> subject('Penting');
+                                    $message->from('burgerkillselalu@gmail.com', 'Bitfumes');
+                                });
+                            }
                         } else if ($_SESSION['keluar'][$i][4]=="Loker") {
                             $Loker = Loker::where('NamaLoker',$_SESSION['keluar'][$i][5])->first();
                             $Loker->StokMasuk = $Loker->StokMasuk+$_SESSION['keluar'][$i][6];
                             $Loker->StokAkhir = $Loker->StokMasuk+$Loker->StokLoker-$Loker->StokKeluar;
                             $Loker->save();
+                            if ($Loker->StokAkhir <= 5) {                                
+                                Mail::send(['text'=>'mail'],['name', 'Sarthak'], function($message) {
+                                    $message->to('burgerkillselalu@gmail.com', 'Restok') -> subject('Penting');
+                                    $message->from('burgerkillselalu@gmail.com', 'Bitfumes');
+                                });
+                            }
                         } else if ($_SESSION['keluar'][$i][4]=="Tools") {
                             $Tools = Tools::where('NamaTools',$_SESSION['keluar'][$i][5])->first();
                             $Tools->StokMasuk = $Tools->StokMasuk+$_SESSION['keluar'][$i][6];
                             $Tools->StokAkhir = $Tools->StokMasuk+$Tools->StokTools-$Tools->StokKeluar;
                             $Tools->save();
+                            if ($Tools->StokAkhir <= 5) {                                
+                                Mail::send(['text'=>'mail'],['name', 'Sarthak'], function($message) {
+                                    $message->to('burgerkillselalu@gmail.com', 'Restok') -> subject('Penting');
+                                    $message->from('burgerkillselalu@gmail.com', 'Bitfumes');
+                                });
+                            }
                         } else {
                             $data = "Tidak Ada Data";   
                         }

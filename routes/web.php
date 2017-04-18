@@ -18,6 +18,8 @@ Route::get('/', ['as'=>'dashboard', function () {
 	return View::make('include.dashboard');
 }]);
 
+Route::get('send','mailController@send');
+
 Route::resource('databarang/seragam', 'SeragamController');
 Route::resource('databarang/preused', 'PreusedController');
 Route::resource('databarang/loker', 'LokerController');
