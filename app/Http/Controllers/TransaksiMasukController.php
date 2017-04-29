@@ -90,6 +90,7 @@ class TransaksiMasukController extends Controller
                 } else{
                     $_SESSION["isi"]++;
                 }
+
                 $_SESSION['data'][$_SESSION["isi"]] = array(
                     $request->KodeMasuk,
                     $request->Tgl_Masuk,
@@ -98,6 +99,10 @@ class TransaksiMasukController extends Controller
                     $request->NamaBrg,
                     $request->JumlahBrg,
                     $request->HargaBrg);
+
+                    $barang = Seragam::where('NamaSeragam', $request->NamaBrg)->first();
+                    $barang->HrgSeragam = $request->HargaBrg;
+                    $barang -> save();                
             }
             return redirect('transaksi/transaksimasuk');
         } else if($request->aksi==2) {

@@ -10,6 +10,7 @@ use App\Seragam;
 use App\Preused;
 use App\Loker;
 use App\Tools;
+use DB;
 
 class getDataController extends Controller
 {
@@ -24,26 +25,23 @@ class getDataController extends Controller
         return $sup->NamaSupplier;
     }
 
-
-    public function ambilNamaBarang($id,$kode){
-
+    public function ambilHargaBarang($id,$kode){
         if($kode=="Seragam") {
-            $kode = Seragam::find($id);
-            return $kode->NamaSeragam;
+            $kode = Seragam::where('NamaSeragam', '=', $id)->first();
+            return $kode->HrgSeragam;
         } else if ($kode=="Preused") {
-            $kode = Preused::find($id);
-            return $kode->NamaPreused; 
+            $kode = Seragam::where('NamaPreused', '=', $id)->first();
+            return $kode->HrgPreused; 
         } else if ($kode=="Loker") {
-            $kode = Loker::find($id);
-            return $kode->NamaLoker;
+            $kode = Seragam::where('NamaLoker', '=', $id)->first();
+            return $kode->HrgLoker;
         } else if ($kode=="Tools") {
-            $kode = Tools::find($id);
-            return $kode->NamaTools;
+            $kode = Seragam::where('NamaTools', '=', $id)->first();
+            return $kode->HrgTools;
         } else {
             $kode = "Tidak Ada Data";
             return $kode;
         }
-        
     }
     
 

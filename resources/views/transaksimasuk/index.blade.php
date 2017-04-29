@@ -58,8 +58,8 @@
                <div class="form-group {{ $errors->has('JenisBrg') ? 'has-error has-feedback' : '' }}">
                     <label class="control-label" for="date_modified">Jenis Barang</label>
                     <span style="color: red">*</span>
-                    <select required name="JenisBrg" id="JenisBrg"  onChange="getJenis(this.id)" class="form-control">
-                        <option value="">Pilih Jenis Barang</option>
+                    <select required name="JenisBrg" id="JenisBrg" onChange="getJenis(this.id)" class="form-control">
+                        <option  value="">Pilih Jenis Barang</option>
                         <option value="Seragam" >Seragam Baru</option>
                         <option value="Preused">Pre-Used</option>
                         <option value="Loker">Loker</option>
@@ -88,7 +88,7 @@
                 <div class="form-group {{ $errors->has('HargaBrg') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('HargaBrg', 'Harga Barang') !!}
                     <span style="color: red">*</span>
-                    {!! Form::number('HargaBrg',null,['class'=>'form-control', 'placeholder'=>'Harga Barang', 'required']) !!}
+                    {!! Form::text('HargaBrg',null,['id'=>'HargaBrg', 'class'=>'form-control', 'placeholder'=>'Harga Barang', 'required']) !!}
                     {!! $errors->first('HargaBrg', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
@@ -131,10 +131,7 @@
                                 <td><?php echo $_SESSION['data'][$i][5]; ?></td>
                                 <td><?php echo $_SESSION['data'][$i][6]; ?></td>
                                 <td><?php echo $_SESSION['data'][$i][5]*$_SESSION['data'][$i][6]; ?></td>
-                                <td class="center">
-                                    <button class="btn fa fa-pencil" data-toggle="modal" data-target="#myModals<?php echo $i ?>" title="Ubah Data">
-                                        <span class="lnr lnr-pencil"></span>
-                                    </button> 
+                                <td class="center"> 
                                    {!! Form::open(['url' => '/transaksi/transaksimasuk']) !!}
                                         <input type="hidden" name="aksi" value="3"/>
                                         <input type="hidden" name="idelete" value="{{$i}}"/>
@@ -171,30 +168,4 @@
     </div> 
 <!-- batas -->
 </div>
-
-<!-- <script src="{{url('js/jquery-2.1.1.js')}}"></script>
-
-<script>
-    $(document).ready(function(){
-        $.get("/transaksi/getKodeMasuk",function(data){
-            document.getElementById("KodeMasuk").value = data;
-        });
-    });
-</script> -->
-
-<!-- <script type="text/javascript">
-    function getSupplier() {
-        var x = document.getElementById ("KodeSupplier").value;
-        $.get("/transaksi/getSupplier/"+x,function(data){
-            document.getElementById("NamaSupplier").value = data;
-        });
-    }
-</script>
-
-<script type="text/javascript">
-    function getJenis(s1) {
-        var s1 = document.getElementById (s1);
-        $("#temp").load("/transaksi/cobaSeragam/"+s1.value);
-    }
-</script> -->
 @endsection

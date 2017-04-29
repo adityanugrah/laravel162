@@ -27,6 +27,23 @@ class TransaksiKeluarController extends Controller
         return view('transaksikeluar.index', compact('keluar'));
     }
 
+    public function namabarang($id){
+
+        if($id=="Seragam") {
+            $data=Seragam::orderBy('NamaSeragam')->get();
+        } else if ($id=="Preused") {
+            $data=Preused::orderBy('KodePreused')->get(); 
+        } else if ($id=="Loker") {
+            $data=Loker::orderBy('KodeLoker')->get(); 
+        } else if ($id=="Tools") {
+            $data=Tools::orderBy('KodeTools')->get(); 
+        } else {
+            $data = "Tidak Ada Data";
+        }
+
+        return view('transaksikeluar.coba',compact('data','id'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

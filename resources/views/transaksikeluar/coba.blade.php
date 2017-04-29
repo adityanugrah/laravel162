@@ -1,15 +1,15 @@
-<label class="control-label" for="status">Kode Barang</label>
+<label class="control-label" for="status">Nama Barang</label>
 <select name="KodeBrg" id="KodeBrg" onChange="getBarang('{{$id}}')" class="form-control" required="true">
-	<option >Pilih Kode Barang</option>
+	<option >Pilih Nama Barang</option>
 	@foreach ($data as $dat)
 		@if($id=="Seragam")
-		<option value="{{$dat->KodeSeragam}}">{{ $dat->KodeSeragam }}</option>
+		<option value="{{$dat->NamaSeragam}}">{{ $dat->NamaSeragam }} ({{ $dat->Ukuran }})</option>
 		@elseif ($id=="Preused")
-		<option value="{{$dat->KodePreused}}">{{ $dat->KodePreused }}</option>
+		<option value="{{$dat->NamaPreused}}">{{ $dat->NamaPreused }}</option>
 		@elseif ($id=="Loker")
-		<option value="{{$dat->KodeLoker}}">{{ $dat->KodeLoker }}</option>
+		<option value="{{$dat->NamaLoker}}">{{ $dat->NamaLoker }}</option>
 		@elseif ($id=="Tools")
-		<option value="{{$dat->KodeTools}}">{{ $dat->KodeTools }}</option>
+		<option value="{{$dat->NamaTools}}">{{ $dat->NamaTools }}</option>
 		@endif
 	@endforeach
 </select>

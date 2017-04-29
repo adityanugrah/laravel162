@@ -20,6 +20,7 @@ class Seragam extends Model
     'Status',
     'Ukuran',
     'Keterangan',
+    'HrgSeragam',
     'StokSeragam',
     'StokMasuk',
     'StokKeluar',

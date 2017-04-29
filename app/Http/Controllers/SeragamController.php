@@ -13,6 +13,7 @@ class SeragamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $seragams = Seragam::orderBy('KodeSeragam')->get(); 
@@ -45,6 +46,7 @@ class SeragamController extends Controller
             $seragam->Status      = $request->Status;
             $seragam->Ukuran      = $request->Ukuran;
             $seragam->Keterangan  = $request->Keterangan;
+            $seragam->HrgSeragam  = $request->HrgSeragam;
             $seragam->StokSeragam = $request->StokSeragam;
             $seragam->StokAkhir   = $request->StokSeragam;
 
@@ -55,15 +57,15 @@ class SeragamController extends Controller
             $seragam['Picture']=$filename; 
         
             $seragam->save();
-            return redirect('databarang/seragam')->with('pesan_sukses', 'Data seragam has been saved.');
+            return redirect('/databarang/seragam')->with('pesan_sukses', 'Data seragam has been saved.');
         
             if ($validator -> fails()) {
-                    return redirect('databarang/seragam')->withErrors($validator)->withInput();
+                    return redirect('/databarang/seragam')->withErrors($validator)->withInput();
             }
 
         } 
         catch (Exception $e) {
-            return redirect('databarang/seragam')->with('pesan_gagal', $e->getMessage());
+            return redirect('/databarang/seragam')->with('pesan_gagal', $e->getMessage());
         }
     }
 
@@ -107,6 +109,7 @@ class SeragamController extends Controller
             $seragam->Status      = $request->Status;
             $seragam->Ukuran      = $request->Ukuran;
             $seragam->Keterangan  = $request->Keterangan; 
+            $seragam->HrgSeragam  = $request->HrgSeragam; 
             $seragam->StokAkhir   = $request->StokAkhir;
             $seragam->StokSeragam = ($seragam->StokAkhir+$seragam->StokKeluar)-$seragam->StokMasuk;
 
@@ -126,13 +129,13 @@ class SeragamController extends Controller
             }
 
             $seragam->save();
-            return redirect('databarang/seragam')->with('pesan_sukses', 'Data berhasil.');
+            return redirect('/databarang/seragam')->with('pesan_sukses', 'Data berhasil.');
 
             if ($validator -> fails()) {
-                    return redirect('databarang/seragam')->withErrors($validator)->withInput();
+                    return redirect('/databarang/seragam')->withErrors($validator)->withInput();
             }
         } catch (Exception $e) {
-            return redirect('databarang/seragam')->with('pesan_gagal', $e->getMessage());
+            return redirect('/databarang/seragam')->with('pesan_gagal', $e->getMessage());
         }
     }
 

@@ -66,6 +66,7 @@
                         <select required name="Ukuran" id="Ukuran" class="form-control">
                             <option value="">Pilih Ukuran Seragam</option>
                             <option value="S" >S</option>
+                            <option value="M" >M</option>
                             <option value="L">L</option>
                             <option value="XL">XL</option>
                         </select>
@@ -77,8 +78,18 @@
                       <span style="color: red">*</span>
                       </div>
                       <div class="col-md-7">
-                        {!! Form::textarea('Keterangan',null,['class'=>'form-control','rows'=>5, 'placeholder'=>'Keterangan', 'required']) !!}
+                        {!! Form::textarea('Keterangan',null,['class'=>'form-control','rows'=>3, 'placeholder'=>'Keterangan', 'required']) !!}
                         {!! $errors->first('Keterangan', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                      </div>
+                    </div>
+                    <div class="form-group {{ $errors->has('HrgSeragam') ? 'has-error has-feedback' : '' }}">
+                      <div class = "col-md-3">
+                      {!! Form::label('HrgSeragam', 'Harga Seragam', ['class' => 'control-label']) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        {!! Form::number('HrgSeragam',null,['class'=>'form-control','rows'=>5, 'placeholder'=>'Harga Seragam', 'required']) !!}
+                        {!! $errors->first('HrgSeragam', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                       </div>
                     </div>
                     <div class="form-group {{ $errors->has('StokSeragam') ? 'has-error has-feedback' : '' }}">
@@ -87,7 +98,7 @@
                       <span style="color: red">*</span>
                       </div>
                       <div class="col-md-7">
-                        {!! Form::text('StokSeragam',null,['class'=>'form-control','rows'=>5, 'placeholder'=>'Stok Seragam', 'required']) !!}
+                        {!! Form::number('StokSeragam',null,['class'=>'form-control','rows'=>5, 'placeholder'=>'Stok Seragam', 'required']) !!}
                         {!! $errors->first('StokSeragam', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                       </div>
                     </div>

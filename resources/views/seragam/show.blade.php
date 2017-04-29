@@ -85,6 +85,13 @@
                                                 <td><h4>{{ $seragam->Keterangan }}</h4></td>
                                             </tr>
                                             <tr>
+                                                <td><h4>Harga Seragam</h4></td>
+                                                <td></td>
+                                                <td><h4>:</h4></td>
+                                                <td></td>
+                                                <td><h4>{{ $seragam->HrgSeragam }}</h4></td>
+                                            </tr>
+                                            <tr>
                                                 <td><h4>Stok</h4></td>
                                                 <td></td>
                                                 <td><h4>:</h4></td>

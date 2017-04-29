@@ -5,7 +5,7 @@
         <div class="row">
 
             <div class="col-md-6" style="justify-content: ">
-                <h2 class="font-bold">PT. Gutner Indonesia</h2>
+                <h2 class="font-bold">PT. Guntner Indonesia</h2>
 
                 <p>
                     Merupakan salah satu perusahaan mutinasional terkemuka di Indonesia dan menjadi bagian dari Guntner - Group.

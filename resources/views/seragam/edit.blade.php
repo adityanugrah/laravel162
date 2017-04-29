@@ -66,6 +66,7 @@
                         <select name="Ukuran" id="Ukuran" class="form-control">
                             <option>Pilih Ukuran Seragam</option>
                             <option value="S"@if($seragam->Ukuran=="S") selected @endif>S</option>
+                            <option value="S"@if($seragam->Ukuran=="M") selected @endif>M</option>
                             <option value="L"@if($seragam->Ukuran=="L") selected @endif>L</option>
                             <option value="XL"@if($seragam->Ukuran=="XL") selected @endif>XL</option>
                         </select>
@@ -79,6 +80,16 @@
                       <div class="col-md-7">
                         {!! Form::textarea('Keterangan',null,['class'=>'form-control' ,'rows'=>5]) !!}
                         {!! $errors->first('Keterangan', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                      </div>
+                    </div>
+                    <div class="form-group {{ $errors->has('HrgSeragam') ? 'has-error has-feedback' : '' }}">
+                      <div class = "col-md-3">
+                      {!! Form::label('HrgSeragam', 'Harga Seragam', ['class' => 'control-label']) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        {!! Form::number('HrgSeragam',null,['class'=>'form-control','rows'=>5, 'placeholder'=>'Harga Seragam', 'required']) !!}
+                        {!! $errors->first('HrgSeragam', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                       </div>
                     </div>
                     <div class="form-group {{ $errors->has('StokAkhir') ? 'has-error has-feedback' : '' }}">

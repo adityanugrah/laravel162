@@ -43,6 +43,7 @@ class ImportSeragamController extends Controller
                             'Status' => $v['status'], 
                             'Ukuran' => $v['ukuran'], 
                             'Keterangan' => $v['keterangan'], 
+                            'HrgSeragam' => $v['hrgseragam'], 
                             'StokSeragam' => $v['stokseragam'], 
                             'StokMasuk' => $v['stokmasuk'], 
                             'StokKeluar' => $v['stokkeluar'], 

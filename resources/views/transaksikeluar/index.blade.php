@@ -62,7 +62,7 @@
                <div class="form-group {{ $errors->has('JenisBrg') ? 'has-error has-feedback' : '' }}">
                     <label class="control-label" for="date_modified">Jenis Barang</label>
                     <span style="color: red">*</span>
-                    <select required name="JenisBrg" id="JenisBrg"  onChange="getJenis(this.id)" class="form-control">
+                    <select required name="JenisBrg" id="JenisBrg" onChange="getJenisK(this.id)" class="form-control">
                         <option value="">Pilih Jenis Barang</option>
                         <option value="Seragam" >Seragam Baru</option>
                         <option value="Preused">Pre-Used</option>
@@ -172,9 +172,9 @@
 </script>
 
 <script type="text/javascript">
-    function getJenis(s1) {
+    function getJenisK(s1) {
         var s1 = document.getElementById (s1);
-        $("#temp").load("/transaksi/cobaSeragam/"+s1.value);
+        $("#temp").load("/transaksi/namabarang/"+s1.value);
     }
 </script>
 @endsection

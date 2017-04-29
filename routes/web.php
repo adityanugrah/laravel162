@@ -20,6 +20,11 @@ Route::get('/', ['as'=>'dashboard', function () {
 
 Route::get('send','mailController@send');
 
+Route::get('/home', 'HomeController@index');
+
+//download template
+Route::get('/download/{file}', 'DownloadController@download');
+
 Route::resource('databarang/seragam', 'SeragamController');
 Route::resource('databarang/preused', 'PreusedController');
 Route::resource('databarang/loker', 'LokerController');
@@ -51,18 +56,16 @@ Route::post('importSupplier', 'ImportSupplierController@importSupplier');
 Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');
 
 //TransaksiMasuk
-
 Route::get('transaksi/cobaSeragam/{id}', 'TransaksiMasukController@cobaSeragam');
 
-Route::get('/home', 'HomeController@index');
+// Route::get('/transaksi/getSupplier/{id}', 'getDataController@ambilNamaSupplier');
 
-Route::get('/transaksi/getSupplier/{id}', 'getDataController@ambilNamaSupplier');
-
-Route::get('/transaksi/getBarang/{id}/{kode}', 'getDataController@ambilNamaBarang');
+Route::get('/transaksi/getBarang/{id}/{kode}', 'getDataController@ambilHargaBarang');
 
 Route::get('/transaksi/getKodeMasuk', 'KodeMasukController@index');
 
 //TransaksiKeluar
+Route::get('transaksi/namabarang/{id}', 'TransaksiKeluarController@namabarang');
 
 Route::get('/transaksi/getKodeKeluar', 'KodeKeluarController@index');
 

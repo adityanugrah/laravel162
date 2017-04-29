@@ -15,8 +15,8 @@
     <link href="{{ asset('/css/animate.css') }}" rel='stylesheet' type='text/css'>
     <link href="{{ asset('/css/style.css') }}" rel='stylesheet' type='text/css'>
     <link href="{{ asset ('/css/plugins/sweetalert/sweetalert.css') }}" rel='stylesheet' type='text/css'>
-    <link href="{{ asset ('/css/sticky-footer-navbar.css') }}" rel='stylesheet' type='text/css'>
-    <link href="{{ asset ('/css/sweetalert2.min.css') }}" rel='stylesheet' type='text/css'>
+    <!-- <link href="{{ asset ('/css/sticky-footer-navbar.css') }}" rel='stylesheet' type='text/css'>
+    <link href="{{ asset ('/css/sweetalert2.min.css') }}" rel='stylesheet' type='text/css'> -->
 </head>
 
 <body>
@@ -58,8 +58,8 @@
     <script src="{{ asset('js/plugins/datapicker/bootstrap-datepicker.js') }}" type='text/javascript'></script>
     <!-- FooTable -->
     <script src="{{ asset('js/plugins/footable/footable.all.min.js') }}" type='text/javascript'></script>
-    <script src="{{ asset('js/sweetalert2.min.js') }}" type='text/javascript'></script>
-    <script src="{{ asset('js/common.js') }}" type='text/javascript'></script>
+    <!-- <script src="{{ asset('js/sweetalert2.min.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/common.js') }}" type='text/javascript'></script> -->
     <!-- Flot -->
     <script src="{{ asset('js/plugins/flot/jquery.flot.js') }}" type='text/javascript'></script>
     <script src="{{ asset('js/plugins/flot/jquery.flot.tooltip.min.js') }}" type='text/javascript'></script>
@@ -151,15 +151,13 @@
                 "New row",
                 "New row" ] );
         }
-        function getSupplier() {
-            var x = document.getElementById ("KodeSupplier").value;
-            $.get("/transaksi/getSupplier/"+x,function(data){
-                document.getElementById("NamaSupplier").value = data;
-            });
-        }
         function getJenis(s1) {
             var s1 = document.getElementById (s1);
             $("#temp").load("/transaksi/cobaSeragam/"+s1.value);
+        }
+        function getHarga(s2) {
+            var s2 = document.getElementById (s2);
+            $("#temp").load("/transaksi/harga/"+s2.value);
         }
     </script>
 </body>
