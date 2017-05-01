@@ -2,16 +2,16 @@
 @section('konten')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Detail Loker</h2>
+        <h2>Detail Departemen</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="/">Home</a>
             </li>
             <li>
-                <a href="/databarang/loker">Loker</a>
+                <a href="/departemen">Departemen</a>
             </li>
             <li class="active">
-                <strong>Detail Loker</strong>
+                <strong>Detail Departemen</strong>
             </li>
         </ol>
     </div>
@@ -24,11 +24,11 @@
         <div class="col-md-4">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Picture Loker : {{ $loker->KodeLoker }}</h5>
+                    <h5>Picture Departemen : {{ $dep->KodeDepartemen }}</h5>
                 </div>
                 <div>
                     <div class="ibox-content no-padding border-left-right">
-                        <img alt="image" class="img-responsive" src="/img/loker/{{$loker->Picture}}" style="width:345px; height:250px">
+                        <!-- <img alt="image" class="img-responsive" src="/img/departemen/{{$dep->Picture}}" style="width:345px; height:250px"> -->
                     </div>     
                 </div>
             </div>
@@ -43,46 +43,25 @@
                                     <table>
                                         <thead>
                                             <tr>
-                                                <td><h4>Kode Loker</h4></td>
+                                                <td><h4>Kode Departemen</h4></td>
                                                 <td>&emsp;</td>
                                                 <td><h4>:</h4></td>
                                                 <td>&nbsp;</td>
-                                                <td><h4>{{ $loker->KodeLoker }}</h4></td>
+                                                <td><h4>{{ $dep->KodeDepartemen }}</h4></td>
                                             </tr>
                                             <tr>
-                                                <td><h4>Nama Loker</h4></td>
+                                                <td><h4>Nama Departemen</h4></td>
                                                 <td> </td>
                                                 <td><h4>:</h4></td>
                                                 <td> </td>
-                                                <td><h4>{{ $loker->NamaLoker }}</h4></td>
+                                                <td><h4>{{ $dep->NamaDepartemen }}</h4></td>
                                             </tr>
                                             <tr>
-                                                <td><h4>Jenis karyawan</h4></td>
-                                                <td> </td>
-                                                <td><h4>:</h4></td>
-                                                <td> </td>
-                                                <td><h4>{{ $loker->Jeniskar }}</h4></td>
-                                            </tr>
-                                            <tr>
-                                                <td><h4>Keteragan</h4></td>
+                                                <td><h4>Keterangan</h4></td>
                                                 <td></td>
                                                 <td><h4>:</h4></td>
                                                 <td></td>
-                                                <td><h4>{{ $loker->Keterangan }}</h4></td>
-                                            </tr>
-                                            <tr>
-                                                <td><h4>Harga Loker</h4></td>
-                                                <td></td>
-                                                <td><h4>:</h4></td>
-                                                <td></td>
-                                                <td><h4> Rp. {{ $loker->HrgLoker }}</h4></td>
-                                            </tr>
-                                            <tr>
-                                                <td><h4>Stok</h4></td>
-                                                <td></td>
-                                                <td><h4>:</h4></td>
-                                                <td></td>
-                                                <td><h4>{{ $loker->StokLoker }} Unit</h4></td>
+                                                <td><h4>{{ $dep->Keterangan }}</h4></td>
                                             </tr>
                                         </thead>
                                     </table>
@@ -90,8 +69,8 @@
                                     <button class="btn fa fa-pencil" data-toggle="modal" data-target="#myModals<?php echo $i ?>" title="Ubah Data">
                                         <span class="lnr lnr-pencil"></span>
                                     </button>
-                                    @include('loker.edit')
-                                    <form method="POST" action="/databarang/loker/{{ $loker->KodeLoker }}" style="display: inline;">
+                                    @include('departemen.edit')
+                                    <form method="POST" action="/departemen/{{ $dep->KodeDepartemen }}" style="display: inline;">
                                       {{ method_field('DELETE') }} {{csrf_field()}}
                                       <button type="submit" class="btn btn-danger fa fa-trash delete-confirm" title="Hapus Data">
                                         <span class="lnr lnr-trash"></span>

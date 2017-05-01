@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Preused;
+
+use App\Karyawan;
 use Illuminate\Http\Request;
 use Excel;
 
-class ImportPreusedController extends Controller
+class ImportKaryawanController extends Controller
 {
     public function importExport()
     {
@@ -14,7 +15,7 @@ class ImportPreusedController extends Controller
 
     public function downloadExcel(Request $request, $type)
     {
-        $data = Preused::get()->toArray();
+        $data = Loker::get()->toArray();
         return Excel::create('itsolutionstuff_example', function($excel) use ($data) {
             $excel->sheet('mySheet', function($sheet) use ($data)
             {
@@ -23,7 +24,7 @@ class ImportPreusedController extends Controller
         })->download($type);
     }
 
-    public function importPreused(Request $request)
+    public function importKaryawan(Request $request)
     {
 
         if($request->hasFile('import_file')){
@@ -37,32 +38,23 @@ class ImportPreusedController extends Controller
                     if(!empty($value)){
                         foreach ($value as $v) {        
                             $insert[] = [
-                            'KodePreused' => $v['kodepreused'], 
-                            'NamaPreused' => $v['namapreused'],
-                            'jenisKar' => $v['jeniskaryawan'], 
-                            'Status' => $v['status'], 
-                            'Ukuran' => $v['ukuran'], 
-                            'Keterangan' => $v['keterangan'], 
-                            'HrgPreused' => $v['hrgpreused'],
-                            'StokPreused' => $v['stokpreused'], 
-                            'StokMasuk' => $v['stokmasuk'], 
-                            'StokKeluar' => $v['stokkeluar'], 
-                            'StokAkhir' => $v['stokakhir'], 
-                            'Picture' => $v['picture']];
+                            'KodeKaryawan'  => $v['kodekaryawan'],
+                            'NamaKaryawan'  => $v['namakaryawan'],
+                            'Status' 		=> $v['status'],
+                            'DepartemenKar' => $v['departemenkar'],
+                            'Picture' 		=> $v['picture']];
                         }
                     }
                 }
-
                 
                 if(!empty($insert)){
-                    Preused::insert($insert);
+                    Karyawan::insert($insert);
                     return back()->with('success','Insert Record successfully.');
                 }
 
             }
 
         }
-
         return back()->with('error','Please Check your file, Something is wrong there.');
     }
 }

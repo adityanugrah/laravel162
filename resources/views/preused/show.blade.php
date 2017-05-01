@@ -84,12 +84,19 @@
                                                 <td></td>
                                                 <td><h4>{{ $preused->Keterangan }}</h4></td>
                                             </tr>
+                                             <tr>
+                                                <td><h4>Harga Preused</h4></td>
+                                                <td></td>
+                                                <td><h4>:</h4></td>
+                                                <td></td>
+                                                <td><h4> Rp. {{ $preused->HrgPreused }}</h4></td>
+                                            </tr>
                                             <tr>
                                                 <td><h4>Stok</h4></td>
                                                 <td></td>
                                                 <td><h4>:</h4></td>
                                                 <td></td>
-                                                <td><h4>{{ $preused->StokAkhir }}</h4></td>
+                                                <td><h4>{{ $preused->StokAkhir }} Unit</h4></td>
                                             </tr>
                                         </thead>
                                     </table>

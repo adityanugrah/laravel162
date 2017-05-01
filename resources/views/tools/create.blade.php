@@ -39,6 +39,16 @@
                         {!! $errors->first('Keterangan', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                       </div>
                     </div>
+                    <div class="form-group {{ $errors->has('HrgTools') ? 'has-error has-feedback' : '' }}">
+                      <div class = "col-md-3">
+                      {!! Form::label('HrgTools', 'Harga Tools', ['class' => 'control-label']) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        {!! Form::number('HrgTools',null,['class'=>'form-control','placeholder'=>'Harga Tools', 'required']) !!}
+                        {!! $errors->first('HrgTools', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                      </div>
+                    </div>
                     <div class="form-group {{ $errors->has('StokTools') ? 'has-error has-feedback' : '' }}">
                       <div class = "col-md-3">
                       {!! Form::label('StokTools', 'Stok Tools', ['class' => 'control-label']) !!}

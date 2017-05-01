@@ -41,6 +41,7 @@ class ImportLokerController extends Controller
                             'NamaLoker' => $v['namaloker'],
                             'Jeniskar' => $v['jeniskaryawan'],
                             'Keterangan' => $v['keterangan'],
+                            'HrgLoker' => $v['hrgloker'],
                             'StokLoker' => $v['stokloker'],
                             'StokMasuk' => $v['stokmasuk'],
                             'StokKeluar' => $v['stokkeluar'],

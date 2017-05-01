@@ -77,8 +77,18 @@
                       <span style="color: red">*</span>
                       </div>
                       <div class="col-md-7">
-                        {!! Form::textarea('Keterangan',null,['class'=>'form-control','rows'=>5 , 'placeholder'=>'Keterangan', 'required']) !!}
+                        {!! Form::textarea('Keterangan',null,['class'=>'form-control','rows'=>3, 'placeholder'=>'Keterangan', 'required']) !!}
                         {!! $errors->first('Keterangan', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                      </div>
+                    </div>
+                    <div class="form-group {{ $errors->has('HrgPreused') ? 'has-error has-feedback' : '' }}">
+                      <div class = "col-md-3">
+                      {!! Form::label('HrgPreused', 'Harga Preused', ['class' => 'control-label']) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        {!! Form::number('HrgPreused',null,['class'=>'form-control','placeholder'=>'Harga Preused', 'required']) !!}
+                        {!! $errors->first('HrgPreused', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                       </div>
                     </div>
                     <div class="form-group {{ $errors->has('StokPreused') ? 'has-error has-feedback' : '' }}">

@@ -41,6 +41,7 @@ class ImportToolsController extends Controller
                             'NamaTools' => $v['namatools'],
                             'Jeniskar' => $v['jeniskaryawan'],
                             'Keterangan' => $v['keterangan'],
+                            'HrgTools' => $v['hrgtools'],
                             'StokTools' => $v['stoktools'],
                             'StokMasuk' => $v['stokmasuk'],
                             'StokKeluar' => $v['stokkeluar'],

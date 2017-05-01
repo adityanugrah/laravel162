@@ -63,12 +63,19 @@
                                                 <td></td>
                                                 <td><h4>{{ $tools->Keterangan }}</h4></td>
                                             </tr>
+                                             <tr>
+                                                <td><h4>Harga Tools</h4></td>
+                                                <td></td>
+                                                <td><h4>:</h4></td>
+                                                <td></td>
+                                                <td><h4> Rp. {{ $tools->HrgTools }}</h4></td>
+                                            </tr>
                                             <tr>
                                                 <td><h4>Stok</h4></td>
                                                 <td></td>
                                                 <td><h4>:</h4></td>
                                                 <td></td>
-                                                <td><h4>{{ $tools->StokAkhir }}</h4></td>
+                                                <td><h4>{{ $tools->StokAkhir }} Unit</h4></td>
                                             </tr>
                                         </thead>
                                     </table>

@@ -2,16 +2,16 @@
 @section ('konten')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Data Seragam</h2>
+        <h2>Data Karyawan</h2>
         <br>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 			Tambah Barang
 		</button>
-		@include('seragam.create')
-		<a href="/download/Template Seragam.ods" class="btn btn-primary">Download Template </a>
+		@include('karyawan.create')
+		<a href="/download/Template Karyawan.ods" class="btn btn-primary">Download Template </a>
 		<table>
 			<tr>				
-				<form style="border: solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('importSeragam') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+				<form style="border: solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('importKaryawan') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
 					<button class="btn btn-primary">Import File</button>
 					<br><br>
 					<input type="file" name="import_file" />
@@ -34,32 +34,30 @@
                      	<thead>
 		                    <tr>
 		                    	<th>No.</th>
-		                        <th>Kode Seragam</th>
-		                        <th>Nama Seragam</th>
-		                        <th>Stok Seragam</th>
-		                        <th>Keterangan</th>
+		                        <th>Kode Karyawan</th>
+		                        <th>Nama Karyawan</th>
+		                        <th>Status</th>
+		                        <th>Departemen</th>
 		                        <th>Action</th>
 		                    </tr>
 	                    </thead>
 	                    <tbody>
 	                    	<?php $i = 1; ?>
-            				@foreach($seragams as $seragam)
+            				@foreach($kar as $kar)
 	                    	<tr class="gradeA">
-	                    		<td>
-	                    		{{ $i++ }}
-	                    		</td>
+	                    		<td>{{ $i++ }}</td>
 		                        <td>
-		                        	<a href="/databarang/seragam/{{ $seragam->KodeSeragam }}">{{ $seragam->KodeSeragam }}</a>
+		                        	<a href="/karyawan/{{ $kar->KodeKaryawan }}">{{ $kar->KodeKaryawan }}</a>
 		                        </td>
-		                        <td>{{ $seragam->NamaSeragam }}</td>
-		                        <td>{{ $seragam->StokAkhir }}</td>
-		                        <td>{{ $seragam->Keterangan }}</td>
+		                        <td>{{ $kar->NamaKaryawan }}</td>
+		                        <td>{{ $kar->Status }}</td>
+		                        <td>{{ $kar->DepartemenKar }}</td>
 		                        <td class="center">
                                     <button class="btn fa fa-pencil" data-toggle="modal" data-target="#myModals<?php echo $i ?>" title="Ubah Data">
                                         <span class="lnr lnr-pencil"></span>
                                     </button> 
-                                    @include('seragam.edit')
-			                      	<form method="POST" action="/databarang/seragam/{{ $seragam->KodeSeragam }}" style="display: inline;">
+                                    @include('karyawan.edit')
+			                      	<form method="POST" action="/karyawan/{{ $kar->KodeKaryawan }}" style="display: inline;">
 			                          {{ method_field('DELETE') }}{{csrf_field()}}
 			                          <button type="submit" class="btn btn-danger fa fa-trash delete-confirm demo4" title="Hapus Data">
 			                          	<span class="lnr lnr-trash"></span>

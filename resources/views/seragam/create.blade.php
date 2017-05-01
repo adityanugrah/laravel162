@@ -88,7 +88,7 @@
                       <span style="color: red">*</span>
                       </div>
                       <div class="col-md-7">
-                        {!! Form::number('HrgSeragam',null,['class'=>'form-control','rows'=>5, 'placeholder'=>'Harga Seragam', 'required']) !!}
+                        {!! Form::number('HrgSeragam',null,['class'=>'form-control', 'placeholder'=>'Harga Seragam', 'required']) !!}
                         {!! $errors->first('HrgSeragam', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                       </div>
                     </div>

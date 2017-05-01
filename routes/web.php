@@ -31,6 +31,8 @@ Route::resource('databarang/loker', 'LokerController');
 Route::resource('databarang/tools', 'ToolsController');
 
 Route::resource('supplier', 'SupplierController');
+Route::resource('karyawan', 'KaryawanController');
+Route::resource('departemen', 'DepartemenController');
 
 Route::resource('transaksi/transaksimasuk', 'TransaksiMasukController');
 Route::resource('transaksi/transaksikeluar', 'TransaksiKeluarController');
@@ -50,8 +52,14 @@ Route::post('importLoker', 'ImportLokerController@importLoker');
 Route::get('importExport', 'ImportToolsController@importExport');
 Route::post('importTools', 'ImportToolsController@importTools');
 
-Route::get('importExport', 'ImportToolsController@importExport');
+Route::get('importExport', 'ImportSupplierController@importExport');
 Route::post('importSupplier', 'ImportSupplierController@importSupplier');
+
+Route::get('importExport', 'ImportKaryawanController@importExport');
+Route::post('importKaryawan', 'ImportKaryawanController@importKaryawan');
+
+Route::get('importExport', 'ImportDepartemenController@importExport');
+Route::post('importDepartemen', 'ImportDepartemenController@importDepartemen');
 
 Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');
 

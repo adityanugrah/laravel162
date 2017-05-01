@@ -2,16 +2,16 @@
 @section ('konten')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Data Seragam</h2>
+        <h2>Data Departemen</h2>
         <br>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 			Tambah Barang
 		</button>
-		@include('seragam.create')
-		<a href="/download/Template Seragam.ods" class="btn btn-primary">Download Template </a>
+		@include('departemen.create')
+		<a href="/download/Template Departemen.ods" class="btn btn-primary">Download Template </a>
 		<table>
 			<tr>				
-				<form style="border: solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('importSeragam') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+				<form style="border: solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('importDepartemen') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
 					<button class="btn btn-primary">Import File</button>
 					<br><br>
 					<input type="file" name="import_file" />
@@ -34,32 +34,28 @@
                      	<thead>
 		                    <tr>
 		                    	<th>No.</th>
-		                        <th>Kode Seragam</th>
-		                        <th>Nama Seragam</th>
-		                        <th>Stok Seragam</th>
+		                        <th>Kode Departemen</th>
+		                        <th>Nama Departemen</th>
 		                        <th>Keterangan</th>
 		                        <th>Action</th>
 		                    </tr>
 	                    </thead>
 	                    <tbody>
 	                    	<?php $i = 1; ?>
-            				@foreach($seragams as $seragam)
+            				@foreach($dep as $dep)
 	                    	<tr class="gradeA">
-	                    		<td>
-	                    		{{ $i++ }}
-	                    		</td>
+	                    		<td>{{ $i++ }}</td>
 		                        <td>
-		                        	<a href="/databarang/seragam/{{ $seragam->KodeSeragam }}">{{ $seragam->KodeSeragam }}</a>
+		                        	<a href="/departemen/{{ $dep->KodeDepartemen }}">{{ $dep->KodeDepartemen }}</a>
 		                        </td>
-		                        <td>{{ $seragam->NamaSeragam }}</td>
-		                        <td>{{ $seragam->StokAkhir }}</td>
-		                        <td>{{ $seragam->Keterangan }}</td>
+		                        <td>{{ $dep->NamaDepartemen }}</td>
+		                        <td>{{ $dep->Keterangan }}</td>
 		                        <td class="center">
                                     <button class="btn fa fa-pencil" data-toggle="modal" data-target="#myModals<?php echo $i ?>" title="Ubah Data">
                                         <span class="lnr lnr-pencil"></span>
                                     </button> 
-                                    @include('seragam.edit')
-			                      	<form method="POST" action="/databarang/seragam/{{ $seragam->KodeSeragam }}" style="display: inline;">
+                                    @include('departemen.edit')
+			                      	<form method="POST" action="/departemen/{{ $dep->KodeDepartemen }}" style="display: inline;">
 			                          {{ method_field('DELETE') }}{{csrf_field()}}
 			                          <button type="submit" class="btn btn-danger fa fa-trash delete-confirm demo4" title="Hapus Data">
 			                          	<span class="lnr lnr-trash"></span>

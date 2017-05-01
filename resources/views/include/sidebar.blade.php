@@ -46,6 +46,16 @@
                 <i class="fa fa-shopping-cart"></i> 
                 <span class="nav-label">Data Supplier</span></a>
             </li>
+            <li class="{{ Request::is('departemen') || Request::is('departemen/*') ? 'active' : '' }}">
+                <a href="{{ url('/departemen') }}">
+                <i class="fa fa-building"></i> 
+                <span class="nav-label">Data Departemen</span></a>
+            </li>
+            <li class="{{ Request::is('karyawan') || Request::is('karyawan/*') ? 'active' : '' }}">
+                <a href="{{ url('/karyawan') }}">
+                <i class="fa fa-users"></i> 
+                <span class="nav-label">Data Karyawan</span></a>
+            </li>
             <li class="{{ Request::is('transaksi') || Request::is('transaksi/*') ? 'active' : '' }}">
                 <a href="#"><i class="fa fa-exchange"></i> <span class="nav-label">Transaksi</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -54,7 +64,7 @@
                 </ul>
             </li>
              <li class="{{ Request::is('laporan') || Request::is('laporan/*') ? 'active' : '' }}">
-                <a href="#"><i class="fa fa-exchange"></i> <span class="nav-label">Laporan</span><span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-file-pdf-o"></i> <span class="nav-label">Laporan</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li class="{{ Request::is('laporan/laporanmasuk') || Request::is('laporan/laporanmasuk/*') ? 'active' : '' }}"><a href="{{ url('laporan/laporanmasuk') }}">Laporan Masuk</a></li>
                     <li class="{{ Request::is('laporan/laporankeluar') || Request::is('laporan/laporankeluar/*') ? 'active' : '' }}"><a href="{{ url('laporan/laporankeluar') }}">Laporan Keluar</a></li>
