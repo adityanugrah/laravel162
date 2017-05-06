@@ -21,7 +21,7 @@
 ?>
 <div class="wrapper wrapper-content animated fadeInRight ecommerce">
     <div class="ibox-content m-b-sm border-bottom">
-     {!! Form::open(['url' => '/transaksi/transaksikeluar']) !!}
+     {!! Form::open(['url' => '/transaksi/transaksikeluar','method'=>'post']) !!}
         <div class="row">
             <input type="hidden" name="aksi" value="0"/>
             <div class="col-sm-4">
@@ -54,8 +54,20 @@
                 <div class="form-group {{ $errors->has('NamaKaryawan') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('NamaKaryawan', 'Nama Karyawan') !!}
                     <span style="color: red">*</span>
-                    {!! Form::text('NamaKaryawan',null,['class'=>'form-control', 'placeholder'=>'Nama Karyawan ', 'required']) !!}
-                    {!! $errors->first('NamaKaryawan', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                    <select required name="NamaKaryawan" id="NamaKaryawan" onChange="getDep()" class="form-control">
+                        <option value="">Pilih Nama Karyawan</option>
+                        @foreach ($kar as $kar)
+                        <option value="{{$kar -> NamaKaryawan}}">{{$kar -> NamaKaryawan}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group {{ $errors->has('NamaDepartemen') ? 'has-error has-feedback' : '' }}">
+                    {!! Form::label('NamaDepartemen', 'Nama Departemen') !!}
+                    <span style="color: red">*</span>
+                    {!! Form::text('NamaDepartemen',null,['id'=>'NamaDepartemen','class'=>'form-control', 'placeholder'=>'Nama Karyawan ', 'required','readonly']) !!}
+                    {!! $errors->first('NamaDepartemen', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
             <div class="col-sm-4">
@@ -71,6 +83,8 @@
                     </select>
                 </div>
             </div>
+        </div>
+        <div class="row">
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('NamaBrg') ? 'has-error has-feedback' : '' }}" id="temp">
                 <label class="control-label" for="status">Nama Barang</label>
@@ -88,15 +102,19 @@
                     {!! $errors->first('JumlahBrg', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
+            <div class="col-sm-4">
+                <div class="form-group {{ $errors->has('Size') ? 'has-error has-feedback' : '' }}">
+                    {!! Form::hidden('Size',null,['id'=>'Size','class'=>'form-control', 'placeholder'=>'Size', 'required']) !!}
+                </div>
+            </div>
         </div>
         <small style= "color : red;">* : Required/Harus Diisi.</small>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Tambah Barang</button>
+            <button type="submit" name="btn" class="btn btn-primary">Tambah Barang</button>
         </div>
         {!! Form::close() !!}
     </div>
-
-
+    
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
@@ -110,6 +128,7 @@
                                 <th>Tanggal Pinjam</th>
                                 <th>Tanggal Kembali</th>
                                 <th>Nama Karyawan</th>
+                                <th>Departemen</th>
                                 <th>Nama Barang</th>
                                 <th>Jumlah Barang</th>
                                 <th>Action</th>
@@ -119,11 +138,12 @@
                             @for ($i=0;$i<=$_SESSION['ada'];$i++)
                             <tr class="gradeA">
                                 <td>{{ $no++ }}</td>
+                                <td><?php echo $_SESSION['keluar'][$i][3]; ?></td>
+                                <td><?php echo $_SESSION['keluar'][$i][4]; ?></td>
                                 <td><?php echo $_SESSION['keluar'][$i][1]; ?></td>
                                 <td><?php echo $_SESSION['keluar'][$i][2]; ?></td>
-                                <td><?php echo $_SESSION['keluar'][$i][3]; ?></td>
-                                <td><?php echo $_SESSION['keluar'][$i][5]; ?></td>
-                                <td><?php echo $_SESSION['keluar'][$i][6]; ?></td>
+                                <td><?php echo $_SESSION['keluar'][$i][6]," ","(",$_SESSION['keluar'][$i][8],")"; ?></td>
+                                <td><?php echo $_SESSION['keluar'][$i][7]; ?></td>
                                 <td class="center">
                                    {!! Form::open(['url' => '/transaksi/transaksikeluar']) !!}
                                         <input type="hidden" name="aksi" value="3"/>
@@ -154,24 +174,24 @@
 
 <script src="{{url('js/jquery-2.1.1.js')}}"></script>
 
-<script>
+<script type="text/javascript">
     $(document).ready(function(){
         $.get("/transaksi/getKodeKeluar",function(data){
             document.getElementById("KodeKeluar").value = data;
         });
     });
-</script>
-
-<script type="text/javascript">
-    function getSupplier() {
-        var x = document.getElementById ("KodeSupplier").value;
-        $.get("/transaksi/getSupplier/"+x,function(data){
-            document.getElementById("NamaSupplier").value = data;
+    function getDep() {
+        var x = document.getElementById ("NamaKaryawan").value;
+        $.get("/transaksi/getDep/"+x,function(data){
+            document.getElementById("NamaDepartemen").value = data;
         });
     }
-</script>
-
-<script type="text/javascript">
+    function getSize() {
+        var x = document.getElementById ("NamaBrg").value;
+        $.get("/transaksi/getSize/"+x,function(data){
+            document.getElementById("Size").value = data;
+        });
+    }
     function getJenisK(s1) {
         var s1 = document.getElementById (s1);
         $("#temp").load("/transaksi/namabarang/"+s1.value);

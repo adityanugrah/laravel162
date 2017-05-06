@@ -1,4 +1,5 @@
 <label class="control-label" for="status">Nama Barang</label>
+<span style="color: red">*</span>
 <select name="NamaBrg" id="NamaBrg" onChange="getHarga('{{$id}}')" class="form-control" required="true">
 	<option value="">Pilih Nama Barang</option>
 	@foreach ($data as $dat)
@@ -19,8 +20,8 @@
     function getHarga(a) {
         var x = document.getElementById ("NamaBrg").value;
         $.get("/transaksi/getBarang/"+x+"/"+a,function(data){
-        	//alert(data);
             document.getElementById("HargaBrg").value = data;
+			$("#HargaBrg").focus();
         });
     }
 </script>

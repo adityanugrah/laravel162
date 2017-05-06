@@ -21,7 +21,7 @@
 ?>
 <div class="wrapper wrapper-content animated fadeInRight ecommerce">
     <div class="ibox-content m-b-sm border-bottom">
-     {!! Form::open(['url' => '/transaksi/transaksimasuk']) !!}
+     {!! Form::open(['url' => '/transaksi/transaksimasuk', 'id'=>'formID']) !!}    
         <div class="row">
             <input type="hidden" name="aksi" value="0"/>
             <div class="col-sm-4">
@@ -59,7 +59,7 @@
                     <label class="control-label" for="date_modified">Jenis Barang</label>
                     <span style="color: red">*</span>
                     <select required name="JenisBrg" id="JenisBrg" onChange="getJenis(this.id)" class="form-control">
-                        <option  value="">Pilih Jenis Barang</option>
+                        <option value="">Pilih Jenis Barang</option>
                         <option value="Seragam" >Seragam Baru</option>
                         <option value="Preused">Pre-Used</option>
                         <option value="Loker">Loker</option>
@@ -77,19 +77,22 @@
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group {{ $errors->has('JumlahBrg') ? 'has-error has-feedback' : '' }}">
-                    {!! Form::label('JumlahBrg', 'Jumlah Barang') !!}
-                    <span style="color: red">*</span>
-                    {!! Form::number('JumlahBrg',null,['class'=>'form-control', 'placeholder'=>'Jumlah Barang', 'required']) !!}
-                    {!! $errors->first('JumlahBrg', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
-                </div>
-            </div>
-            <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('HargaBrg') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('HargaBrg', 'Harga Barang') !!}
                     <span style="color: red">*</span>
                     {!! Form::text('HargaBrg',null,['id'=>'HargaBrg', 'class'=>'form-control', 'placeholder'=>'Harga Barang', 'required']) !!}
                     {!! $errors->first('HargaBrg', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                    <script type="text/javascript">
+                        $("#HargaBrg").maskMoney({prefix:'', thousands:'.', decimal:',', precision:0});    
+                    </script>                    
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group {{ $errors->has('JumlahBrg') ? 'has-error has-feedback' : '' }}">
+                    {!! Form::label('JumlahBrg', 'Jumlah Barang') !!}
+                    <span style="color: red">*</span>
+                    {!! Form::number('JumlahBrg',null,['class'=>'form-control', 'placeholder'=>'Jumlah Barang', 'required']) !!}
+                    {!! $errors->first('JumlahBrg', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
         </div>

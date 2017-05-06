@@ -48,6 +48,8 @@
 			                    <tr>
 			                        <th>No</th>
 			                        <th>Kode Keluar</th>
+			                        <th>Nama Karyawan Keluar</th>
+			                        <th>Departemen</th>
 			                        <th>Tanggal Pinjam</th>
 			                        <th>Tanggal Kembali</th>
 			                        <th>Action</th>
@@ -63,6 +65,8 @@
 			                        <td>
 			                        	<a href="/laporan/laporankeluar/{{ $keluar->KodeKeluar }}">{{ $keluar->KodeKeluar }}</a>
 			                        </td>
+			                        <td>{{ $keluar->NamaKaryawan }}</td>
+			                        <td>{{ $keluar->NamaDepartemen }}</td>
 			                        <td>{{ $keluar->Tgl_Pinjam }}</td>
 			                        <td>{{ $keluar->Tgl_Kembali }}</td>
 			                        <td class="center">

@@ -56,7 +56,7 @@ class ImportPreusedController extends Controller
                 
                 if(!empty($insert)){
                     Preused::insert($insert);
-                    return back()->with('success','Insert Record successfully.');
+                    return back()->with('pesan_sukses', 'Data berhasil di record.');
                 }
 
             }

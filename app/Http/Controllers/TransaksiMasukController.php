@@ -24,9 +24,7 @@ class TransaksiMasukController extends Controller
     {
 
         $supplierz = Supplier::orderBy('KodeSupplier')->get(); 
-
         $seragamz = Seragam::orderBy('KodeSeragam')->get(); 
-
         $masukz = TransaksiMasuk::orderBy('KodeMasuk')->get(); 
 
         return view('transaksimasuk.index', compact('masukz','supplierz','seragamz'));
@@ -98,7 +96,7 @@ class TransaksiMasukController extends Controller
                     $request->JenisBrg,
                     $request->NamaBrg,
                     $request->JumlahBrg,
-                    $request->HargaBrg);
+                    str_replace(".", "",$request->HargaBrg));
 
                     $barang = Seragam::where('NamaSeragam', $request->NamaBrg)->first();
                     $barang->HrgSeragam = $request->HargaBrg;

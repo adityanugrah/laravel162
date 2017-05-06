@@ -50,11 +50,10 @@ class ImportLokerController extends Controller
                         }
                     }
                 }
-
                 
                 if(!empty($insert)){
                     Loker::insert($insert);
-                    return back()->with('success','Insert Record successfully.');
+                    return back()->with('pesan_sukses', 'Data berhasil di import.');
                 }
 
             }

@@ -15,7 +15,9 @@ class TransaksiKeluar extends Model
     public $timestamps = false;
 
     public $fillable = [
+    'NamaKaryawan',
+    'NamaDepartemen',
     'Tgl_Pinjam',
-    'Tgl_Kembali'   
+    'Tgl_Kembali'  
 	];
 }

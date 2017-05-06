@@ -88,8 +88,12 @@
                       <span style="color: red">*</span>
                       </div>
                       <div class="col-md-7">
-                        {!! Form::number('HrgSeragam',null,['class'=>'form-control','rows'=>5, 'placeholder'=>'Harga Seragam', 'required']) !!}
+                        {!! Form::text('HrgSeragam',null,['id'=>'HrgSeragam1','class'=>'form-control','rows'=>5, 'placeholder'=>'Harga Seragam', 'required']) !!}
                         {!! $errors->first('HrgSeragam', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                        <script>
+                          $("#HrgSeragam1").maskMoney({prefix:'', thousands:'.', decimal:',', precision:0});
+                          $( "#HrgSeragam1" ).focus();
+                        </script>
                       </div>
                     </div>
                     <div class="form-group {{ $errors->has('StokAkhir') ? 'has-error has-feedback' : '' }}">

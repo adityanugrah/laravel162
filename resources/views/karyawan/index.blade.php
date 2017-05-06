@@ -5,7 +5,7 @@
         <h2>Data Karyawan</h2>
         <br>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-			Tambah Barang
+			Tambah Karyawan
 		</button>
 		@include('karyawan.create')
 		<a href="/download/Template Karyawan.ods" class="btn btn-primary">Download Template </a>

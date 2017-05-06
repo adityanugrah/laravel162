@@ -89,7 +89,7 @@
                                                 <td></td>
                                                 <td><h4>:</h4></td>
                                                 <td></td>
-                                                <td><h4> Rp.{{ $seragam->HrgSeragam }}</h4></td>
+                                                <td><h4> Rp.{{ number_format($seragam->HrgSeragam) }}</h4></td>
                                             </tr>
                                             <tr>
                                                 <td><h4>Stok</h4></td>

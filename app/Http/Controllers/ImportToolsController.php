@@ -54,7 +54,7 @@ class ImportToolsController extends Controller
                 
                 if(!empty($insert)){
                     Tools::insert($insert);
-                    return back()->with('success','Insert Record successfully.');
+                    return back()->with('pesan_sukses', 'Data berhasil di record.');
                 }
 
             }

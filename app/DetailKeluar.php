@@ -8,15 +8,16 @@ class DetailKeluar extends Model
 {
     protected $table = 'detailkeluar';
 
+    protected $primaryKey = 'KodeKeluar';
+
     public $incrementing = false;
 
     public $timestamps = false;
 
     public $fillable = [
-    'KodeKeluar',
-    'NamaKaryawan',
     'JenisBrg',
     'NamaBrg',
-    'JumlahBrg'
+    'JumlahBrg',
+    'Size'
 	];
 }

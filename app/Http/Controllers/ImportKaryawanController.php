@@ -49,7 +49,7 @@ class ImportKaryawanController extends Controller
                 
                 if(!empty($insert)){
                     Karyawan::insert($insert);
-                    return back()->with('success','Insert Record successfully.');
+                    return back()->with('pesan_sukses', 'Data berhasil di record.');
                 }
 
             }

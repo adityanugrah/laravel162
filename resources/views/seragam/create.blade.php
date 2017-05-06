@@ -88,7 +88,7 @@
                       <span style="color: red">*</span>
                       </div>
                       <div class="col-md-7">
-                        {!! Form::number('HrgSeragam',null,['class'=>'form-control', 'placeholder'=>'Harga Seragam', 'required']) !!}
+                        {!! Form::text('HrgSeragam',null,['id'=>'HrgSeragam','class'=>'form-control','rows'=>5, 'placeholder'=>'Harga Seragam','onkeydown'=>'return numbersonly(this, event);', 'onkeyup'=>'javascript:tandaPemisahTitik(this);', 'required']) !!}
                         {!! $errors->first('HrgSeragam', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                       </div>
                     </div>

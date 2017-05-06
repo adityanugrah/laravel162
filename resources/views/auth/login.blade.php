@@ -76,7 +76,7 @@
                 Copyright Developer
             </div>
             <div class="col-md-6 text-right">
-               <small>© 2014-2015</small>
+               <small>© 2014-2017</small>
             </div>
         </div>
     </div>

@@ -29,8 +29,10 @@
                     KP
                 </div>
             </li>
-            <li class="{{ Request::is('dashboard') || Request::is('dashboard/*') ? 'active' : '' }}">
-                <a href="{{ url('/') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
+            <li class="{{ Request::is('/') || Request::is('/*') ? 'active' : '' }}">
+                <a href="{{ url('/') }}">
+                <i class="fa fa-th-large"></i> 
+                <span class="nav-label">Dashboard</span></a>
             </li>
             <li class="{{ Request::is('databarang') || Request::is('databarang/*') ? 'active' : '' }}">
                 <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Data Barang</span><span class="fa arrow"></span></a>
@@ -61,6 +63,7 @@
                 <ul class="nav nav-second-level">
                     <li class="{{ Request::is('transaksi/transaksimasuk') || Request::is('transaksi/transaksimasuk/*') ? 'active' : '' }}"><a href="{{ url('transaksi/transaksimasuk') }}">Transaksi Masuk</a></li>
                     <li class="{{ Request::is('transaksi/transaksikeluar') || Request::is('transaksi/transaksikeluar/*') ? 'active' : '' }}"><a href="{{ url('transaksi/transaksikeluar') }}">Transaksi Keluar</a></li>
+                    <li class="{{ Request::is('transaksi/transaksikembali') || Request::is('transaksi/transaksikembali/*') ? 'active' : '' }}"><a href="{{ url('transaksi/transaksikembali') }}">Pengembalian Barang</a></li>
                 </ul>
             </li>
              <li class="{{ Request::is('laporan') || Request::is('laporan/*') ? 'active' : '' }}">

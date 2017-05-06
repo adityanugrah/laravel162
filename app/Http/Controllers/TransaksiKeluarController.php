@@ -11,6 +11,8 @@ use App\Seragam;
 use App\Preused;
 use App\Tools;
 use App\Loker;
+use App\Karyawan;
+use App\Departemen;
 use Validator;
 use Mail;
 
@@ -23,8 +25,11 @@ class TransaksiKeluarController extends Controller
      */
     public function index()
     {
+        $kar = Karyawan::orderBy('KodeKaryawan')->get(); 
+        $dep = Departemen::orderBy('KodeDepartemen')->get(); 
         $keluar = TransaksiKeluar::orderBy('KodeKeluar')->get(); 
-        return view('transaksikeluar.index', compact('keluar'));
+        $detail = DetailKeluar::orderBy('KodeKeluar')->get(); 
+        return view('transaksikeluar.index', compact('keluar','kar','dep','detail'));
     }
 
     public function namabarang($id){
@@ -32,11 +37,11 @@ class TransaksiKeluarController extends Controller
         if($id=="Seragam") {
             $data=Seragam::orderBy('NamaSeragam')->get();
         } else if ($id=="Preused") {
-            $data=Preused::orderBy('KodePreused')->get(); 
+            $data=Preused::orderBy('NamaPreused')->get(); 
         } else if ($id=="Loker") {
-            $data=Loker::orderBy('KodeLoker')->get(); 
+            $data=Loker::orderBy('NamaLoker')->get(); 
         } else if ($id=="Tools") {
-            $data=Tools::orderBy('KodeTools')->get(); 
+            $data=Tools::orderBy('NamaTools')->get(); 
         } else {
             $data = "Tidak Ada Data";
         }
@@ -69,12 +74,12 @@ class TransaksiKeluarController extends Controller
 
             if (isset($_SESSION["ada"])  ) {
                 for ($i=0;$i<=$_SESSION['ada'];$i++) {
-                    if( ($_SESSION['keluar'][$i][1] == $request->Tgl_Pinjam) &&
-                        ($_SESSION['keluar'][$i][2] == $request->Tgl_Kembali) &&
-                        ($_SESSION['keluar'][$i][3] == $request->NamaKaryawan) &&
-                        ($_SESSION['keluar'][$i][5] == $request->NamaBrg) 
+                    if( ($_SESSION['keluar'][$i][3] == $request->Tgl_Pinjam) &&
+                        ($_SESSION['keluar'][$i][4] == $request->Tgl_Kembali) &&
+                        ($_SESSION['keluar'][$i][1] == $request->NamaKaryawan) &&
+                        ($_SESSION['keluar'][$i][6] == $request->NamaBrg) 
                          ){
-                        $_SESSION['keluar'][$i][6]= $_SESSION['keluar'][$i][6]+$request->JumlahBrg;
+                        $_SESSION['keluar'][$i][7]= $_SESSION['keluar'][$i][7]+$request->JumlahBrg;
                         $Kondisi=true;
                     }
                 }
@@ -88,13 +93,16 @@ class TransaksiKeluarController extends Controller
                 }
 
                 $_SESSION['keluar'][$_SESSION["ada"]] = array(
-                    $request->KodeKeluar,
+                    $request->KodeKeluar,               
+                    $request->NamaKaryawan,
+                    $_SESSION['NamaDepartemen'] = $_POST['NamaDepartemen'],
                     $request->Tgl_Pinjam,
                     $request->Tgl_Kembali,
-                    $request->NamaKaryawan,
                     $request->JenisBrg,
                     $request->NamaBrg,
-                    $request->JumlahBrg);
+                    $request->JumlahBrg,
+                    $request->Size
+                    );
             }
                 return redirect('transaksi/transaksikeluar');
             } else if($request->aksi==2) {
@@ -114,20 +122,23 @@ class TransaksiKeluarController extends Controller
                     for ($i=0;$i<=$_SESSION['ada'];$i++) {
                         $keluar = new TransaksiKeluar;
                         $keluar->KodeKeluar     = $_SESSION['keluar'][$i][0];
-                        $keluar->Tgl_Pinjam     = $_SESSION['keluar'][$i][1];
-                        $keluar->Tgl_Kembali    = $_SESSION['keluar'][$i][2];
+                        $keluar->NamaKaryawan   = $_SESSION['keluar'][$i][1]; 
+                        $keluar->NamaDepartemen = $_SESSION['keluar'][$i][2]; 
+                        $keluar->Tgl_Pinjam     = $_SESSION['keluar'][$i][3];
+                        $keluar->Tgl_Kembali    = $_SESSION['keluar'][$i][4];
 
-                        $detailkeluar = new DetailKeluar;  
-                        $detailkeluar->KodeKeluar     = $_SESSION['keluar'][$i][0];
-                        $detailkeluar->NamaKaryawan   = $_SESSION['keluar'][$i][3];  
-                        $detailkeluar->JenisBrg       = $_SESSION['keluar'][$i][4];
-                        $detailkeluar->NamaBrg        = $_SESSION['keluar'][$i][5];   
-                        $detailkeluar->JumlahBrg      = $_SESSION['keluar'][$i][6];
+                        $detailkeluar = new DetailKeluar;
+                        $detailkeluar->KodeKeluar     = $_SESSION['keluar'][$i][0]; 
+                        $detailkeluar->JenisBrg       = $_SESSION['keluar'][$i][5];
+                        $detailkeluar->NamaBrg        = $_SESSION['keluar'][$i][6];   
+                        $detailkeluar->JumlahBrg      = $_SESSION['keluar'][$i][7];
+                        $detailkeluar->Size           = $_SESSION['keluar'][$i][8];
                         $detailkeluar->save();
+                        
 
-                        if($_SESSION['keluar'][$i][4]=="Seragam") {
-                            $seragam = Seragam::where('NamaSeragam',$_SESSION['keluar'][$i][5])->first();
-                            $seragam->StokKeluar = $seragam->StokKeluar+$_SESSION['keluar'][$i][6];
+                        if($_SESSION['keluar'][$i][5]=="Seragam") {
+                            $seragam = Seragam::where('NamaSeragam',$_SESSION['keluar'][$i][6])->first();
+                            $seragam->StokKeluar = $seragam->StokKeluar+$_SESSION['keluar'][$i][7];
                             $seragam->StokAkhir  = $seragam->StokMasuk+$seragam->StokSeragam-$seragam->StokKeluar;
                             $seragam->save();
                             if ($seragam->StokAkhir <= 5) { 
@@ -137,9 +148,9 @@ class TransaksiKeluarController extends Controller
                                     $message->from('burgerkillselalu@gmail.com', 'Bitfumes');
                                 });
                             }
-                        } else if ($_SESSION['keluar'][$i][4]=="Preused") {
-                            $Preused = Preused::where('NamaPreused',$_SESSION['keluar'][$i][5])->first();
-                            $Preused->StokMasuk = $Preused->StokMasuk+$_SESSION['keluar'][$i][6];
+                        } else if ($_SESSION['keluar'][$i][5]=="Preused") {
+                            $Preused = Preused::where('NamaPreused',$_SESSION['keluar'][$i][6])->first();
+                            $Preused->StokMasuk = $Preused->StokMasuk+$_SESSION['keluar'][$i][7];
                             $Preused->StokAkhir = $Preused->StokMasuk+$Preused->StokPreused-$Preused->StokKeluar;
                             $Preused->save();
                             if ($Preused->StokAkhir <= 5) {                                
@@ -148,9 +159,9 @@ class TransaksiKeluarController extends Controller
                                     $message->from('burgerkillselalu@gmail.com', 'Bitfumes');
                                 });
                             }
-                        } else if ($_SESSION['keluar'][$i][4]=="Loker") {
-                            $Loker = Loker::where('NamaLoker',$_SESSION['keluar'][$i][5])->first();
-                            $Loker->StokMasuk = $Loker->StokMasuk+$_SESSION['keluar'][$i][6];
+                        } else if ($_SESSION['keluar'][$i][5]=="Loker") {
+                            $Loker = Loker::where('NamaLoker',$_SESSION['keluar'][$i][6])->first();
+                            $Loker->StokMasuk = $Loker->StokMasuk+$_SESSION['keluar'][$i][7];
                             $Loker->StokAkhir = $Loker->StokMasuk+$Loker->StokLoker-$Loker->StokKeluar;
                             $Loker->save();
                             if ($Loker->StokAkhir <= 5) {                                
@@ -159,9 +170,9 @@ class TransaksiKeluarController extends Controller
                                     $message->from('burgerkillselalu@gmail.com', 'Bitfumes');
                                 });
                             }
-                        } else if ($_SESSION['keluar'][$i][4]=="Tools") {
-                            $Tools = Tools::where('NamaTools',$_SESSION['keluar'][$i][5])->first();
-                            $Tools->StokMasuk = $Tools->StokMasuk+$_SESSION['keluar'][$i][6];
+                        } else if ($_SESSION['keluar'][$i][5]=="Tools") {
+                            $Tools = Tools::where('NamaTools',$_SESSION['keluar'][$i][6])->first();
+                            $Tools->StokMasuk = $Tools->StokMasuk+$_SESSION['keluar'][$i][7];
                             $Tools->StokAkhir = $Tools->StokMasuk+$Tools->StokTools-$Tools->StokKeluar;
                             $Tools->save();
                             if ($Tools->StokAkhir <= 5) {                                
@@ -173,13 +184,10 @@ class TransaksiKeluarController extends Controller
                         } else {
                             $data = "Tidak Ada Data";   
                         }
-
                     }
-
                     $keluar->save(); 
                     session_destroy();
                     return redirect('transaksi/transaksikeluar')->with('pesan_sukses', 'Transaksi saved.');
-
                 } catch (Exception $e) {
                     return redirect('transaksi/transaksikeluar')->with('pesan_gagal', $e->getMessage());
                 }

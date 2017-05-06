@@ -5,7 +5,7 @@
         <h2>Data Departemen</h2>
         <br>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-			Tambah Barang
+			Tambah Departemen
 		</button>
 		@include('departemen.create')
 		<a href="/download/Template Departemen.ods" class="btn btn-primary">Download Template </a>

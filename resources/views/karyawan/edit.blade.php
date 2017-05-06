@@ -52,7 +52,7 @@
                         <select required name="DepartemenKar" id="DepartemenKar" class="form-control">
                             <option value="">Pilih Nama Departemen</option>
                             @foreach ($deps as $dep)
-                              <option value="{{$dep -> NamaDepartemen}}">{{$dep -> NamaDepartemen}}</option>
+                              <option value="{{$dep -> NamaDepartemen}}" selected>{{$dep -> NamaDepartemen}}</option>
                             @endforeach
                         </select>
                       </div>

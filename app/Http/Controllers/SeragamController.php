@@ -46,7 +46,7 @@ class SeragamController extends Controller
             $seragam->Status      = $request->Status;
             $seragam->Ukuran      = $request->Ukuran;
             $seragam->Keterangan  = $request->Keterangan;
-            $seragam->HrgSeragam  = $request->HrgSeragam;
+            $seragam->HrgSeragam  = str_replace(".", "",$request->HrgSeragam);
             $seragam->StokSeragam = $request->StokSeragam;
             $seragam->StokAkhir   = $request->StokSeragam;
 
@@ -109,7 +109,7 @@ class SeragamController extends Controller
             $seragam->Status      = $request->Status;
             $seragam->Ukuran      = $request->Ukuran;
             $seragam->Keterangan  = $request->Keterangan; 
-            $seragam->HrgSeragam  = $request->HrgSeragam; 
+            $seragam->HrgSeragam  = str_replace(".", "",$request->HrgSeragam);
             $seragam->StokAkhir   = $request->StokAkhir;
             $seragam->StokSeragam = ($seragam->StokAkhir+$seragam->StokKeluar)-$seragam->StokMasuk;
 
@@ -129,7 +129,7 @@ class SeragamController extends Controller
             }
 
             $seragam->save();
-            return redirect('/databarang/seragam')->with('pesan_sukses', 'Data berhasil.');
+            return redirect('/databarang/seragam')->with('pesan_sukses', 'Data berhasil diupdate.');
 
             if ($validator -> fails()) {
                     return redirect('/databarang/seragam')->withErrors($validator)->withInput();

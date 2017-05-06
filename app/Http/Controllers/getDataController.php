@@ -10,7 +10,9 @@ use App\Seragam;
 use App\Preused;
 use App\Loker;
 use App\Tools;
-use DB;
+use App\Karyawan;
+use App\TransaksiKeluar;
+use App\DetailKeluar;
 
 class getDataController extends Controller
 {
@@ -42,6 +44,45 @@ class getDataController extends Controller
             $kode = "Tidak Ada Data";
             return $kode;
         }
+    }
+
+    public function ambilDepartemen($id){
+        $dep = Karyawan::where('NamaKaryawan','=', $id)->first();
+        return $dep->DepartemenKar;
+    }
+
+    public function ambilSize($id){
+        $size = Seragam::where('NamaSeragam','=', $id)->first();
+        return $size->Ukuran;
+    }
+
+    public function ambilData1($id){
+        $data1 = TransaksiKeluar::find($id);
+        return $data1->Tgl_Pinjam;
+    }
+    public function ambilData2($id){
+        $data2 = TransaksiKeluar::find($id);
+        return $data2->Tgl_Kembali;
+    }
+    public function ambilData3($id){
+        $data3 = TransaksiKeluar::find($id);
+        return $data3->NamaKaryawan;
+    }
+    public function ambilData4($id){
+        $data4 = TransaksiKeluar::find($id);
+        return $data4->NamaDepartemen;
+    }
+    public function ambilData5($id){
+        $data5 = DetailKeluar::find($id);
+        return $data5->JenisBrg;
+    }
+    public function ambilData6($id){
+        $data6 = DetailKeluar::find($id);
+        return $data6->NamaBrg;
+    }
+    public function ambilData7($id){
+        $data7 = DetailKeluar::find($id);
+        return $data7->Size;
     }
     
 

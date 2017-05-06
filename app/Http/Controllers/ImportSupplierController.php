@@ -44,7 +44,7 @@ class ImportSupplierController extends Controller
                 
                 if(!empty($insert)){
                     Supplier::insert($insert);
-                    return back()->with('success','Insert Record successfully.');
+                    return back()->with('pesan_sukses', 'Data berhasil di record.');
                 }
 
             }

@@ -15,8 +15,11 @@
     <link href="{{ asset('/css/animate.css') }}" rel='stylesheet' type='text/css'>
     <link href="{{ asset('/css/style.css') }}" rel='stylesheet' type='text/css'>
     <link href="{{ asset ('/css/plugins/sweetalert/sweetalert.css') }}" rel='stylesheet' type='text/css'>
-    <!-- <link href="{{ asset ('/css/sticky-footer-navbar.css') }}" rel='stylesheet' type='text/css'>
-    <link href="{{ asset ('/css/sweetalert2.min.css') }}" rel='stylesheet' type='text/css'> -->
+    <link href="{{ asset ('/css/sticky-footer-navbar.css') }}" rel='stylesheet' type='text/css'>
+    <link href="{{ asset ('/css/sweetalert2.min.css') }}" rel='stylesheet' type='text/css'>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script src="{{ asset ('/js/jquery.maskMoney.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset ('/js/my.js') }}"></script>
 </head>
 
 <body>
@@ -31,7 +34,15 @@
                 </nav>
             </div>
             <div class="wrapper wrapper-content">
-                 @yield('konten')
+                @if (session('pesan_sukses'))
+                    @include('_alert.success')
+                @endif
+
+                @if (session('pesan_gagal'))
+                    @include('_alert.failed')
+                @endif
+
+                @yield('konten')
             </div>
             <div class="footer">
                 <div>
@@ -58,8 +69,8 @@
     <script src="{{ asset('js/plugins/datapicker/bootstrap-datepicker.js') }}" type='text/javascript'></script>
     <!-- FooTable -->
     <script src="{{ asset('js/plugins/footable/footable.all.min.js') }}" type='text/javascript'></script>
-    <!-- <script src="{{ asset('js/sweetalert2.min.js') }}" type='text/javascript'></script>
-    <script src="{{ asset('js/common.js') }}" type='text/javascript'></script> -->
+    <script src="{{ asset('js/sweetalert2.min.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/common.js') }}" type='text/javascript'></script>
     <!-- Flot -->
     <script src="{{ asset('js/plugins/flot/jquery.flot.js') }}" type='text/javascript'></script>
     <script src="{{ asset('js/plugins/flot/jquery.flot.tooltip.min.js') }}" type='text/javascript'></script>
@@ -85,6 +96,7 @@
     <!-- Page-Level Scripts -->
     <script>
         $(document).ready(function(){
+
             $.get("/transaksi/getKodeMasuk",function(data){
                 document.getElementById("KodeMasuk").value = data;
             });

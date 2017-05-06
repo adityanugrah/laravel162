@@ -47,7 +47,7 @@ class ImportDepartemenController extends Controller
                 
                 if(!empty($insert)){
                     Departemen::insert($insert);
-                    return back()->with('success','Insert Record successfully.');
+                    return back()->with('pesan_sukses', 'Data berhasil di record.');
                 }
 
             }
