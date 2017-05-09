@@ -8,9 +8,9 @@
 		@elseif ($id=="Preused")
 		<option value="{{$dat->NamaPreused}}">{{ $dat->NamaPreused }} ({{ $dat->Ukuran }})</option>
 		@elseif ($id=="Loker")
-		<option value="{{$dat->NamaLoker}}">{{ $dat->NamaLoker }} ({{ $dat->Ukuran }})</option>
+		<option value="{{$dat->NamaLoker}}">{{ $dat->NamaLoker }}</option>
 		@elseif ($id=="Tools")
-		<option value="{{$dat->NamaTools}}">{{ $dat->NamaTools }} ({{ $dat->Ukuran }})</option>
+		<option value="{{$dat->NamaTools}}">{{ $dat->NamaTools }}</option>
 		@endif
 	@endforeach
 </select>

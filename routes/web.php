@@ -34,13 +34,13 @@ Route::resource('supplier', 'SupplierController');
 Route::resource('karyawan', 'KaryawanController');
 Route::resource('departemen', 'DepartemenController');
 
+Route::resource('laporan/laporanmasuk', 'LaporanMasukController');
+Route::resource('laporan/laporankeluar', 'laporankeluarController');
+Route::resource('laporan/laporanmasuk', 'LaporanMasukController');
+
 Route::resource('transaksi/transaksimasuk', 'TransaksiMasukController');
 Route::resource('transaksi/transaksikeluar', 'TransaksiKeluarController');
 Route::resource('transaksi/transaksikembali', 'TransaksiKembaliController');
-
-Route::resource('laporan/laporanmasuk', 'LaporanMasukController');
-Route::resource('laporan/laporankeluar', 'LaporanKeluarController');
-Route::resource('laporan/laporankembali', 'LaporanKembaliController');
 
 Route::get('importExport', 'ImportSeragamController@importExport');
 Route::post('importSeragam', 'ImportSeragamController@importSeragam');
@@ -67,26 +67,23 @@ Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');
 
 //TransaksiMasuk
 Route::get('transaksi/cobaSeragam/{id}', 'TransaksiMasukController@cobaSeragam');
-
-// Route::get('/transaksi/getSupplier/{id}', 'getDataController@ambilNamaSupplier');
-
+Route::get('transaksi/cobaBarang/{id}', 'TransaksiKembaliController@cobaBarang');
 Route::get('/transaksi/getBarang/{id}/{kode}', 'getDataController@ambilHargaBarang');
+
+Route::get('/transaksi/getUkuran/{id}/{kode}', 'getDataController@ambilUkuran');
 //coba
 Route::get('/transaksi/getData1/{id}', 'getDataController@ambilData1');
 Route::get('/transaksi/getData2/{id}', 'getDataController@ambilData2');
 Route::get('/transaksi/getData3/{id}', 'getDataController@ambilData3');
 Route::get('/transaksi/getData4/{id}', 'getDataController@ambilData4');
 Route::get('/transaksi/getData5/{id}', 'getDataController@ambilData5');
-Route::get('/transaksi/getData6/{id}', 'getDataController@ambilData6');
 
 Route::get('/transaksi/getKodeMasuk', 'KodeMasukController@index');
 
 //TransaksiKeluar
 Route::get('/transaksi/getDep/{id}', 'getDataController@ambilDepartemen');
 Route::get('/transaksi/getSize/{id}', 'getDataController@ambilSize');
-
 Route::get('transaksi/namabarang/{id}', 'TransaksiKeluarController@namabarang');
-
 Route::get('/transaksi/getKodeKeluar', 'KodeKeluarController@index');
 
 });

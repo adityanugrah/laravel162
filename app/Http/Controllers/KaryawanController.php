@@ -74,7 +74,8 @@ class KaryawanController extends Controller
     public function show($id)
     {
         $kar = Karyawan::where('KodeKaryawan', $id)->first();
-        return view('karyawan.show', compact('kar'));
+        $deps = Departemen::orderBy('KodeDepartemen')->get();
+        return view('karyawan.show', compact('kar','deps'));
     }
 
     /**

@@ -31,7 +31,6 @@ class TransaksiMasukController extends Controller
     }
 
     public function cobaSeragam($id){
-
         if($id=="Seragam") {
             $data=Seragam::orderBy('KodeSeragam')->get();
         } else if ($id=="Preused") {
@@ -43,7 +42,6 @@ class TransaksiMasukController extends Controller
         } else {
             $data = "Tidak Ada Data";
         }
-
         return view('transaksimasuk.coba',compact('data','id'));
     }
     /**qexd

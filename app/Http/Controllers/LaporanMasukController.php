@@ -48,10 +48,8 @@ class LaporanMasukController extends Controller
      */
     public function show($id)
     {
-        $detail = TransaksiMasuk::where('KodeMasuk', $id)->first();
-        $masuk = DetailMasuk::orderBy('KodeMasuk')->get();
-
-        return view('laporanmasuk.show', compact('detail','masuk'));
+        $detail = DetailMasuk::where('KodeMasuk', "$id")->get();
+        return view('laporanmasuk.show', compact('detail'));
     }
 
     /**

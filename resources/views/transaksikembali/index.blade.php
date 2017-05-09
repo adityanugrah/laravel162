@@ -78,8 +78,12 @@
                <div class="form-group {{ $errors->has('JenisBrg') ? 'has-error has-feedback' : '' }}">
                     <label class="control-label" for="date_modified">Jenis Barang</label>
                     <span style="color: red">*</span>
-                    <select required name="JenisBrg" id="JenisBrg" class="form-control">
-                        <option>Pilih Jenis Barang</option>      
+                    <select id="JenisBrg" name="JenisBrg" class="form-control" onChange="getJenis(this.id)">
+                        <option value="">Pilih Jenis Barang</option>
+                        <option value="Seragam">Seragam</option>
+                        <option value="Preused">Preused</option>
+                        <option value="Loker">Loker</option>
+                        <option value="Tools">Tools</option>
                     </select>
                 </div>
             </div>     
@@ -89,7 +93,7 @@
                 <div class="form-group {{ $errors->has('NamaBrg') ? 'has-error has-feedback' : '' }}" id="temp">
                 <label class="control-label" for="status">Nama Barang</label>
                 <span style="color: red">*</span>
-                <select required="true" name="NamaBrg" id="NamaBrg" class="form-control" required="true">
+                <select class="form-control" required="true">
                     <option value="">Pilih Nama Barang</option>                    
                 </select>
                 </div>
@@ -197,13 +201,11 @@
             document.getElementById("NamaDepartemen").value = data4;
         });
         $.get("/transaksi/getData5/"+x.value,function(data5){
-            document.getElementById("JenisBrg").value = data5;
-        });
-        $.get("/transaksi/getData6/"+x.value,function(data6){
-            document.getElementById("NamaBrg").value = data6;
-        });
-        $.get("/transaksi/getData7/"+x.value,function(data7){
-            document.getElementById("Size").value = data7;
+            var element = document.getElementById("JenisBrg");
+            element.value = data5;
+            
+            var s1 = document.getElementById (s1);
+            $("#temp").load("/transaksi/cobaBarang/"+data5);
         });
     }
 </script>

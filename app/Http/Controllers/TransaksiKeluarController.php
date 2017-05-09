@@ -15,6 +15,7 @@ use App\Karyawan;
 use App\Departemen;
 use Validator;
 use Mail;
+use Session;
 
 class TransaksiKeluarController extends Controller
 {
@@ -33,7 +34,6 @@ class TransaksiKeluarController extends Controller
     }
 
     public function namabarang($id){
-
         if($id=="Seragam") {
             $data=Seragam::orderBy('NamaSeragam')->get();
         } else if ($id=="Preused") {
@@ -45,7 +45,6 @@ class TransaksiKeluarController extends Controller
         } else {
             $data = "Tidak Ada Data";
         }
-
         return view('transaksikeluar.coba',compact('data','id'));
     }
 
@@ -95,16 +94,18 @@ class TransaksiKeluarController extends Controller
                 $_SESSION['keluar'][$_SESSION["ada"]] = array(
                     $request->KodeKeluar,               
                     $request->NamaKaryawan,
-                    $_SESSION['NamaDepartemen'] = $_POST['NamaDepartemen'],
+                    $request->NamaDepartemen,
                     $request->Tgl_Pinjam,
                     $request->Tgl_Kembali,
                     $request->JenisBrg,
                     $request->NamaBrg,
                     $request->JumlahBrg,
                     $request->Size
-                    );
+                );
             }
-                return redirect('transaksi/transaksikeluar');
+                // Session::put('Tgl_Kembali','$request->Tgl_Kembali');
+                
+                return redirect('transaksi/transaksikeluar');                
             } else if($request->aksi==2) {
                 session_start();
                 session_destroy();
@@ -135,7 +136,6 @@ class TransaksiKeluarController extends Controller
                         $detailkeluar->Size           = $_SESSION['keluar'][$i][8];
                         $detailkeluar->save();
                         
-
                         if($_SESSION['keluar'][$i][5]=="Seragam") {
                             $seragam = Seragam::where('NamaSeragam',$_SESSION['keluar'][$i][6])->first();
                             $seragam->StokKeluar = $seragam->StokKeluar+$_SESSION['keluar'][$i][7];

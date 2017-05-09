@@ -48,10 +48,8 @@ class LaporanKeluarController extends Controller
      */
     public function show($id)
     {
-        $details = TransaksiKeluar::where('KodeKeluar', $id)->first();
-        $keluar = DetailKeluar::orderBy('KodeKeluar')->get();
-
-        return view('laporankeluar.show', compact('details','keluar'));
+        $keluar = DetailKeluar::where('KodeKeluar', "$id")->get();
+        return view('laporankeluar.show', compact('keluar'));
     }
 
     /**

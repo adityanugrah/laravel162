@@ -47,7 +47,7 @@
                     <select required name="NamaSupplier" id="NamaSupplier" class="form-control">
                         <option value="">Pilih Nama Supplier</option>
                         @foreach ($supplierz as $sup)
-                        <option value="{{$sup -> NamaSupplier}}">{{$sup -> NamaSupplier}}</option>
+                            <option value="{{$sup -> NamaSupplier}}">{{$sup -> NamaSupplier}}</option>
                         @endforeach
                     </select>
                 </div>               

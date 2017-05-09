@@ -1,26 +1,25 @@
 <label class="control-label" for="status">Nama Barang</label>
-<span style="color: red">*</span>
-<select name="KodeBrg" id="KodeBrg" onChange="getBarang('{{$id}}')" class="form-control" required="true">
+<select name="NamaBrg" id="NamaBrg" onChange="getUkuran('{{$id}}')" class="form-control" required="true">
 	<option >Pilih Nama Barang</option>
 	@foreach ($data as $dat)
 		@if($id=="Seragam")
-		<option value="{{$dat->NamaSeragam}}">{{ $dat->NamaSeragam }} ({{ $dat->Ukuran }})</option>
+		<option value="{{$dat->NamaBrg}}">{{ $dat->NamaBrg }}</option>
 		@elseif ($id=="Preused")
-		<option value="{{$dat->NamaPreused}}">{{ $dat->NamaPreused }}</option>
+		<option value="{{$dat->NamaBrg}}">{{ $dat->NamaBrg }}</option>
 		@elseif ($id=="Loker")
-		<option value="{{$dat->NamaLoker}}">{{ $dat->NamaLoker }}</option>
+		<option value="{{$dat->NamaBrg}}">{{ $dat->NamaBrg }}</option>
 		@elseif ($id=="Tools")
-		<option value="{{$dat->NamaTools}}">{{ $dat->NamaTools }}</option>
+		<option value="{{$dat->NamaBrg}}">{{ $dat->NamaBrg }}</option>
 		@endif
 	@endforeach
 </select>
 
+<script src="{{ asset('js/jquery-2.1.1.js') }}" type='text/javascript'></script>
 <script type="text/javascript">
-    function getBarang(a) {
-        var x = document.getElementById ("KodeBrg").value;
-        $.get("/transaksi/getBarang/"+x+"/"+a,function(data){
-        	//alert(data);
-            document.getElementById("NamaBrg").value = data;
+    function getUkuran(a) {
+        var x = document.getElementById ("NamaBrg").value;
+        $.get("/transaksi/getUkuran/"+x+"/"+a,function(data){
+            document.getElementById("Size").value = data;
         });
     }
 </script>

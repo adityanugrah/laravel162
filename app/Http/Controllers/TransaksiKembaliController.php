@@ -27,6 +27,20 @@ class TransaksiKembaliController extends Controller
         return view('transaksikembali.index', compact('kembali','detail'));
     }
 
+    public function cobaBarang($id){
+        if($id=="Seragam") {
+            $data=DetailKeluar::where('KodeKeluar',"P004",'JenisBrg',"Seragam")->get();
+        } else if ($id=="Preused") {
+            $data=DetailKeluar::orderBy('KodeKeluar',$id)->get(); 
+        } else if ($id=="Loker") {
+            $data=DetailKeluar::orderBy('KodeKeluar',$id)->get(); 
+        } else if ($id=="Tools") {
+            $data=DetailKeluar::orderBy('KodeKeluar',$id)->get(); 
+        } else {
+            $data = "Tidak Ada Data";
+        }
+        return view('transaksikembali.coba',compact('data','id'));
+    }
     /**
      * Show the form for creating a new resource.
      *

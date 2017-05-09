@@ -12,7 +12,7 @@
 		<table>
 			<tr>				
 				<form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('importSupplier') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-					<button class="btn btn-primary">Import CSV/Excel File</button>
+					<button class="btn btn-primary">Import File</button>
 					<br><br>
 					<input type="file" name="import_file" />
 					{{ csrf_field() }}

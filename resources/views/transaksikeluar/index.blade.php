@@ -28,24 +28,21 @@
                 <div class="form-group {{ $errors->has('KodeKeluar') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('KodeKeluar', 'Kode Keluar') !!}
                     <span style="color: red">*</span>
-                    {!! Form::text('KodeKeluar',null,['class'=>'form-control', 'placeholder'=>'Kode Keluar', 'readonly','required']) !!}
-                    {!! $errors->first('KodeKeluar', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                    <input type="text" readonly="true" class="form-control" name="KodeKeluar" id="KodeKeluar" value="<?php  if(isset($_SESSION['keluar'])){ echo $_SESSION['keluar'][$_SESSION['ada']][0]; } ?>">
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('Tgl_Pinjam') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('Tgl_Pinjam', 'Tanggal Pinjam') !!}
                     <span style="color: red">*</span>
-                    {!! Form::date('Tgl_Pinjam',null,['class'=>'form-control', 'placeholder'=>'Tanggal Pinjam', 'required']) !!}
-                    {!! $errors->first('Tgl_Pinjam', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                    <input type="date" class="form-control" name="Tgl_Pinjam" id="Tgl_Pinjam" value="<?php  if(isset($_SESSION['keluar'])){ echo $_SESSION['keluar'][$_SESSION['ada']][3]; } ?>">
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('Tgl_Kembali') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('Tgl_Kembali', 'Tanggal Kembali') !!}
                     <span style="color: red">*</span>
-                    {!! Form::date('Tgl_Kembali',null,['class'=>'form-control', 'placeholder'=>'Tanggal Kembali', 'required']) !!}
-                    {!! $errors->first('Tgl_Kembali', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                    <input type="date" class="form-control" name="Tgl_Kembali" id="Tgl_Kembali" value="<?php  if(isset($_SESSION['keluar'])){ echo $_SESSION['keluar'][$_SESSION['ada']][4]; } ?>">
                 </div>
             </div>
         </div>
@@ -57,7 +54,12 @@
                     <select required name="NamaKaryawan" id="NamaKaryawan" onChange="getDep()" class="form-control">
                         <option value="">Pilih Nama Karyawan</option>
                         @foreach ($kar as $kar)
-                        <option value="{{$kar -> NamaKaryawan}}">{{$kar -> NamaKaryawan}}</option>
+                            @if(isset($_SESSION['keluar']))
+                                @if ($_SESSION['keluar'][$_SESSION['ada']][1]==$kar -> NamaKaryawan)
+                                    <option selected value="{{$kar -> NamaKaryawan}}">{{$kar -> NamaKaryawan}}</option>
+                                @endif
+                            @endif
+                            <option value="{{$kar -> NamaKaryawan}}">{{$kar -> NamaKaryawan}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -66,8 +68,7 @@
                 <div class="form-group {{ $errors->has('NamaDepartemen') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('NamaDepartemen', 'Nama Departemen') !!}
                     <span style="color: red">*</span>
-                    {!! Form::text('NamaDepartemen',null,['id'=>'NamaDepartemen','class'=>'form-control', 'placeholder'=>'Nama Karyawan ', 'required','readonly']) !!}
-                    {!! $errors->first('NamaDepartemen', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                    <input readonly="true" type="text" class="form-control" name="NamaDepartemen" id="NamaDepartemen" value="<?php  if(isset($_SESSION['keluar'])){ echo $_SESSION['keluar'][$_SESSION['ada']][2]; } ?>">
                 </div>
             </div>
             <div class="col-sm-4">
@@ -104,7 +105,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('Size') ? 'has-error has-feedback' : '' }}">
-                    {!! Form::hidden('Size',null,['id'=>'Size','class'=>'form-control', 'placeholder'=>'Size', 'required']) !!}
+                    {!! Form::hidden('Size',null,['id'=>'Size','class'=>'form-control', 'placeholder'=>'Size', 'required']) !!}                    
                 </div>
             </div>
         </div>

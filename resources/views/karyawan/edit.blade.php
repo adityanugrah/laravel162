@@ -51,8 +51,11 @@
                       <div class="col-md-7">
                         <select required name="DepartemenKar" id="DepartemenKar" class="form-control">
                             <option value="">Pilih Nama Departemen</option>
-                            @foreach ($deps as $dep)
-                              <option value="{{$dep -> NamaDepartemen}}" selected>{{$dep -> NamaDepartemen}}</option>
+                            @foreach($deps as $dep)
+                              @if($dep->NamaDepartemen==$kar->DepartemenKar)
+                              <option selected value="{{$dep->NamaDepartemen}}">{{$dep->NamaDepartemen}}</option>
+                              @endif
+                              <option value="{{$dep->NamaDepartemen}}">{{$dep->NamaDepartemen}}</option>
                             @endforeach
                         </select>
                       </div>

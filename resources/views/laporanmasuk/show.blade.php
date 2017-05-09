@@ -59,14 +59,14 @@
                             </thead>
                             <tbody>
                                 <?php $i = 1; ?>
-                                @foreach($masuk as $masuk)
+                                @foreach($detail as $det)
                                 <tr class="gradeA">
                                     <td>{{ $i++ }}</td>
-                                    <td>{{ $masuk->KodeMasuk }}</td>                                  
-                                    <td>{{ $masuk->JenisBrg }}</td>                                  
-                                    <td>{{ $masuk->NamaBrg }}</td>                                  
-                                    <td>{{ $masuk->JumlahBrg }}</td>                                  
-                                    <td>{{ $masuk->HargaBrg }}</td>                                  
+                                    <td>{{ $det->KodeMasuk }}</td>                                  
+                                    <td>{{ $det->JenisBrg }}</td>                                  
+                                    <td>{{ $det->NamaBrg }}</td>                                  
+                                    <td>{{ $det->JumlahBrg }}</td>                                  
+                                    <td>{{ $det->HargaBrg }}</td>                                  
                                 </tr>
                                 @endforeach
                             </tbody>

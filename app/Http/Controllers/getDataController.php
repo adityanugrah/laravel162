@@ -46,6 +46,25 @@ class getDataController extends Controller
         }
     }
 
+    public function ambilUkuran($id,$kode){
+        if($kode=="Seragam") {
+            $kode = DetailKeluar::where('NamaBrg', '=', $id)->first();
+            return $kode->Size;
+        } else if ($kode=="Preused") {
+            $kode = DetailKeluar::where('NamaBrg', '=', $id)->first();
+            return $kode->Size; 
+        } else if ($kode=="Loker") {
+            $kode = DetailKeluar::where('NamaBrg', '=', $id)->first();
+            return $kode->HrgLoker;
+        } else if ($kode=="Tools") {
+            $kode = DetailKeluar::where('NamaBrg', '=', $id)->first();
+            return $kode->Size;
+        } else {
+            $kode = "Tidak Ada Data";
+            return $kode;
+        }
+    }
+
     public function ambilDepartemen($id){
         $dep = Karyawan::where('NamaKaryawan','=', $id)->first();
         return $dep->DepartemenKar;
@@ -75,14 +94,6 @@ class getDataController extends Controller
     public function ambilData5($id){
         $data5 = DetailKeluar::find($id);
         return $data5->JenisBrg;
-    }
-    public function ambilData6($id){
-        $data6 = DetailKeluar::find($id);
-        return $data6->NamaBrg;
-    }
-    public function ambilData7($id){
-        $data7 = DetailKeluar::find($id);
-        return $data7->Size;
     }
     
 
