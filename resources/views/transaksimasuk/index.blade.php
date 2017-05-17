@@ -108,7 +108,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                 <?php $grand_total=0;$no=1?>
-                @if(isset($_SESSION['isi']))
+                @if(isset($_SESSION['isi']) && $_SESSION['isi']>=0)
                     <table class="table table-striped table-bordered table-hover dataTables-example" >
                         <thead>
                             <tr>
@@ -171,4 +171,14 @@
     </div> 
 <!-- batas -->
 </div>
+<script type="text/javascript">
+    function getJenis(s1) {
+        var s1 = document.getElementById (s1);
+        $("#temp").load("/transaksi/cobaSeragam/"+s1.value);
+    }
+    function getHarga(s2) {
+        var s2 = document.getElementById (s2);
+        $("#temp").load("/transaksi/harga/"+s2.value);
+    }
+</script>
 @endsection

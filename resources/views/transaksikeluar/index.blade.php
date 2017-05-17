@@ -28,21 +28,21 @@
                 <div class="form-group {{ $errors->has('KodeKeluar') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('KodeKeluar', 'Kode Keluar') !!}
                     <span style="color: red">*</span>
-                    <input type="text" readonly="true" class="form-control" name="KodeKeluar" id="KodeKeluar" value="<?php  if(isset($_SESSION['keluar'])){ echo $_SESSION['keluar'][$_SESSION['ada']][0]; } ?>">
+                    <input type="text" readonly="true" class="form-control" name="KodeKeluar" id="KodeKeluar" value="<?php  if(isset($_SESSION['keluar'])&& $_SESSION['ada']>=0){ echo $_SESSION['keluar'][$_SESSION['ada']][0]; } ?>">
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('Tgl_Pinjam') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('Tgl_Pinjam', 'Tanggal Pinjam') !!}
                     <span style="color: red">*</span>
-                    <input type="date" class="form-control" name="Tgl_Pinjam" id="Tgl_Pinjam" value="<?php  if(isset($_SESSION['keluar'])){ echo $_SESSION['keluar'][$_SESSION['ada']][3]; } ?>">
+                    <input type="date" class="form-control" name="Tgl_Pinjam" id="Tgl_Pinjam" value="<?php  if(isset($_SESSION['keluar'])&& $_SESSION['ada']>=0){ echo $_SESSION['keluar'][$_SESSION['ada']][3]; } ?>">
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('Tgl_Kembali') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('Tgl_Kembali', 'Tanggal Kembali') !!}
                     <span style="color: red">*</span>
-                    <input type="date" class="form-control" name="Tgl_Kembali" id="Tgl_Kembali" value="<?php  if(isset($_SESSION['keluar'])){ echo $_SESSION['keluar'][$_SESSION['ada']][4]; } ?>">
+                    <input type="date" class="form-control" name="Tgl_Kembali" id="Tgl_Kembali" value="<?php  if(isset($_SESSION['keluar'])&& $_SESSION['ada']>=0){ echo $_SESSION['keluar'][$_SESSION['ada']][4]; } ?>">
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
                     <select required name="NamaKaryawan" id="NamaKaryawan" onChange="getDep()" class="form-control">
                         <option value="">Pilih Nama Karyawan</option>
                         @foreach ($kar as $kar)
-                            @if(isset($_SESSION['keluar']))
+                            @if(isset($_SESSION['keluar'])&& $_SESSION['ada']>=0)
                                 @if ($_SESSION['keluar'][$_SESSION['ada']][1]==$kar -> NamaKaryawan)
                                     <option selected value="{{$kar -> NamaKaryawan}}">{{$kar -> NamaKaryawan}}</option>
                                 @endif
@@ -68,7 +68,7 @@
                 <div class="form-group {{ $errors->has('NamaDepartemen') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('NamaDepartemen', 'Nama Departemen') !!}
                     <span style="color: red">*</span>
-                    <input readonly="true" type="text" class="form-control" name="NamaDepartemen" id="NamaDepartemen" value="<?php  if(isset($_SESSION['keluar'])){ echo $_SESSION['keluar'][$_SESSION['ada']][2]; } ?>">
+                    <input readonly="true" type="text" placeholder="Nama Departemen" class="form-control" name="NamaDepartemen" id="NamaDepartemen" value="<?php  if(isset($_SESSION['keluar'])&& $_SESSION['ada']>=0){ echo $_SESSION['keluar'][$_SESSION['ada']][2]; } ?>">
                 </div>
             </div>
             <div class="col-sm-4">
@@ -121,7 +121,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                 <?php $grand_total=0;$no=1?>
-                @if(isset($_SESSION['ada']))
+                @if(isset($_SESSION['ada'])&& $_SESSION['ada']>=0)
                     <table class="table table-striped table-bordered table-hover dataTables-example" >
                         <thead>
                             <tr>

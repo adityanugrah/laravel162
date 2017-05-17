@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\TransaksiKembali;
 use App\DetailKeluar;
 use App\Supplier;
@@ -27,20 +28,50 @@ class TransaksiKembaliController extends Controller
         return view('transaksikembali.index', compact('kembali','detail'));
     }
 
-    public function cobaBarang($id){
-        if($id=="Seragam") {
-            $data=DetailKeluar::where('KodeKeluar',"P004",'JenisBrg',"Seragam")->get();
-        } else if ($id=="Preused") {
-            $data=DetailKeluar::orderBy('KodeKeluar',$id)->get(); 
-        } else if ($id=="Loker") {
-            $data=DetailKeluar::orderBy('KodeKeluar',$id)->get(); 
-        } else if ($id=="Tools") {
-            $data=DetailKeluar::orderBy('KodeKeluar',$id)->get(); 
+    public function cobaBarang($kode, Request $request){
+        $kodebar = $request->KodeKeluar;
+        $jenisbar = $request->JenisBrg;
+
+        if($kode=="Seragam") {
+            $data=DetailKeluar::where('KodeKeluar', "P001")
+                    ->where('JenisBrg', "Seragam")
+                    ->get();
+        } else if ($kode=="Preused") {
+            $data=DetailKeluar::where('KodeKeluar', "P004")
+                    ->where('JenisBrg', "Preused")
+                    ->get();
+        } else if ($kode=="Loker") {
+            $data=DetailKeluar::where('KodeKeluar', "P004")
+                    ->where('JenisBrg', "Loker")
+                    ->get();
+        } else if ($kode=="Tools") {
+            $data=DetailKeluar::where('KodeKeluar', "P004")
+                    ->where('JenisBrg', "Tools")
+                    ->get(); 
         } else {
             $data = "Tidak Ada Data";
         }
-        return view('transaksikembali.coba',compact('data','id'));
+        return view('transaksikembali.coba',compact('data','kode'));
     }
+
+    public function ajaxNamaBrg(Request $request){
+        if ($request->ajax()) {
+            $datas = $request->all();
+            $jenisBarang = $datas['JenisBrg'];
+            $kodeKeluar = $datas['kodeKeluar'];
+            $namaBarang = DetailKeluar::where('KodeKeluar',$kodeKeluar)
+                            ->where('JenisBrg',$jenisBarang)->pluck('NamaBrg');
+                            // dd($namaBarang);
+                            if(count($namaBarang) > 0){
+                                return response()->json($namaBarang);
+                            } else {
+                                return response()->json(['message' => 'Data notfound'], 404);
+                            }
+        }
+        // return response()->json(['datas' => '$namaBarang']);
+        return view('transaksikembali.index',compact('namaBarang'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

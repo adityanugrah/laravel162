@@ -93,7 +93,11 @@ class getDataController extends Controller
     }
     public function ambilData5($id){
         $data5 = DetailKeluar::find($id);
-        return $data5->JenisBrg;
+        return $data5->Size;
+    }
+    public function ambilData6($id){
+        $data6 = DetailKeluar::find($id);
+        return $data6->JumlahBrg;
     }
     
 

@@ -15,5 +15,8 @@ class TransaksiKembali extends Model
     public $timestamps = false;
 
     public $fillable = [
+    'KodeKeluar',
+    'JenisBrg',
+    'NamaBrg'
 	];
 }

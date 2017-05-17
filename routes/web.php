@@ -67,7 +67,12 @@ Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');
 
 //TransaksiMasuk
 Route::get('transaksi/cobaSeragam/{id}', 'TransaksiMasukController@cobaSeragam');
+
 Route::get('transaksi/cobaBarang/{id}', 'TransaksiKembaliController@cobaBarang');
+
+// coba ajax
+Route::post('/ajaxNamaBrg', array('as' => 'ajaxNamaBrg', 'uses' => 'TransaksiKembaliController@ajaxNamaBrg' ));
+
 Route::get('/transaksi/getBarang/{id}/{kode}', 'getDataController@ambilHargaBarang');
 
 Route::get('/transaksi/getUkuran/{id}/{kode}', 'getDataController@ambilUkuran');
@@ -76,7 +81,9 @@ Route::get('/transaksi/getData1/{id}', 'getDataController@ambilData1');
 Route::get('/transaksi/getData2/{id}', 'getDataController@ambilData2');
 Route::get('/transaksi/getData3/{id}', 'getDataController@ambilData3');
 Route::get('/transaksi/getData4/{id}', 'getDataController@ambilData4');
+
 Route::get('/transaksi/getData5/{id}', 'getDataController@ambilData5');
+Route::get('/transaksi/getData6/{id}', 'getDataController@ambilData6');
 
 Route::get('/transaksi/getKodeMasuk', 'KodeMasukController@index');
 

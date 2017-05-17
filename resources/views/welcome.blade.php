@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{csrf_token()}}"/>
 
     <title>Kerja Praktik</title>
 
@@ -17,9 +18,10 @@
     <link href="{{ asset ('/css/plugins/sweetalert/sweetalert.css') }}" rel='stylesheet' type='text/css'>
     <link href="{{ asset ('/css/sticky-footer-navbar.css') }}" rel='stylesheet' type='text/css'>
     <link href="{{ asset ('/css/sweetalert2.min.css') }}" rel='stylesheet' type='text/css'>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery-2.1.1.js') }}" type='text/javascript'></script>
+    <!-- new -->
     <script src="{{ asset ('/js/jquery.maskMoney.js') }}" type="text/javascript"></script>
-    <script type="text/javascript" src="{{ asset ('/js/my.js') }}"></script>
+    <script src="{{ asset ('/js/my.js') }}" type="text/javascript"></script>
 </head>
 
 <body>
@@ -53,7 +55,7 @@
     </div>
 
     <!-- Mainly scripts -->
-    <script src="{{ asset('js/jquery-2.1.1.js') }}" type='text/javascript'></script>
+    
     <script src="{{ asset('js/bootstrap.min.js') }}" type='text/javascript'></script>
     <script src="{{ asset('js/plugins/metisMenu/jquery.metisMenu.js') }}" type='text/javascript'></script>
     <script src="{{ asset('js/plugins/slimscroll/jquery.slimscroll.min.js') }}" type='text/javascript'></script>
@@ -95,48 +97,48 @@
     <script src="{{ asset('js/demo/sparkline-demo.js') }}" type='text/javascript'></script>
     <!-- Page-Level Scripts -->
     <script>
-        $(document).ready(function(){
+    $(document).ready(function(){
 
-            $.get("/transaksi/getKodeMasuk",function(data){
-                document.getElementById("KodeMasuk").value = data;
-            });
+        $.get("/transaksi/getKodeMasuk",function(data){
+            document.getElementById("KodeMasuk").value = data;
+        });
 
-            $('.footable').footable();
+        $('.footable').footable();
 
-            $('#date_added').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                calendarWeeks: true,
-                autoclose: true
-            });
+        $('#date_added').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        });
 
-            $('#date_modified').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                calendarWeeks: true,
-                autoclose: true
-            });
+        $('#date_modified').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        });
             
-            $('.dataTables-example').DataTable({
-                dom: '<"html5buttons"B>lTfgitp',
-                buttons: [
-                    { extend: 'copy'},
-                    {extend: 'csv'},
-                    {extend: 'excel', title: 'ExampleFile'},
-                    {extend: 'pdf', title: 'ExampleFile'},
-                    {extend: 'print',
-                     customize: function (win){
-                            $(win.document.body).addClass('white-bg');
-                            $(win.document.body).css('font-size', '10px');
-                            $(win.document.body).find('table')
-                                    .addClass('compact')
-                                    .css('font-size', 'inherit');
-                    }
-                    }
-                ]
-            });
+        $('.dataTables-example').DataTable({
+            dom: '<"html5buttons"B>lTfgitp',
+            buttons: [
+                { extend: 'copy'},
+                {extend: 'csv'},
+                {extend: 'excel', title: 'ExampleFile'},
+                {extend: 'pdf', title: 'ExampleFile'},
+                {extend: 'print',
+                 customize: function (win){
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+                        $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                }
+                }
+            ]
+        });
             /* Init DataTables */
             var oTable = $('#editable').DataTable();
             /* Apply the jEditable handlers to the table */
@@ -163,14 +165,7 @@
                 "New row",
                 "New row" ] );
         }
-        function getJenis(s1) {
-            var s1 = document.getElementById (s1);
-            $("#temp").load("/transaksi/cobaSeragam/"+s1.value);
-        }
-        function getHarga(s2) {
-            var s2 = document.getElementById (s2);
-            $("#temp").load("/transaksi/harga/"+s2.value);
-        }
     </script>
+    
 </body>
 </html>

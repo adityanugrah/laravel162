@@ -1,15 +1,15 @@
 <label class="control-label" for="status">Nama Barang</label>
-<select name="NamaBrg" id="NamaBrg" onChange="getUkuran('{{$id}}')" class="form-control" required="true">
+<select name="NamaBrg" id="NamaBrg" onChange="getUkuran('{{$kode}}')" class="form-control" required="true">
 	<option >Pilih Nama Barang</option>
 	@foreach ($data as $dat)
-		@if($id=="Seragam")
-		<option value="{{$dat->NamaBrg}}">{{ $dat->NamaBrg }}</option>
-		@elseif ($id=="Preused")
-		<option value="{{$dat->NamaBrg}}">{{ $dat->NamaBrg }}</option>
-		@elseif ($id=="Loker")
-		<option value="{{$dat->NamaBrg}}">{{ $dat->NamaBrg }}</option>
-		@elseif ($id=="Tools")
-		<option value="{{$dat->NamaBrg}}">{{ $dat->NamaBrg }}</option>
+		@if($kode=="Seragam")
+			<option value="{{$dat->NamaBrg}}">{{ $dat->NamaBrg }}</option>
+		@elseif ($kode=="Preused")
+			<option value="{{$dat->NamaBrg}}">{{ $dat->NamaBrg }}</option>
+		@elseif ($kode=="Loker")
+			<option value="{{$dat->NamaBrg}}">{{ $dat->NamaBrg }}</option>
+		@elseif ($kode=="Tools")
+			<option value="{{$dat->NamaBrg}}">{{ $dat->NamaBrg }}</option>
 		@endif
 	@endforeach
 </select>

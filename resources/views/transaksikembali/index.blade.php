@@ -13,7 +13,7 @@
 ?>
 <div class="wrapper wrapper-content animated fadeInRight ecommerce">
     <div class="ibox-content m-b-sm border-bottom">
-     {!! Form::open(['url' => '/transaksi/transaksikeluar']) !!}
+     {!! Form::open() !!}
         <div class="row">
             <input type="hidden" name="aksi" value="0"/>
             <div class="col-sm-2">
@@ -27,7 +27,7 @@
             <div class="col-sm-2">
                 <div class="form-group">
                     <label style="color: white" class="control-label">Jenis Barang</label>
-                    <a class="btn btn-primary" onClick="getKembali('transaksikembali')">Cari Barang</a>
+                    <a id="Cari" name="Cari" class="btn btn-primary" onClick="getKembali('transaksikembali')">Cari Barang</a>
                 </div> 
             </div>    
         </div>
@@ -78,7 +78,7 @@
                <div class="form-group {{ $errors->has('JenisBrg') ? 'has-error has-feedback' : '' }}">
                     <label class="control-label" for="date_modified">Jenis Barang</label>
                     <span style="color: red">*</span>
-                    <select id="JenisBrg" name="JenisBrg" class="form-control" onChange="getJenis(this.id)">
+                    <select id="JenisBrg" name="JenisBrg" class="form-control" >
                         <option value="">Pilih Jenis Barang</option>
                         <option value="Seragam">Seragam</option>
                         <option value="Preused">Preused</option>
@@ -93,8 +93,13 @@
                 <div class="form-group {{ $errors->has('NamaBrg') ? 'has-error has-feedback' : '' }}" id="temp">
                 <label class="control-label" for="status">Nama Barang</label>
                 <span style="color: red">*</span>
-                <select class="form-control" required="true">
-                    <option value="">Pilih Nama Barang</option>                    
+                <select class="form-control" id="NamaBarang" name="NamaBarang" onChange="getJml('transaksikembali')" required="true">
+                    <option value="">Pilih Nama Barang</option>
+                    @if(isset($namaBarang))
+                        @foreach ($namaBarang as $dat)
+                            <option value="{{$dat->NamaBrg}}">{{ $dat->NamaBrg }}</option>
+                        @endforeach                    
+                    @endif
                 </select>
                 </div>
             </div>
@@ -102,7 +107,7 @@
                 <div class="form-group {{ $errors->has('Size') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('Size', 'Size') !!}
                     <span style="color: red">*</span>
-                    {!! Form::text('Size',null,['class'=>'form-control', 'placeholder'=>'Jumlah Barang', 'required']) !!}
+                    {!! Form::text('Size',null,['id'=>'Size','class'=>'form-control', 'placeholder'=>'Size', 'required']) !!}
                     {!! $errors->first('Size', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
@@ -110,7 +115,7 @@
                 <div class="form-group {{ $errors->has('JumlahBrg') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('JumlahBrg', 'Jumlah Barang') !!}
                     <span style="color: red">*</span>
-                    {!! Form::number('JumlahBrg',null,['class'=>'form-control', 'placeholder'=>'Jumlah Barang', 'required']) !!}
+                    {!! Form::number('JumlahBrg',null,['id'=>'JumlahBrg','class'=>'form-control', 'placeholder'=>'Jumlah Barang', 'required']) !!}
                     {!! $errors->first('JumlahBrg', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
@@ -162,11 +167,11 @@
                             @endfor
                         </tbody>
                     </table>
-                    {!! Form::open(['url' => '/transaksi/transaksikeluar']) !!}
+                    {!! Form::open(['url' => '/transaksi/transaksikembali']) !!}
                         <input type="hidden" name="aksi" value="1"/>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     {!! Form::close() !!}
-                    {!! Form::open(['url' => '/transaksi/transaksikeluar']) !!}
+                    {!! Form::open(['url' => '/transaksi/transaksikembali']) !!}
                         <input type="hidden" name="aksi" value="2"/>
                         <button type="submit" class="btn btn-primary">Bersihkan</button>
                     {!! Form::close() !!}
@@ -178,15 +183,52 @@
 <!-- batas -->
 </div>
 
-<script src="{{url('js/jquery-2.1.1.js')}}"></script>
+<script type="text/javascript">
+    $("#JenisBrg").change(function(){
+        $.ajaxSetup({
+           headers: {'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')}
+        });
 
-<script>
+        $.ajax({
+            url: "{{ url('ajaxNamaBrg') }}",
+            type: "POST",
+            data: {
+                JenisBrg: $("#JenisBrg").val(),
+                kodeKeluar: $("#transaksikembali").val()
+            },
+            success: function(data){
+                var toAppend = '';
+                var select = '';
+                var length = '';
+                select = document.getElementById("NamaBarang");
+                length = select.options.length;
+                    for (i = 0; i < length; i++) {
+                      select.options[i] = null;
+                    }
+                $('#NamaBarang').append('<option>Pilih Nama Barang</option>');
+                $.each(data,function(i,o){
+                    toAppend += '<option value='+o+'>'+o+'</option>';
+                });
+                $('#NamaBarang').append(toAppend);
+            },  error: function (error) {
+                select = document.getElementById("NamaBarang");
+                select.options[i] = null;
+                $('#Size').val("");
+                $('#JumlahBrg').val("");
+                alert('Data Tidak Ditemukan');
+            }
+        });
+    });
+
+    //batas
     $(document).ready(function(){
         $.get("/transaksi/getKodeKeluar",function(data){
             document.getElementById("KodeKeluar").value = data;
         });
     });
+
     function getKembali(a) {
+        var select, length='';
         var x = document.getElementById (a);
         $.get("/transaksi/getData1/"+x.value,function(data1){
             document.getElementById("tglpinjam").value = data1;
@@ -200,26 +242,31 @@
         $.get("/transaksi/getData4/"+x.value,function(data4){
             document.getElementById("NamaDepartemen").value = data4;
         });
+
+        $("#NamaBarang").empty();
+        $('#NamaBarang').append('<option>Pilih Nama Barang</option>');
+        $('#JenisBrg').prop('selectedIndex',0);
+        $('#Size').val("");
+        $('#JumlahBrg').val("");
+    }
+
+    function getJml(a) {
+        var x = document.getElementById (a);
         $.get("/transaksi/getData5/"+x.value,function(data5){
-            var element = document.getElementById("JenisBrg");
-            element.value = data5;
-            
-            var s1 = document.getElementById (s1);
-            $("#temp").load("/transaksi/cobaBarang/"+data5);
+            document.getElementById("Size").value = data5;
+        });
+        $.get("/transaksi/getData6/"+x.value,function(data6){
+            document.getElementById("JumlahBrg").value = data6;
         });
     }
-</script>
-
-<script type="text/javascript">
+    
     function getDep() {
         var x = document.getElementById ("NamaKaryawan").value;
         $.get("/transaksi/getDep/"+x,function(data){
             document.getElementById("NamaDepartemen").value = data;
         });
     }
-</script>
 
-<script type="text/javascript">
     function getJenisK(s1) {
         var s1 = document.getElementById (s1);
         $("#temp").load("/transaksi/namabarang/"+s1.value);
