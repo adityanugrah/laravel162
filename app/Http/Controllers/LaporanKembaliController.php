@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\TransaksiKeluar;
-use App\DetailKeluar;
+use App\TransaksiKembali;
+use App\DetailKembali;
 
-class LaporanKeluarController extends Controller
+class LaporanKembaliController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class LaporanKeluarController extends Controller
      */
     public function index()
     {
-        $keluar = TransaksiKeluar::orderBy('KodeKeluar')->get();
-        return view('laporankeluar.index', compact('keluar'));
+        $kembali = TransaksiKembali::orderBy('KodeKembali')->get();
+        return view('laporankembali.index', compact('kembali'));
     }
 
     /**
@@ -48,9 +48,9 @@ class LaporanKeluarController extends Controller
      */
     public function show($id)
     {
-        $keluar1 = TransaksiKeluar::where('KodeKeluar', "$id")->get();
-        $keluar = DetailKeluar::where('KodeKeluar', "$id")->get();
-        return view('laporankeluar.show', compact('keluar','keluar1'));
+        $kembali1 = TransaksiKembali::where('KodeKembali', "$id")->get();
+        $kembali = DetailKembali::where('KodeKembali', "$id")->get();
+        return view('laporankembali.show', compact('kembali1','kembali'));
     }
 
     /**

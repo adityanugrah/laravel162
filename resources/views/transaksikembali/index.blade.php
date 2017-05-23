@@ -20,8 +20,7 @@
                 <div class="form-group {{ $errors->has('KodeTransaksi') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('KodeTransaksi', 'Kode Transaksi') !!}
                     <span style="color: red">*</span>
-                    {!! Form::text('KodeTransaksi',null,['id'=>'transaksikembali','class'=>'form-control', 'placeholder'=>'Kode Transaksi','required']) !!}
-                    {!! $errors->first('KodeTransaksi', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                    <input type="text" placeholder="Kode Transaksi" class="form-control" name="transaksikembali" id="transaksikembali" value="<?php  if(isset($_SESSION['kembali'])&& $_SESSION['ok']>=0){ echo $_SESSION['kembali'][$_SESSION['ok']][0]; } ?>">
                 </div> 
             </div>
             <div class="col-sm-2">
@@ -35,25 +34,22 @@
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('Tgl_Pinjam') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('Tgl_Pinjam', 'Tanggal Pinjam') !!}
-                    <span style="color: red">*</span>
-                    {!! Form::date('Tgl_Pinjam',null,['id'=>'tglpinjam','class'=>'form-control', 'placeholder'=>'Tanggal Pinjam', 'required','readonly']) !!}
-                    {!! $errors->first('Tgl_Pinjam', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                    <span style="color: red">*</span>                    
+                    <input type="date" readonly="true" class="form-control" name="Tgl_Pinjam" id="Tgl_Pinjam" value="<?php  if(isset($_SESSION['kembali'])&& $_SESSION['ok']>=0){ echo $_SESSION['kembali'][$_SESSION['ok']][1]; } ?>">
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('Tgl_Kembali') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('Tgl_Kembali', 'Tanggal Kembali') !!}
                     <span style="color: red">*</span>
-                    {!! Form::date('Tgl_Kembali',null,['id'=>'tglkembali','class'=>'form-control', 'placeholder'=>'Tanggal Kembali', 'required','readonly']) !!}
-                    {!! $errors->first('Tgl_Kembali', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                    <input type="date" readonly="true" class="form-control" name="Tgl_Kembali" id="Tgl_Kembali" value="<?php  if(isset($_SESSION['kembali'])&& $_SESSION['ok']>=0){ echo $_SESSION['kembali'][$_SESSION['ok']][2]; } ?>">
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group {{ $errors->has('Tgl_Kembali') ? 'has-error has-feedback' : '' }}">
-                    {!! Form::label('Tgl_Kembali', 'Tanggal Pengembalian') !!}
+                <div class="form-group {{ $errors->has('Tgl_Pengembalian') ? 'has-error has-feedback' : '' }}">
+                    {!! Form::label('Tgl_Pengembalian', 'Tanggal Pengembalian') !!}
                     <span style="color: red">*</span>
-                    {!! Form::date('Tgl_Kembali',null,['class'=>'form-control', 'placeholder'=>'Tanggal Kembali', 'required']) !!}
-                    {!! $errors->first('Tgl_Kembali', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                    <input type="date" required="true" class="form-control" name="Tgl_Pengembalian" id="Tgl_Pengembalian" value="<?php  if(isset($_SESSION['kembali'])&& $_SESSION['ok']>=0){ echo $_SESSION['kembali'][$_SESSION['ok']][3]; } ?>">
                 </div>
             </div>
         </div>
@@ -62,16 +58,14 @@
                 <div class="form-group {{ $errors->has('NamaKaryawan') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('NamaKaryawan', 'Nama Karyawan') !!}
                     <span style="color: red">*</span>
-                    {!! Form::text('NamaKaryawan',null,['id'=>'NamaKaryawan','class'=>'form-control', 'placeholder'=>'Nama Karyawan ', 'required','readonly']) !!}
-                    {!! $errors->first('NamaKaryawan', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                    <input type="text" placeholder="Nama Karyawan" readonly="true" class="form-control" name="NamaKaryawan" id="NamaKaryawan" value="<?php  if(isset($_SESSION['kembali'])&& $_SESSION['ok']>=0){ echo $_SESSION['kembali'][$_SESSION['ok']][4]; } ?>">
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('NamaDepartemen') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('NamaDepartemen', 'Nama Departemen') !!}
                     <span style="color: red">*</span>
-                    {!! Form::text('NamaDepartemen',null,['id'=>'NamaDepartemen','class'=>'form-control', 'placeholder'=>'Nama Departemen ', 'required', 'readonly']) !!}
-                    {!! $errors->first('NamaDepartemen', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                    <input type="text" placeholder="Nama Departemen" readonly="true" class="form-control" name="NamaDepartemen" id="NamaDepartemen" value="<?php  if(isset($_SESSION['kembali'])&& $_SESSION['ok']>=0){ echo $_SESSION['kembali'][$_SESSION['ok']][5]; } ?>">
                 </div>
             </div>
             <div class="col-sm-4">
@@ -90,10 +84,10 @@
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <div class="form-group {{ $errors->has('NamaBrg') ? 'has-error has-feedback' : '' }}" id="temp">
+                <div class="form-group {{ $errors->has('NamaBarang') ? 'has-error has-feedback' : '' }}" id="temp">
                 <label class="control-label" for="status">Nama Barang</label>
                 <span style="color: red">*</span>
-                <select class="form-control" id="NamaBarang" name="NamaBarang" onChange="getJml('transaksikembali')" required="true">
+                <select class="form-control" id="NamaBarang" name="NamaBarang" onChange="getJumlah('transaksikembali')" required="true">
                     <option value="">Pilih Nama Barang</option>
                     @if(isset($namaBarang))
                         @foreach ($namaBarang as $dat)
@@ -107,7 +101,7 @@
                 <div class="form-group {{ $errors->has('Size') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('Size', 'Size') !!}
                     <span style="color: red">*</span>
-                    {!! Form::text('Size',null,['id'=>'Size','class'=>'form-control', 'placeholder'=>'Size', 'required']) !!}
+                    {!! Form::text('Size',null,['id'=>'Size','class'=>'form-control', 'placeholder'=>'Size', 'required', 'readonly']) !!}
                     {!! $errors->first('Size', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                 </div>
             </div>
@@ -127,36 +121,37 @@
         {!! Form::close() !!}
     </div>
 
-
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                 <?php $grand_total=0;$no=1?>
-                @if(isset($_SESSION['ada']))
+                @if(isset($_SESSION['ok']))
                     <table class="table table-striped table-bordered table-hover dataTables-example" >
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Tanggal Pinjam</th>
-                                <th>Tanggal Kembali</th>
+                                <th>Tanggal Pengembalian</th>
                                 <th>Nama Karyawan</th>
+                                <th>Jenis Barang</th>
                                 <th>Nama Barang</th>
+                                <th>Size</th>
                                 <th>Jumlah Barang</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>                       
-                            @for ($i=0;$i<=$_SESSION['ada'];$i++)
+                            @for ($i=0;$i<=$_SESSION['ok'];$i++)
                             <tr class="gradeA">
                                 <td>{{ $no++ }}</td>
-                                <td><?php echo $_SESSION['keluar'][$i][1]; ?></td>
-                                <td><?php echo $_SESSION['keluar'][$i][2]; ?></td>
-                                <td><?php echo $_SESSION['keluar'][$i][3]; ?></td>
-                                <td><?php echo $_SESSION['keluar'][$i][5]; ?></td>
-                                <td><?php echo $_SESSION['keluar'][$i][6]; ?></td>
+                                <td><?php echo $_SESSION['kembali'][$i][3]; ?></td>
+                                <td><?php echo $_SESSION['kembali'][$i][4]; ?></td>
+                                <td><?php echo $_SESSION['kembali'][$i][6]; ?></td>
+                                <td><?php echo $_SESSION['kembali'][$i][7]; ?></td>
+                                <td><?php echo $_SESSION['kembali'][$i][8]; ?></td>
+                                <td><?php echo $_SESSION['kembali'][$i][9]; ?></td>
                                 <td class="center">
-                                   {!! Form::open(['url' => '/transaksi/transaksikeluar']) !!}
+                                   {!! Form::open(['url' => '/transaksi/transaksikembali']) !!}
                                         <input type="hidden" name="aksi" value="3"/>
                                         <input type="hidden" name="idelete" value="{{$i}}"/>
                                         <button type="submit" class="btn btn-danger fa fa-trash delete-confirm hapus">
@@ -207,34 +202,30 @@
                     }
                 $('#NamaBarang').append('<option>Pilih Nama Barang</option>');
                 $.each(data,function(i,o){
-                    toAppend += '<option value='+o+'>'+o+'</option>';
+                    toAppend += '<option value="'+o+'">'+o+'</option>';
                 });
                 $('#NamaBarang').append(toAppend);
-            },  error: function (error) {
-                select = document.getElementById("NamaBarang");
-                select.options[i] = null;
-                $('#Size').val("");
-                $('#JumlahBrg').val("");
-                alert('Data Tidak Ditemukan');
-            }
-        });
-    });
-
-    //batas
-    $(document).ready(function(){
-        $.get("/transaksi/getKodeKeluar",function(data){
-            document.getElementById("KodeKeluar").value = data;
+            },  error: function (xhr, ajaxOptions, thrownError) {
+                if(xhr.status==404) {
+                    $("#NamaBarang").empty();
+                    $('#NamaBarang').append('<option>Pilih Nama Barang</option>');
+                    $('#Size').val("");
+                    $('#JumlahBrg').val("");
+                    alert('Data Tidak Ditemukan');
+                }                
+            },
         });
     });
 
     function getKembali(a) {
         var select, length='';
         var x = document.getElementById (a);
+        
         $.get("/transaksi/getData1/"+x.value,function(data1){
-            document.getElementById("tglpinjam").value = data1;
+            document.getElementById("Tgl_Pinjam").value = data1;
         });
         $.get("/transaksi/getData2/"+x.value,function(data2){
-            document.getElementById("tglkembali").value = data2;
+            document.getElementById("Tgl_Kembali").value = data2;
         });
         $.get("/transaksi/getData3/"+x.value,function(data3){
             document.getElementById("NamaKaryawan").value = data3;
@@ -250,12 +241,12 @@
         $('#JumlahBrg').val("");
     }
 
-    function getJml(a) {
-        var x = document.getElementById (a);
-        $.get("/transaksi/getData5/"+x.value,function(data5){
+    function getJumlah(a) {
+        var x = document.getElementById("NamaBarang").value;
+        $.get("/transaksi/getData5/"+x+"/"+a,function(data5){
             document.getElementById("Size").value = data5;
         });
-        $.get("/transaksi/getData6/"+x.value,function(data6){
+        $.get("/transaksi/getData6/"+x+"/"+a,function(data6){
             document.getElementById("JumlahBrg").value = data6;
         });
     }

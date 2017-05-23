@@ -1,84 +1,63 @@
-function tandaPemisahTitik(b){
-	var _minus = false;
-	if (b<0) _minus = true;
-	b = b.toString();
-	b=b.replace(".","");
-	
-	c = "";
-	panjang = b.length;
-	j = 0;
-	for (i = panjang; i > 0; i--){
-		 j = j + 1;
-		 if (((j % 3) == 1) && (j != 1)){
-		   c = b.substr(i-1,1) + "." + c;
-		 } else {
-		   c = b.substr(i-1,1) + c;
-		 }
-	}
-	if (_minus) c = "-" + c ;
-	return c;
-}
+$(document).ready(function(){
+	$('.footable').footable();
 
-function numbersonly(ini, e){
-	if (e.keyCode>=49){
-		if(e.keyCode<=57){
-		a = ini.value.toString().replace(".","");
-		b = a.replace(/[^\d]/g,"");
-		b = (b=="0")?String.fromCharCode(e.keyCode):b + String.fromCharCode(e.keyCode);
-		ini.value = tandaPemisahTitik(b);
-		return false;
-		}
-		else if(e.keyCode<=105){
-			if(e.keyCode>=96){
-				//e.keycode = e.keycode - 47;
-				a = ini.value.toString().replace(".","");
-				b = a.replace(/[^\d]/g,"");
-				b = (b=="0")?String.fromCharCode(e.keyCode-48):b + String.fromCharCode(e.keyCode-48);
-				ini.value = tandaPemisahTitik(b);
-				//alert(e.keycode);
-				return false;
-				}
-			else {return false;}
-		}
-		else {
-			return false; }
-	}else if (e.keyCode==48){
-		a = ini.value.replace(".","") + String.fromCharCode(e.keyCode);
-		b = a.replace(/[^\d]/g,"");
-		if (parseFloat(b)!=0){
-			ini.value = tandaPemisahTitik(b);
-			return false;
-		} else {
-			return false;
-		}
-	}else if (e.keyCode==95){
-		a = ini.value.replace(".","") + String.fromCharCode(e.keyCode-48);
-		b = a.replace(/[^\d]/g,"");
-		if (parseFloat(b)!=0){
-			ini.value = tandaPemisahTitik(b);
-			return false;
-		} else {
-			return false;
-		}
-	}else if (e.keyCode==8 || e.keycode==46){
-		a = ini.value.replace(".","");
-		b = a.replace(/[^\d]/g,"");
-		b = b.substr(0,b.length -1);
-		if (tandaPemisahTitik(b)!=""){
-			ini.value = tandaPemisahTitik(b);
-		} else {
-			ini.value = "";
-		}
+	$('#date_added').datepicker({
+		todayBtn: "linked",
+		keyboardNavigation: false,
+		forceParse: false,
+		calendarWeeks: true,
+		autoclose: true
+	});
+
+	$('#date_modified').datepicker({
+		todayBtn: "linked",
+		keyboardNavigation: false,
+		forceParse: false,
+		calendarWeeks: true,
+		autoclose: true
+	});
 		
-		return false;
-	} else if (e.keyCode==9){
-		return true;
-	} else if (e.keyCode==17){
-		return true;
-	} else {
-		//alert (e.keyCode);
-		return false;
-	}
-
+	$('.dataTables-example').DataTable({
+		dom: '<"html5buttons"B>lTfgitp',
+		buttons: [
+			{extend: 'copy'},
+			{extend: 'csv'},
+			{extend: 'excel', title: 'ExampleFile'},
+			{extend: 'pdf', title: 'ExampleFile'},
+			{extend: 'print',
+			 customize: function (win){
+					$(win.document.body).addClass('white-bg');
+					$(win.document.body).css('font-size', '10px');
+					$(win.document.body).find('table')
+							.addClass('compact')
+							.css('font-size', 'inherit');
+			}
+			}
+		]
+	});
+		/* Init DataTables */
+		var oTable = $('#editable').DataTable();
+		/* Apply the jEditable handlers to the table */
+		oTable.$('td').editable( '../example_ajax.php', {
+			"callback": function( sValue, y ) {
+				var aPos = oTable.fnGetPosition( this );
+				oTable.fnUpdate( sValue, aPos[0], aPos[1] );
+			},
+			"submitdata": function ( value, settings ) {
+				return {
+					"row_id": this.parentNode.getAttribute('id'),
+					"column": oTable.fnGetPosition( this )[2]
+				};
+			},
+			"width": "90%",
+			"height": "100%"
+		} );
+});
+function fnClickAddRow() {
+	$('#editable').dataTable().fnAddData( [
+		"Custom row",
+		"New row",
+		"New row",
+		"New row",
+		"New row" ] );
 }
-

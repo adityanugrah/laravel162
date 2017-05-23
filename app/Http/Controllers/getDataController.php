@@ -77,6 +77,17 @@ class getDataController extends Controller
 
     public function ambilData1($id){
         $data1 = TransaksiKeluar::find($id);
+        // $hasil = [];
+
+        // $result = {"Tgl_Kembali" => $data->Tgl_Kembali, "data2" => $data2};
+        // if(($data1) && ($data2)){
+
+
+        // return response()->json($result);
+
+        // } else {
+
+        // }
         return $data1->Tgl_Pinjam;
     }
     public function ambilData2($id){
@@ -91,15 +102,14 @@ class getDataController extends Controller
         $data4 = TransaksiKeluar::find($id);
         return $data4->NamaDepartemen;
     }
-    public function ambilData5($id){
-        $data5 = DetailKeluar::find($id);
+    public function ambilData5($id,$data5){
+        $data5 = DetailKeluar::where('NamaBrg', '=', $id)->first();
         return $data5->Size;
     }
     public function ambilData6($id){
-        $data6 = DetailKeluar::find($id);
+        $data6 = DetailKeluar::where('NamaBrg','=', $id)->first();
         return $data6->JumlahBrg;
     }
-    
 
     public function index()
     {

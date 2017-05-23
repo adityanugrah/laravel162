@@ -2,16 +2,16 @@
 @section ('konten')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Laporan Detail Keluar</h2>
+        <h2>Laporan Detail Kembali</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="/laporan">Laporan</a>
             </li>
             <li>
-                <a href="/laporan/laporankeluar">Laporan Keluar</a>
+                <a href="/laporan/laporankembali">Laporan Kembali</a>
             </li>
             <li class="active">
-                <strong>Laporan Keluar</strong>
+                <strong>Laporan Kembali</strong>
             </li>
         </ol>
     </div>
@@ -24,7 +24,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Laporan Transaksi Detail Keluar</h5>
+                    <h5>Laporan Transaksi Detail Kembali</h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -50,25 +50,29 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Kode Keluar</th>
-                                    <th>Nama Karyawan</th>
+                                    <th>Kode Kembali</th>
+                                    <th>Tanggal Pinjam</th>
+                                    <th>Tanggal Pengembalian</th>
                                     <th>Jenis Barang</th>
                                     <th>Nama Barang</th>
+                                    <th>Ukuran Barang</th>
                                     <th>Jumlah Barang</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $i = 1; ?>
-                                @foreach($keluar as $keluar)
+                                @foreach($kembali as $kem)
                                 <tr class="gradeA">
                                     <td>{{ $i++ }}</td>
-                                    <td>{{ $keluar->KodeKeluar }}</td> 
-                                     @foreach($keluar1 as $kel)                          
-                                        <td>{{ $kel->NamaKaryawan }}</td>   
-                                    @endforeach  
-                                    <td>{{ $keluar->JenisBrg }}</td>                                  
-                                    <td>{{ $keluar->NamaBrg }}</td>                                  
-                                    <td>{{ $keluar->JumlahBrg }}</td>                                  
+                                    <td>{{ $kem->KodeKembali }}</td>
+                                    @foreach($kembali1 as $kem1)                          
+                                        <td>{{ $kem1->Tgl_Pinjam }}</td> 
+                                        <td>{{ $kem1->Tgl_Pengembalian }}</td> 
+                                    @endforeach                                   
+                                    <td>{{ $kem->JenisBarang }}</td>                                  
+                                    <td>{{ $kem->NamaBarang }}</td>                                  
+                                    <td>{{ $kem->SizeBarang }}</td>                                  
+                                    <td>{{ $kem->JmlBarang }}</td>                    
                                 </tr>
                                 @endforeach
                             </tbody>

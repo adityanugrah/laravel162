@@ -172,6 +172,11 @@
 <!-- batas -->
 </div>
 <script type="text/javascript">
+    $(document).ready(function(){
+        $.get("/transaksi/getKodeMasuk",function(data){
+            document.getElementById("KodeMasuk").value = data;
+        });
+    });
     function getJenis(s1) {
         var s1 = document.getElementById (s1);
         $("#temp").load("/transaksi/cobaSeragam/"+s1.value);

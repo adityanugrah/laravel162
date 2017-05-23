@@ -71,6 +71,7 @@
                 <ul class="nav nav-second-level">
                     <li class="{{ Request::is('laporan/laporanmasuk') || Request::is('laporan/laporanmasuk/*') ? 'active' : '' }}"><a href="{{ url('laporan/laporanmasuk') }}">Laporan Masuk</a></li>
                     <li class="{{ Request::is('laporan/laporankeluar') || Request::is('laporan/laporankeluar/*') ? 'active' : '' }}"><a href="{{ url('laporan/laporankeluar') }}">Laporan Keluar</a></li>
+                    <li class="{{ Request::is('laporan/laporankembali') || Request::is('laporan/laporankembali/*') ? 'active' : '' }}"><a href="{{ url('laporan/laporankembali') }}">Laporan Kembali</a></li>
                 </ul>
             </li>
         </ul>
