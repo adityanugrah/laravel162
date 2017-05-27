@@ -16,7 +16,11 @@ class VerifyCsrfToken extends BaseVerifier
         'preused', 'preused/*',
         'tools', 'tools/*',
         'loker', 'loker/*',
+        'supplier', 'supplier/*',
+        'departemen', 'departemen/*',
+        'karyawan', 'karyawan/*',
         'transaksimasuk', 'transaksimasuk/*',
         'transaksikeluar', 'transaksikeluar/*',
+        'transaksikembali', 'transaksikembali/*',
     ];
 }

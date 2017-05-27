@@ -67,8 +67,28 @@
                         {!! $errors->first('Picture', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                         <small class="help-block">Jenis File : PNG, JPG,   </small>
                       </div>
-                    </div> 
-                     <small style= "color : red;">* : Required/Harus Diisi.</small>
+                    </div>
+                    <div class="form-group {{ $errors->has('Email') ? 'has-error has-feedback' : '' }}">
+                      <div class = "col-md-3">
+                      {!! Form::label('Email','Email', ['class' => 'control-label']) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        {!! Form::email('Email',null,['class'=>'form-control', 'placeholder'=>'Email','required']) !!}
+                        {!! $errors->first('Email', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                      </div>
+                    </div>
+                    <div class="form-group {{ $errors->has('Password') ? 'has-error has-feedback' : '' }}">
+                      <div class = "col-md-3">
+                      {!! Form::label('Password','Password', ['class' => 'control-label']) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        {!! Form::password('Password',null,['class'=>'form-control', 'placeholder'=>'Password','required']) !!}
+                        {!! $errors->first('Password', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                      </div>
+                    </div>
+                    <small style= "color : red;">* : Required/Harus Diisi.</small>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                       <button type="submit" class="btn btn-primary">Save changes</button>

@@ -75,8 +75,6 @@ Route::post('/ajaxNamaBrg', array('as' => 'ajaxNamaBrg', 'uses' => 'TransaksiKem
 
 Route::get('/transaksi/getBarang/{id}/{kode}', 'getDataController@ambilHargaBarang');
 
-//coba
-// Route::get('/transaksi/getSizeKembali/{id}/{kode}', 'getDataController@ambilUkuran');
 
 Route::get('/transaksi/getUkuran/{id}/{kode}', 'getDataController@ambilUkuran');
 

@@ -7,7 +7,13 @@
                          </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear"> 
-                        <span class="block m-t-xs"><strong class="font-bold">{{ Auth::user()->name }} </strong></span>
+                        <span class="block m-t-xs">
+                            @if(Auth::check())
+                            <strong class="font-bold">
+                                {{ Auth::user()->name }}
+                            </strong>
+                            @endif
+                        </span>
                         <span class="text-muted text-xs block">Logout <b class="caret"></b></span>
                         </span>
                     </a>

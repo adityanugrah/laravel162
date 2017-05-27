@@ -40,11 +40,14 @@ class KaryawanController extends Controller
     public function store(Request $request)
     {
         try {
+            
             $kar = new Karyawan;
             $kar->KodeKaryawan  = $request->KodeKaryawan;
             $kar->NamaKaryawan  = $request->NamaKaryawan;
             $kar->Status        = $request->Status;
             $kar->DepartemenKar = $request->DepartemenKar;
+            $kar->password      = $request->Password;
+            $kar->email         = $request->Email;
 
             $photo=$request->file('Picture');
             $destination=base_path().'/public/img/karyawan';
