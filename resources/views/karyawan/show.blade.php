@@ -57,6 +57,13 @@
                                                 <td><h4>{{ $kar->NamaKaryawan }}</h4></td>
                                             </tr>
                                             <tr>
+                                                <td><h4>Email</h4></td>
+                                                <td> </td>
+                                                <td><h4>:</h4></td>
+                                                <td> </td>
+                                                <td><h4>{{ $kar->email }}</h4></td>
+                                            </tr>
+                                            <tr>
                                                 <td><h4>Status</h4></td>
                                                 <td></td>
                                                 <td><h4>:</h4></td>

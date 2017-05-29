@@ -45,8 +45,12 @@
                       <span style="color: red">*</span>
                       </div>
                       <div class="col-md-7">
-                        {!! Form::number('HrgTools',null,['class'=>'form-control','placeholder'=>'Harga Tools', 'required']) !!}
+                        {!! Form::text('HrgTools',null,['id'=>'HrgTools','class'=>'form-control','rows'=>5, 'placeholder'=>'Harga Tools', 'required']) !!}
                         {!! $errors->first('HrgTools', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                        <script>
+                          $("#HrgTools").maskMoney({prefix:'', thousands:'.', decimal:',', precision:0});
+                          $( "#HrgTools" ).focus();
+                        </script>
                       </div>
                     </div>
                     <div class="form-group {{ $errors->has('StokTools') ? 'has-error has-feedback' : '' }}">

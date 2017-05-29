@@ -87,8 +87,12 @@
                       <span style="color: red">*</span>
                       </div>
                       <div class="col-md-7">
-                        {!! Form::number('HrgPreused',null,['class'=>'form-control','placeholder'=>'Harga Preused', 'required']) !!}
+                        {!! Form::text('HrgPreused',null,['id'=>'HrgPreused1','class'=>'form-control','rows'=>5, 'placeholder'=>'Harga Preused', 'required']) !!}
                         {!! $errors->first('HrgPreused', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                        <script>
+                          $("#HrgPreused1").maskMoney({prefix:'', thousands:'.', decimal:',', precision:0});
+                          $( "#HrgPreused1" ).focus();
+                        </script>
                       </div>
                     </div>
                     <div class="form-group {{ $errors->has('StokAkhir') ? 'has-error has-feedback' : '' }}">

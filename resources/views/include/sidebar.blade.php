@@ -10,7 +10,7 @@
                         <span class="block m-t-xs">
                             @if(Auth::check())
                             <strong class="font-bold">
-                                {{ Auth::user()->name }}
+                                {{ Auth::user()->NamaKaryawan }}
                             </strong>
                             @endif
                         </span>

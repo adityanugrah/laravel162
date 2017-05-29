@@ -42,11 +42,14 @@ class ImportKaryawanController extends Controller
                             'NamaKaryawan'  => $v['namakaryawan'],
                             'Status' 		=> $v['status'],
                             'DepartemenKar' => $v['departemenkar'],
-                            'Picture' 		=> $v['picture']];
+                            'Picture'       => $v['picture'],
+                            'email'         => $v['email'],
+                            'password' 		=> bcrypt($v['password'])
+                            ];
                         }
                     }
                 }
-                
+
                 if(!empty($insert)){
                     Karyawan::insert($insert);
                     return back()->with('pesan_sukses', 'Data berhasil di record.');

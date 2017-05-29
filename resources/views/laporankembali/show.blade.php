@@ -2,16 +2,16 @@
 @section ('konten')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Laporan Detail Kembali</h2>
+        <h2>Laporan Detail Pengembalian</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="/laporan">Laporan</a>
             </li>
             <li>
-                <a href="/laporan/laporankembali">Laporan Kembali</a>
+                <a href="/laporan/laporankembali">Laporan Pengembalian</a>
             </li>
             <li class="active">
-                <strong>Laporan Kembali</strong>
+                <strong>Laporan Pengembalian</strong>
             </li>
         </ol>
     </div>
@@ -24,7 +24,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Laporan Transaksi Detail Kembali</h5>
+                    <h5>Laporan Transaksi Detail Pengembalian</h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>

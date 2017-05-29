@@ -58,8 +58,12 @@
                       <span style="color: red">*</span>
                       </div>
                       <div class="col-md-7">
-                        {!! Form::number('HrgLoker',null,['class'=>'form-control','placeholder'=>'Harga Loker', 'required']) !!}
+                        {!! Form::text('HrgLoker',null,['id'=>'HrgLoker','class'=>'form-control','rows'=>5, 'placeholder'=>'Harga Loker', 'required']) !!}
                         {!! $errors->first('HrgLoker', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                        <script>
+                          $("#HrgLoker").maskMoney({prefix:'', thousands:'.', decimal:',', precision:0});
+                          $( "#HrgLoker" ).focus();
+                        </script>
                       </div>
                     </div>
                     <div class="form-group {{ $errors->has('StokLoker') ? 'has-error has-feedback' : '' }}">
