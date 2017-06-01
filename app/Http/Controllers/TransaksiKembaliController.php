@@ -30,32 +30,6 @@ class TransaksiKembaliController extends Controller
         return view('transaksikembali.index', compact('kembali','detail'));
     }
 
-    // public function cobaBarang($kode, Request $request){
-    //     $kodebar = $request->KodeKeluar;
-    //     $jenisbar = $request->JenisBrg;
-
-    //     if($kode=="Seragam") {
-    //         $data=DetailKeluar::where('KodeKeluar', "P001")
-    //                 ->where('JenisBrg', "Seragam")
-    //                 ->get();
-    //     } else if ($kode=="Preused") {
-    //         $data=DetailKeluar::where('KodeKeluar', "P004")
-    //                 ->where('JenisBrg', "Preused")
-    //                 ->get();
-    //     } else if ($kode=="Loker") {
-    //         $data=DetailKeluar::where('KodeKeluar', "P004")
-    //                 ->where('JenisBrg', "Loker")
-    //                 ->get();
-    //     } else if ($kode=="Tools") {
-    //         $data=DetailKeluar::where('KodeKeluar', "P004")
-    //                 ->where('JenisBrg', "Tools")
-    //                 ->get(); 
-    //     } else {
-    //         $data = "Tidak Ada Data";
-    //     }
-    //     return view('transaksikembali.coba',compact('data','kode'));
-    // }
-
     public function ajaxNamaBrg(Request $request){
         if ($request->ajax()) {
             $datas = $request->all();

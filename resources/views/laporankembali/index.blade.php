@@ -48,9 +48,9 @@
 			                    <tr>
 			                        <th>No</th>
 			                        <th>Kode Kembali</th>
-			                        <th>Tanggal Transaksi</th>
-			                        <th>Nama Supplier(s)</th>
-			                        <th>Grand Total</th>
+			                        <th>Tanggal Kembali</th>
+			                        <th>Nama Karyawan</th>
+			                        <th>Nama Departemen</th>
 			                        <th>Action</th>
 			                    </tr>
 		                    </thead>

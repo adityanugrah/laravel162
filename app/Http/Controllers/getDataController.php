@@ -75,32 +75,33 @@ class getDataController extends Controller
         return $size->Ukuran;
     }
 
-    public function ambilData1($id){
-        $data1 = TransaksiKeluar::find($id);
-        // $hasil = [];
-
-        // $result = {"Tgl_Kembali" => $data->Tgl_Kembali, "data2" => $data2};
-        // if(($data1) && ($data2)){
-
-
-        // return response()->json($result);
-
-        // } else {
-
-        // }
-        return $data1->Tgl_Pinjam;
+    public function ambilData1($id){        
+        if( $data1 = TransaksiKeluar::find($id)){
+            return $data1->Tgl_Pinjam;
+        } else {
+            return "null";
+        }
     }
     public function ambilData2($id){
-        $data2 = TransaksiKeluar::find($id);
-        return $data2->Tgl_Kembali;
+        if( $data2 = TransaksiKeluar::find($id)){
+           return $data2->Tgl_Kembali;
+        } else {
+            return "null";
+        }     
     }
     public function ambilData3($id){
-        $data3 = TransaksiKeluar::find($id);
-        return $data3->NamaKaryawan;
+        if( $data3 = TransaksiKeluar::find($id)){
+           return $data3->NamaKaryawan;
+        } else {
+            return "null";
+        } 
     }
     public function ambilData4($id){
-        $data4 = TransaksiKeluar::find($id);
-        return $data4->NamaDepartemen;
+        if( $data4 = TransaksiKeluar::find($id)){
+            return $data4->NamaDepartemen;
+        } else {
+            return "null";
+        } 
     }
     public function ambilData5($id,$data5){
         $data5 = DetailKeluar::where('NamaBrg', '=', $id)->first();

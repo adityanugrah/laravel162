@@ -67,7 +67,7 @@
                                     <td>{{ $kem->KodeKembali }}</td>
                                     @foreach($kembali1 as $kem1)                          
                                         <td>{{ $kem1->Tgl_Pinjam }}</td> 
-                                        <td>{{ $kem1->Tgl_Pengembalian }}</td> 
+                                        <td>{{ $kem1->Tgl_Kembali }}</td> 
                                     @endforeach                                   
                                     <td>{{ $kem->JenisBarang }}</td>                                  
                                     <td>{{ $kem->NamaBarang }}</td>                                  

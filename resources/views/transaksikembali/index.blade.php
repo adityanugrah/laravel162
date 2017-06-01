@@ -13,14 +13,14 @@
 ?>
 <div class="wrapper wrapper-content animated fadeInRight ecommerce">
     <div class="ibox-content m-b-sm border-bottom">
-     {!! Form::open() !!}
+    {!! Form::open() !!}
         <div class="row">
             <input type="hidden" name="aksi" value="0"/>
             <div class="col-sm-2">
                 <div class="form-group {{ $errors->has('KodeTransaksi') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('KodeTransaksi', 'Kode Transaksi') !!}
                     <span style="color: red">*</span>
-                    <input type="text" placeholder="Kode Transaksi" class="form-control" name="transaksikembali" id="transaksikembali" value="<?php  if(isset($_SESSION['kembali'])&& $_SESSION['ok']>=0){ echo $_SESSION['kembali'][$_SESSION['ok']][0]; } ?>">
+                    <input type="text" placeholder="Kode Transaksi" class="form-control" name="transaksikembali" id="transaksikembali" value="<?php  if(isset($_SESSION['kembali'])&& $_SESSION['ok']>=0){ echo $_SESSION['kembali'][$_SESSION['ok']][0]; } ?>"> 
                 </div> 
             </div>
             <div class="col-sm-2">
@@ -221,8 +221,12 @@
         var select, length='';
         var x = document.getElementById (a);
         
-        $.get("/transaksi/getData1/"+x.value,function(data1){
-            document.getElementById("Tgl_Pinjam").value = data1;
+        $.get("/transaksi/getData1/"+x.value,function(data1){ 
+            if(data1=="null"){
+                alert("Data Tidak ada");
+            } else {
+                document.getElementById("Tgl_Pinjam").value = data1;
+            }            
         });
         $.get("/transaksi/getData2/"+x.value,function(data2){
             document.getElementById("Tgl_Kembali").value = data2;
