@@ -20,15 +20,16 @@ class Karyawan extends Authenticatable
 
     public $timestamps = false;
 
-    protected $hidden = 'password';
+    //protected $hidden = 'password';
 
-    public $fillable = [
-    'email',
+    public $fillable = [    
 	'NamaKaryawan',
     'Status',
     'DepartemenKar',
     'Picture',
-    'password'
+    'email',
+    'password',
+    'remember_token'
 	];
 
     public function setPasswordAttribute($password)

@@ -12,10 +12,10 @@ class ImportSupplierController extends Controller
         return view('importExport');
     }
 
-    public function downloadExcel(Request $request, $type)
+    public function downloadSupplier(Request $request, $type)
     {
         $data = Supplier::get()->toArray();
-        return Excel::create('itsolutionstuff_example', function($excel) use ($data) {
+        return Excel::create('Laporan Supplier', function($excel) use ($data) {
             $excel->sheet('mySheet', function($sheet) use ($data)
             {
                 $sheet->fromArray($data);

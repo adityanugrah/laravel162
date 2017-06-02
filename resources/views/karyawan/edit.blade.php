@@ -60,6 +60,16 @@
                         </select>
                       </div>
                     </div>
+                    <div class="form-group {{ $errors->has('email') ? 'has-error has-feedback' : '' }}">
+                      <div class = "col-md-3">
+                      {!! Form::label('Email','Email', ['class' => 'control-label']) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        {!! Form::email('email',null,['class'=>'form-control']) !!}
+                        {!! $errors->first('email', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                      </div>
+                    </div>
                     <div class="form-group">
                       <div class = "col-md-3">
                       {!! Form::label('Picture', 'Picture', ['class' => 'control-label']) !!}

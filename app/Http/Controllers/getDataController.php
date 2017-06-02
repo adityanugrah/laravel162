@@ -77,7 +77,11 @@ class getDataController extends Controller
 
     public function ambilData1($id){        
         if( $data1 = TransaksiKeluar::find($id)){
-            return $data1->Tgl_Pinjam;
+             if( $data11 = DetailKeluar::find($id)){
+                return $data1->Tgl_Pinjam;
+            } else {
+                return "null";
+            }
         } else {
             return "null";
         }

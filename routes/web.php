@@ -22,8 +22,18 @@ Route::get('send','mailController@send');
 
 Route::get('/home', 'HomeController@index');
 
-//download template
-Route::get('/download/{file}', 'DownloadController@download');
+//download excel
+Route::get('downloadSeragam/{type}', 'ImportSeragamController@downloadSeragam');
+Route::get('downloadPreused/{type}', 'ImportPreusedController@downloadPreused');
+Route::get('downloadLoker/{type}', 'ImportLokerController@downloadLoker');
+Route::get('downloadTools/{type}', 'ImportToolsController@downloadTools');
+Route::get('downloadSupplier/{type}', 'ImportSupplierController@downloadSupplier');
+
+Route::get('downloadKaryawan/{type}', 'ImportKaryawanController@downloadKaryawan');
+Route::get('downloadDepartemen/{type}', 'ImportDepartemenController@downloadDepartemen');
+
+//download pdf
+Route::get('pdf','ImportDepartemenController@pdfDepartemen');
 
 Route::resource('databarang/seragam', 'SeragamController');
 Route::resource('databarang/preused', 'PreusedController');

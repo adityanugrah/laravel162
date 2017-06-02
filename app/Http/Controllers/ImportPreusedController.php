@@ -12,10 +12,10 @@ class ImportPreusedController extends Controller
         return view('importExport');
     }
 
-    public function downloadExcel(Request $request, $type)
+    public function downloadPreused(Request $request, $type)
     {
         $data = Preused::get()->toArray();
-        return Excel::create('itsolutionstuff_example', function($excel) use ($data) {
+        return Excel::create('Laporan Preused', function($excel) use ($data) {
             $excel->sheet('mySheet', function($sheet) use ($data)
             {
                 $sheet->fromArray($data);

@@ -133,7 +133,10 @@ class TransaksiKembaliController extends Controller
                         $detailkembali->SizeBarang  = $_SESSION['kembali'][$i][8];
                         $detailkembali->JmlBarang   = $_SESSION['kembali'][$i][9];
                         $detailkembali->save();
-                        
+
+                        DetailKeluar::where('kodeKeluar',$_SESSION['kembali'][$i][0] )
+                                    ->where('NamaBrg', $_SESSION['kembali'][$i][7])->delete();
+                                    
                         if($_SESSION['kembali'][$i][6]=="Seragam") {
                             $seragam = Seragam::where('NamaSeragam',$_SESSION['kembali'][$i][7])->first();
                             $seragam->StokKeluar = $seragam->StokKeluar+$_SESSION['kembali'][$i][9];

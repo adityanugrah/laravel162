@@ -12,10 +12,10 @@ class ImportToolsController extends Controller
         return view('importExport');
     }
 
-    public function downloadExcel(Request $request, $type)
+    public function downloadTools(Request $request, $type)
     {
         $data = Tools::get()->toArray();
-        return Excel::create('itsolutionstuff_example', function($excel) use ($data) {
+        return Excel::create('Laporan Tools', function($excel) use ($data) {
             $excel->sheet('mySheet', function($sheet) use ($data)
             {
                 $sheet->fromArray($data);

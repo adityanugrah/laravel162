@@ -49,7 +49,7 @@
                 <div class="form-group {{ $errors->has('Tgl_Pengembalian') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('Tgl_Pengembalian', 'Tanggal Pengembalian') !!}
                     <span style="color: red">*</span>
-                    <input type="date" required="true" class="form-control" name="Tgl_Pengembalian" id="Tgl_Pengembalian" value="<?php  if(isset($_SESSION['kembali'])&& $_SESSION['ok']>=0){ echo $_SESSION['kembali'][$_SESSION['ok']][3]; } ?>">
+                    <input type="datetime-local" required="true" class="form-control" name="Tgl_Pengembalian" id="Tgl_Pengembalian" value="<?php  if(isset($_SESSION['kembali'])&& $_SESSION['ok']>=0){ echo $_SESSION['kembali'][$_SESSION['ok']][3]; } ?>">
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Departemen;
 use Illuminate\Http\Request;
 use Excel;
+use PDF;
 
 class ImportDepartemenController extends Controller
 {
@@ -13,10 +14,22 @@ class ImportDepartemenController extends Controller
         return view('importExport');
     }
 
-    public function downloadExcel(Request $request, $type)
+    public function pdfDepartemen () {
+        set_time_limit(0);
+        ini_set("memory_limit",-1);
+        ini_set('max_execution_time', 0);
+        
+        $departemen = Departemen::all();
+        //dd($departemen);
+        // $pdf = PDF::loadView('departemen.tes');
+        $pdf = PDF::loadView('departemen.tes', ['dep'=>$departemen]);
+        return $pdf->download('departemen.pdf');
+    }
+
+    public function downloadDepartemen(Request $request, $type)
     {
-        $data = Loker::get()->toArray();
-        return Excel::create('itsolutionstuff_example', function($excel) use ($data) {
+        $data = Departemen::get()->toArray();
+        return Excel::create('Laporan Departemen', function($excel) use ($data) {
             $excel->sheet('mySheet', function($sheet) use ($data)
             {
                 $sheet->fromArray($data);

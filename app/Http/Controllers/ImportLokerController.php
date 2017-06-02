@@ -12,10 +12,10 @@ class ImportLokerController extends Controller
         return view('importExport');
     }
 
-    public function downloadExcel(Request $request, $type)
+    public function downloadLoker(Request $request, $type)
     {
         $data = Loker::get()->toArray();
-        return Excel::create('itsolutionstuff_example', function($excel) use ($data) {
+        return Excel::create('Laporan Loker', function($excel) use ($data) {
             $excel->sheet('mySheet', function($sheet) use ($data)
             {
                 $sheet->fromArray($data);

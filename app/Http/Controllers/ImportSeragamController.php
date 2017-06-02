@@ -12,10 +12,10 @@ class ImportSeragamController extends Controller
         return view('importExport');
     }
 
-    public function downloadExcel(Request $request, $type)
+    public function downloadSeragam(Request $request, $type)
     {
         $data = Seragam::get()->toArray();
-        return Excel::create('itsolutionstuff_example', function($excel) use ($data) {
+        return Excel::create('Laporan Seragam', function($excel) use ($data) {
             $excel->sheet('mySheet', function($sheet) use ($data)
             {
                 $sheet->fromArray($data);

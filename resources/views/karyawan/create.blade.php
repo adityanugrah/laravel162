@@ -83,8 +83,8 @@
                       {!! Form::label('Password','Password', ['class' => 'control-label']) !!}
                       <span style="color: red">*</span>
                       </div>
-                      <div class="col-md-7">
-                        {!! Form::password('Password',null,['class'=>'form-control', 'placeholder'=>'Password','required']) !!}
+                      <div class="col-md-7">                        
+                        <input type="Password" class="form-control" name="Password" required="true" placeholder="Password">
                         {!! $errors->first('Password', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                       </div>
                     </div>

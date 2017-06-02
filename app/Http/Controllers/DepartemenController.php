@@ -14,7 +14,7 @@ class DepartemenController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {    
         $dep = Departemen::orderBy('KodeDepartemen')->get(); 
         return view('departemen.index', compact('dep'));
     }
