@@ -8,22 +8,34 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Model
 {
     //use Notifiable;
+    //use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
+    use LaratrustUserTrait; // add this trait to your user model
+
+    protected $table = 'karyawan';
+
+    protected $primaryKey = 'id';
+
+    public $incrementing = false;
+
+    public $timestamps = false;
+
+    //protected $hidden = 'password';
+
+    public $fillable = [
+        'KodeKaryawan',
+        'NamaKaryawan',
+        'Status',
+        'DepartemenKar',
+        'Picture',
+        'email',
+        'password',
+        'remember_token'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
 }
