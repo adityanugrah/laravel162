@@ -49,7 +49,6 @@
 			                        <th>No</th>
 			                        <th>Kode Masuk</th>
 			                        <th>Tanggal Transaksi</th>
-			                        <th>Nama Supplier(s)</th>
 			                        <th>Grand Total</th>
 			                        <th>Action</th>
 			                    </tr>
@@ -61,11 +60,8 @@
 		                    		<td>
 		                    		{{ $i++ }}
 		                    		</td>
-			                        <td>
-			                        	<a href="/laporan/laporanmasuk/{{ $masuk->KodeMasuk }}">{{ $masuk->KodeMasuk }}</a>
-			                        </td>
+			                        <td>{{ $masuk->KodeMasuk }}</td>
 			                        <td>{{ $masuk->Tgl_Masuk }}</td>
-			                        <td>{{ $masuk->NamaSupplier }}</td>
 			                        <td>{{ $masuk->GrandTotal }}</td>
 			                        <td class="center">
 				                        <form action="/laporan/laporanmasuk/{{ $masuk->KodeMasuk }}" {{ $masuk->KodeMasuk }} ?>
@@ -78,6 +74,7 @@
 			                    @endforeach
 		                    </tbody>
 						</table>
+                    	<a href="{{ url('pdfMasuk/') }}" class="btn btn-primary">Download Laporan PDF</a>
 					</div>
 				</div>
 			</div>

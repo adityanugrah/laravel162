@@ -6,15 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laratrust\Traits\LaratrustUserTrait;
 
 
 class Karyawan extends Authenticatable
 {
-    use Notifiable;
+    //use Notifiable;
+
+    use LaratrustUserTrait; // add this trait to your user model
 
     protected $table = 'karyawan';
 
-    protected $primaryKey = 'KodeKaryawan';
+    protected $primaryKey = 'id';
 
     public $incrementing = false;
 
@@ -22,7 +25,8 @@ class Karyawan extends Authenticatable
 
     //protected $hidden = 'password';
 
-    public $fillable = [    
+    public $fillable = [
+    'KodeKaryawan',    
 	'NamaKaryawan',
     'Status',
     'DepartemenKar',
@@ -37,4 +41,7 @@ class Karyawan extends Authenticatable
         $this->attributes['password'] = bcrypt($password);
     }
 
+public function roles(){
+    return $this->belongsToMany('App\Role');
+}
 }

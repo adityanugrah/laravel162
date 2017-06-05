@@ -32,13 +32,13 @@ class getDataController extends Controller
             $kode = Seragam::where('NamaSeragam', '=', $id)->first();
             return $kode->HrgSeragam;
         } else if ($kode=="Preused") {
-            $kode = Seragam::where('NamaPreused', '=', $id)->first();
+            $kode = Preused::where('NamaPreused', '=', $id)->first();
             return $kode->HrgPreused; 
         } else if ($kode=="Loker") {
-            $kode = Seragam::where('NamaLoker', '=', $id)->first();
+            $kode = Loker::where('NamaLoker', '=', $id)->first();
             return $kode->HrgLoker;
         } else if ($kode=="Tools") {
-            $kode = Seragam::where('NamaTools', '=', $id)->first();
+            $kode = Tools::where('NamaTools', '=', $id)->first();
             return $kode->HrgTools;
         } else {
             $kode = "Tidak Ada Data";
@@ -88,24 +88,36 @@ class getDataController extends Controller
     }
     public function ambilData2($id){
         if( $data2 = TransaksiKeluar::find($id)){
-           return $data2->Tgl_Kembali;
+             if( $data22 = DetailKeluar::find($id)){
+                return $data2->Tgl_Kembali;
+            } else {
+                return "null";
+            }
         } else {
             return "null";
         }     
     }
     public function ambilData3($id){
         if( $data3 = TransaksiKeluar::find($id)){
-           return $data3->NamaKaryawan;
+             if( $data33 = DetailKeluar::find($id)){
+                return $data3->NamaKaryawan;
+            } else {
+                return "null";
+            }
         } else {
             return "null";
-        } 
+        }
     }
     public function ambilData4($id){
         if( $data4 = TransaksiKeluar::find($id)){
-            return $data4->NamaDepartemen;
+             if( $data44 = DetailKeluar::find($id)){
+                return $data4->NamaDepartemen;
+            } else {
+                return "null";
+            }
         } else {
             return "null";
-        } 
+        }
     }
     public function ambilData5($id,$data5){
         $data5 = DetailKeluar::where('NamaBrg', '=', $id)->first();

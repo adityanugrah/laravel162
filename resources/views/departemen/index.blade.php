@@ -66,7 +66,8 @@
 		                    @endforeach
 	                    </tbody>
                     </table>
-                    <a href="{{ url('downloadDepartemen/xlsx') }}" class="btn btn-primary">Download Laporan </a>
+                    <a href="{{ url('downloadDepartemen/xlsx') }}" class="btn btn-primary">Download Laporan Excel</a>
+                     <a href="{{ url('pdfDepartemen/') }}" class="btn btn-primary">Download Laporan PDF</a>
                 </div>
 	        </div>
         </div>

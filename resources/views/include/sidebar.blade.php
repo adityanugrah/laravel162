@@ -49,11 +49,14 @@
                     <li class="{{ Request::is('databarang/tools') || Request::is('databarang/tools/*') ? 'active' : '' }}"><a href="{{ url('databarang/tools') }}">Tools</a></li>
                 </ul>
             </li>
+            dd{{Auth::user()->roles}}
+            @if (Auth::user()->can('add-user'))
             <li class="{{ Request::is('supplier') || Request::is('supplier/*') ? 'active' : '' }}">
                 <a href="{{ url('/supplier') }}">
                 <i class="fa fa-shopping-cart"></i> 
                 <span class="nav-label">Data Supplier</span></a>
             </li>
+            @endif
             <li class="{{ Request::is('departemen') || Request::is('departemen/*') ? 'active' : '' }}">
                 <a href="{{ url('/departemen') }}">
                 <i class="fa fa-building"></i> 

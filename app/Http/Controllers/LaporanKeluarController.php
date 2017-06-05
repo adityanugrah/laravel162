@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\TransaksiKeluar;
 use App\DetailKeluar;
+use Excel;
+use PDF;
 
 class LaporanKeluarController extends Controller
 {
@@ -13,6 +15,17 @@ class LaporanKeluarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function pdfKeluar () {
+        set_time_limit(0);
+        ini_set("memory_limit",-1);
+        ini_set('max_execution_time', 0);
+        
+        $TransaksiKeluar = TransaksiKeluar::all();
+        $detail = DetailKeluar::all();
+        $pdf = PDF::loadView('laporankeluar.cetak', ['keluar'=>$TransaksiKeluar, 'keluard'=>$detail])->setPaper('a4', 'landscape');
+        return $pdf->download('Laporan Transaksi Keluar.pdf');
+    }
+
     public function index()
     {
         $keluar = TransaksiKeluar::orderBy('KodeKeluar')->get();

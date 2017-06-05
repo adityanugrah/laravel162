@@ -20,12 +20,12 @@ class TransaksiMasukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-
         $supplierz = Supplier::orderBy('KodeSupplier')->get(); 
         $seragamz = Seragam::orderBy('KodeSeragam')->get(); 
-        $masukz = TransaksiMasuk::orderBy('KodeMasuk')->get(); 
+        $masukz = TransaksiMasuk::orderBy('KodeMasuk')->get();
 
         return view('transaksimasuk.index', compact('masukz','supplierz','seragamz'));
     }
@@ -95,10 +95,24 @@ class TransaksiMasukController extends Controller
                     $request->NamaBrg,
                     $request->JumlahBrg,
                     str_replace(".", "",$request->HargaBrg));
-
-                    $barang = Seragam::where('NamaSeragam', $request->NamaBrg)->first();
-                    $barang->HrgSeragam = $request->HargaBrg;
-                    $barang -> save();                
+                    $i=0;
+                    if ($_SESSION['data'][$i][3]=="Seragam") {
+                        $barang1 = Seragam::where('NamaSeragam', $request->NamaBrg)->first();
+                        $barang1->HrgSeragam = $request->HargaBrg;
+                        $barang1 -> save(); 
+                    } else if ($_SESSION['data'][$i][3]=="Preused") {
+                        $barang2 = Preused::where('NamaPreused', $request->NamaBrg)->first();
+                        $barang2->HrgPreused = $request->HargaBrg;
+                        $barang2 -> save();
+                    } else if ($_SESSION['data'][$i][3]=="Loker") {
+                        $barang3 = Loker::where('NamaLoker', $request->NamaBrg)->first();
+                        $barang3->HrgLoker = $request->HargaBrg;
+                        $barang3 -> save();
+                    } else if ($_SESSION['data'][$i][3]=="Loker") {
+                        $barang4 = Loker::where('NamaLoker', $request->NamaBrg)->first();
+                        $barang4->HrgTools = $request->HargaBrg;
+                        $barang4 -> save();
+                    }          
             }
             return redirect('transaksi/transaksimasuk');
         } else if($request->aksi==2) {
@@ -122,11 +136,11 @@ class TransaksiMasukController extends Controller
                     $masuk = new TransaksiMasuk;
                     $masuk->KodeMasuk       = $_SESSION['data'][$i][0];
                     $masuk->Tgl_Masuk       = $_SESSION['data'][$i][1];
-                    $masuk->NamaSupplier    = $_SESSION['data'][$i][2];
                     $masuk->GrandTotal      = $grand_total;
 
                     $detail = new DetailMasuk;  
                     $detail->KodeMasuk       = $_SESSION['data'][$i][0];
+                    $detail->NamaSupplier    = $_SESSION['data'][$i][2];
                     $detail->JenisBrg        = $_SESSION['data'][$i][3];  
                     $detail->NamaBrg         = $_SESSION['data'][$i][4];
                     $detail->JumlahBrg       = $_SESSION['data'][$i][5];   

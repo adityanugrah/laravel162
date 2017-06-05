@@ -33,8 +33,20 @@ Route::get('downloadKaryawan/{type}', 'ImportKaryawanController@downloadKaryawan
 Route::get('downloadDepartemen/{type}', 'ImportDepartemenController@downloadDepartemen');
 
 //download pdf
-Route::get('pdf','ImportDepartemenController@pdfDepartemen');
+Route::get('pdfSeragam','ImportSeragamController@pdfSeragam');
+Route::get('pdfPreused','ImportPreusedController@pdfPreused');
+Route::get('pdfLoker','ImportLokerController@pdfLoker');
+Route::get('pdfTools','ImportToolsController@pdfTools');
+Route::get('pdfSupplier','ImportSupplierController@pdfSupplier');
 
+Route::get('pdfKaryawan','ImportKaryawanController@pdfKaryawan');
+Route::get('pdfDepartemen','ImportDepartemenController@pdfDepartemen');
+
+Route::get('pdfMasuk','LaporanMasukController@pdfMasuk');
+Route::get('pdfKeluar','LaporanKeluarController@pdfKeluar');
+Route::get('pdfKembali','LaporanKembaliController@pdfKembali');
+
+//halo
 Route::resource('databarang/seragam', 'SeragamController');
 Route::resource('databarang/preused', 'PreusedController');
 Route::resource('databarang/loker', 'LokerController');
@@ -85,7 +97,6 @@ Route::post('/ajaxNamaBrg', array('as' => 'ajaxNamaBrg', 'uses' => 'TransaksiKem
 
 Route::get('/transaksi/getBarang/{id}/{kode}', 'getDataController@ambilHargaBarang');
 
-
 Route::get('/transaksi/getUkuran/{id}/{kode}', 'getDataController@ambilUkuran');
 
 Route::get('/transaksi/getData1/{id}', 'getDataController@ambilData1');
@@ -101,7 +112,7 @@ Route::get('/transaksi/getKodeMasuk', 'KodeMasukController@index');
 //TransaksiKeluar
 Route::get('/transaksi/getDep/{id}', 'getDataController@ambilDepartemen');
 Route::get('/transaksi/getSize/{id}', 'getDataController@ambilSize');
-Route::get('transaksi/namabarang/{id}', 'TransaksiKeluarController@namabarang');
+Route::get('/transaksi/namabarang/{id}', 'TransaksiKeluarController@namabarang');
 Route::get('/transaksi/getKodeKeluar', 'KodeKeluarController@index');
 
 });

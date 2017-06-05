@@ -4,12 +4,23 @@ namespace App\Http\Controllers;
 use App\Loker;
 use Illuminate\Http\Request;
 use Excel;
+use PDF;
 
 class ImportLokerController extends Controller
 {
     public function importExport()
     {
         return view('importExport');
+    }
+
+    public function pdfLoker () {
+        set_time_limit(0);
+        ini_set("memory_limit",-1);
+        ini_set('max_execution_time', 0);
+        
+        $loker = Loker::all();
+        $pdf = PDF::loadView('loker.cetak', ['lokers'=>$loker])->setPaper('a4', 'landscape');
+        return $pdf->download('Loker.pdf');
     }
 
     public function downloadLoker(Request $request, $type)

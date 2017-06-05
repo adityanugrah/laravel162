@@ -20,7 +20,7 @@
                 </p>
 
                 <p>
-                    <small>Dengan terus menerus berjuan untuk perbaikan dan kemajuan, Guntner - Group mampu menjamin pelanggan dan keberhasilan mitra bisnis yang berkelanjutan abadi.</small>
+                    Dengan terus menerus berjuan untuk perbaikan dan kemajuan, Guntner - Group mampu menjamin pelanggan dan keberhasilan mitra bisnis yang berkelanjutan abadi.
                 </p>
 
             </div>

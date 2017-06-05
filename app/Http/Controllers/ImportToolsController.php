@@ -4,12 +4,23 @@ namespace App\Http\Controllers;
 use App\Tools;
 use Illuminate\Http\Request;
 use Excel;
+use PDF;
 
 class ImportToolsController extends Controller
 {
     public function importExport()
     {
         return view('importExport');
+    }
+
+    public function pdfTools () {
+        set_time_limit(0);
+        ini_set("memory_limit",-1);
+        ini_set('max_execution_time', 0);
+        
+        $tools = Tools::all();
+        $pdf = PDF::loadView('tools.cetak', ['tool'=>$tools])->setPaper('a4', 'landscape');
+        return $pdf->download('Tools.pdf');
     }
 
     public function downloadTools(Request $request, $type)

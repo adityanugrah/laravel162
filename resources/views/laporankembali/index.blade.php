@@ -78,6 +78,7 @@
 			                    @endforeach
 		                    </tbody>
 						</table>
+						<a href="{{ url('pdfKembali/') }}" class="btn btn-primary">Download Laporan PDF</a>
 					</div>
 				</div>
 			</div>

@@ -136,20 +136,20 @@ class TransaksiKembaliController extends Controller
 
                         DetailKeluar::where('kodeKeluar',$_SESSION['kembali'][$i][0] )
                                     ->where('NamaBrg', $_SESSION['kembali'][$i][7])->delete();
-                                    
-                        if($_SESSION['kembali'][$i][6]=="Seragam") {
-                            $seragam = Seragam::where('NamaSeragam',$_SESSION['kembali'][$i][7])->first();
-                            $seragam->StokKeluar = $seragam->StokKeluar+$_SESSION['kembali'][$i][9];
-                            $seragam->StokAkhir  = $seragam->StokMasuk+$seragam->StokSeragam-$seragam->StokKeluar;
-                            $seragam->save();
-                            if ($seragam->StokAkhir <= 5) { 
-                                $_SESSION['NamaBrg'] = $detailkeluar->NamaBrg;
-                                // Mail::send(['text'=>'mail'],['name', 'Sarthak'], function($message) {
-                                //     $message->to('burgerkillselalu@gmail.com', 'Restok') -> subject('Penting');
-                                //     $message->from('burgerkillselalu@gmail.com', 'Bitfumes');
-                                // });
-                            }
-                        }
+                                            
+                        // if($_SESSION['kembali'][$i][6]=="Seragam") {
+                        //     $seragam = Seragam::where('NamaSeragam',$_SESSION['kembali'][$i][7])->first();
+                        //     $seragam->StokKeluar = $seragam->StokKeluar+$_SESSION['kembali'][$i][9];
+                        //     $seragam->StokAkhir  = $seragam->StokMasuk+$seragam->StokSeragam-$seragam->StokKeluar;
+                        //     $seragam->save();
+                        //     if ($seragam->StokAkhir <= 5) { 
+                        //         $_SESSION['NamaBrg'] = $detailkeluar->NamaBrg;
+                        //         Mail::send(['text'=>'mail'],['name', 'Sarthak'], function($message) {
+                        //             $message->to('burgerkillselalu@gmail.com', 'Restok') -> subject('Penting');
+                        //             $message->from('burgerkillselalu@gmail.com', 'Bitfumes');
+                        //         });
+                        //     }
+                        // }
                         // } else if ($_SESSION['keluar'][$i][5]=="Preused") {
                         //     $Preused = Preused::where('NamaPreused',$_SESSION['keluar'][$i][6])->first();
                         //     $Preused->StokMasuk = $Preused->StokMasuk+$_SESSION['keluar'][$i][7];

@@ -223,19 +223,32 @@
         
         $.get("/transaksi/getData1/"+x.value,function(data1){ 
             if(data1=="null"){
-                alert("Data Tidak ada");
+                alert("Barang Sudah Dikembalikan");
+                $("#Tgl_Pinjam").val(""); 
             } else {
                 document.getElementById("Tgl_Pinjam").value = data1;
-            }            
+            }           
         });
         $.get("/transaksi/getData2/"+x.value,function(data2){
-            document.getElementById("Tgl_Kembali").value = data2;
+            if(data2=="null"){
+                $("#Tgl_Kembali").val(""); 
+            } else {
+                document.getElementById("Tgl_Kembali").value = data2;
+            }            
         });
         $.get("/transaksi/getData3/"+x.value,function(data3){
-            document.getElementById("NamaKaryawan").value = data3;
+            if(data3=="null"){
+                $("#NamaKaryawan").val(""); 
+            } else {
+                document.getElementById("NamaKaryawan").value = data3;
+            }           
         });
         $.get("/transaksi/getData4/"+x.value,function(data4){
-            document.getElementById("NamaDepartemen").value = data4;
+            if(data4=="null"){
+                $("#NamaDepartemen").val(""); 
+            } else {
+                document.getElementById("NamaDepartemen").value = data4;
+            }            
         });
 
         $("#NamaBarang").empty();

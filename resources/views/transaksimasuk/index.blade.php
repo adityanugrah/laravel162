@@ -28,21 +28,19 @@
                 <div class="form-group {{ $errors->has('KodeMasuk') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('KodeMasuk', 'Kode Masuk') !!}
                     <span style="color: red">*</span>
-                    {!! Form::text('KodeMasuk',null,['class'=>'form-control', 'placeholder'=>'Kode Masuk', 'readonly','required']) !!}
-                    {!! $errors->first('KodeMasuk', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                    <input type="text" readonly="true" class="form-control" name="KodeMasuk" id="KodeMasuk" value="<?php  if(isset($_SESSION['data'])&& $_SESSION['isi']>=0){ echo $_SESSION['data'][$_SESSION['isi']][0]; } ?>">
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('Tgl_Masuk') ? 'has-error has-feedback' : '' }}">
                     {!! Form::label('Tgl_Masuk', 'Tanggal Masuk') !!}
                     <span style="color: red">*</span>
-                    {!! Form::date('Tgl_Masuk',null,['class'=>'form-control', 'placeholder'=>'Tgl_Masuk', 'required']) !!}
-                    {!! $errors->first('Tgl_Masuk', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                    <input type="date" class="form-control" name="Tgl_Masuk" id="Tgl_Masuk" value="<?php  if(isset($_SESSION['data'])&& $_SESSION['isi']>=0){ echo $_SESSION['data'][$_SESSION['isi']][1]; } ?>">
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('NamaSupplier') ? 'has-error has-feedback' : '' }}">
-                <label class="control-label" for="status">Nama Suppleir</label>
+                <label class="control-label" for="status">Nama Supplier</label>
                 <span style="color: red">*</span>
                     <select required name="NamaSupplier" id="NamaSupplier" class="form-control">
                         <option value="">Pilih Nama Supplier</option>

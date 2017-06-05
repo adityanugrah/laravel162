@@ -20,10 +20,8 @@ class ImportDepartemenController extends Controller
         ini_set('max_execution_time', 0);
         
         $departemen = Departemen::all();
-        //dd($departemen);
-        // $pdf = PDF::loadView('departemen.tes');
-        $pdf = PDF::loadView('departemen.tes', ['dep'=>$departemen]);
-        return $pdf->download('departemen.pdf');
+        $pdf = PDF::loadView('departemen.cetak', ['dep'=>$departemen]);
+        return $pdf->download('Departemen.pdf');
     }
 
     public function downloadDepartemen(Request $request, $type)

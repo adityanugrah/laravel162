@@ -4,12 +4,23 @@ namespace App\Http\Controllers;
 use App\Seragam;
 use Illuminate\Http\Request;
 use Excel;
+use PDF;
 
 class ImportSeragamController extends Controller
 {
     public function importExport()
     {
         return view('importExport');
+    }
+
+    public function pdfSeragam () {
+        set_time_limit(0);
+        ini_set("memory_limit",-1);
+        ini_set('max_execution_time', 0);
+        
+        $seragam = Seragam::all();
+        $pdf = PDF::loadView('seragam.cetak', ['seragams'=>$seragam])->setPaper('a4', 'landscape');
+        return $pdf->stream('Seragam Baru.pdf');
     }
 
     public function downloadSeragam(Request $request, $type)
