@@ -41,6 +41,7 @@
                     <i class="fa fa-th-large"></i>
                     <span class="nav-label">Dashboard</span></a>
             </li>
+            @permission('add-user')
             <li class="{{ Request::is('databarang') || Request::is('databarang/*') ? 'active' : '' }}">
                 <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Data Barang</span><span
                             class="fa arrow"></span></a>
@@ -54,8 +55,7 @@
                     <li class="{{ Request::is('databarang/tools') || Request::is('databarang/tools/*') ? 'active' : '' }}">
                         <a href="{{ url('databarang/tools') }}">Tools</a></li>
                 </ul>
-            </li>
-            @permission('add-user')
+            </li>            
             <li class="{{ Request::is('supplier') || Request::is('supplier/*') ? 'active' : '' }}">
                 <a href="{{ url('/supplier') }}">
                     <i class="fa fa-shopping-cart"></i>
@@ -70,8 +70,7 @@
                 <a href="{{ url('/karyawan') }}">
                     <i class="fa fa-users"></i>
                     <span class="nav-label">Data Karyawan</span></a>
-            </li>
-            @endpermission
+            </li>            
             <li class="{{ Request::is('transaksi') || Request::is('transaksi/*') ? 'active' : '' }}">
                 <a href="#"><i class="fa fa-exchange"></i> <span class="nav-label">Transaksi</span><span
                             class="fa arrow"></span></a>
@@ -84,6 +83,7 @@
                         <a href="{{ url('transaksi/transaksikembali') }}">Pengembalian Barang</a></li>
                 </ul>
             </li>
+            @endpermission
             <li class="{{ Request::is('laporan') || Request::is('laporan/*') ? 'active' : '' }}">
                 <a href="#"><i class="fa fa-file-pdf-o"></i> <span class="nav-label">Laporan</span><span
                             class="fa arrow"></span></a>
