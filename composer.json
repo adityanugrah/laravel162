@@ -11,7 +11,7 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.3.0",
         "maatwebsite/excel": "^2.1",
-        "santigarcor/laratrust": "3.2.*"
+        "santigarcor/laratrust": "3.0.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

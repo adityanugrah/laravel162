@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Karyawan;
 use App\Departemen;
+use App\Role;
 use Validator;
+use Auth;
 
 class KaryawanController extends Controller
 {
@@ -14,11 +16,22 @@ class KaryawanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function _construct(){
+        $this->middleware('auth');
+    }
+
     public function index()
     {
+    /* if(Auth::user()->can('')){
+
+       }
+    */
+        // $data = $this->data['roles'] = Role::all();
+        $data = Role::all();
         $deps = Departemen::orderBy('KodeDepartemen')->get();
         $kar  = Karyawan::orderBy('KodeKaryawan')->get(); 
-        return view('karyawan.index', compact('kar','deps'));
+        return view('karyawan.index', compact('kar','deps','data'));
     }
 
     /**
@@ -40,7 +53,7 @@ class KaryawanController extends Controller
     public function store(Request $request)
     {
         try {
-            
+
             $kar = new Karyawan;
             $kar->KodeKaryawan  = $request->KodeKaryawan;
             $kar->NamaKaryawan  = $request->NamaKaryawan;
@@ -48,6 +61,7 @@ class KaryawanController extends Controller
             $kar->DepartemenKar = $request->DepartemenKar;
             $kar->password      = $request->Password;
             $kar->email         = $request->Email;
+            $kar->attachRole($request->HakAkses);
 
             $photo=$request->file('Picture');
             $destination=base_path().'/public/img/karyawan';
@@ -56,6 +70,7 @@ class KaryawanController extends Controller
             $kar['Picture']=$filename; 
         
             $kar->save();
+            
             return redirect('/karyawan')->with('pesan_sukses', 'Data karyawan has been saved.');
         
             if ($validator -> fails()) {
@@ -76,9 +91,10 @@ class KaryawanController extends Controller
      */
     public function show($id)
     {
+        $data = Role::all();
         $kar = Karyawan::where('KodeKaryawan', $id)->first();
         $deps = Departemen::orderBy('KodeDepartemen')->get();
-        return view('karyawan.show', compact('kar','deps'));
+        return view('karyawan.show', compact('kar','deps','data'));
     }
 
     /**
@@ -107,6 +123,7 @@ class KaryawanController extends Controller
             $kar->NamaKaryawan  = $request->NamaKaryawan;
             $kar->Status        = $request->Status;
             $kar->DepartemenKar = $request->DepartemenKar;
+            $kar->attachRole($id);
 
             if ($request->hasFile('Picture')) {
                 $img = Karyawan::find($id);

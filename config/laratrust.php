@@ -9,32 +9,6 @@
  */
 
 return [
-    /*
-    |--------------------------------------------------------------------------
-    | Use MorphMap in relationships between models
-    |--------------------------------------------------------------------------
-    |
-    | If true, the morphMap feature is going to be used. The array values that
-    | are going to be used are the ones inside the 'user_models' array.
-    |
-    */
-    'use_morph_map' => false,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Laratrust User Models
-    |--------------------------------------------------------------------------
-    |
-    | This is the array that contains the information of the user models.
-    | This information is used in the add-trait command, and for the roles and
-    | permissions relationships with the possible user models.
-    |
-    | The key in the array is the name of the relationship inside the roles and permissions.
-    |
-    */
-    'user_models' => [
-        'users' => 'App\Karyawan',
-    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -100,17 +74,6 @@ return [
     |
     */
     'role_user_table' => 'role_user',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Laratrust permission_user Table
-    |--------------------------------------------------------------------------
-    |
-    | This is the permission_user table used by Laratrust to save relationship
-    | between permissions and users to the database.
-    |
-    */
-    'permission_user_table' => 'permission_user',
 
     /*
     |--------------------------------------------------------------------------

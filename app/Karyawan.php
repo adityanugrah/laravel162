@@ -11,7 +11,7 @@ use Laratrust\Traits\LaratrustUserTrait;
 
 class Karyawan extends Authenticatable
 {
-    //use Notifiable;
+    use Notifiable;
 
     use LaratrustUserTrait; // add this trait to your user model
 
@@ -41,7 +41,4 @@ class Karyawan extends Authenticatable
         $this->attributes['password'] = bcrypt($password);
     }
 
-public function roles(){
-    return $this->belongsToMany('App\Role');
-}
 }
