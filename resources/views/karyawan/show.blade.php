@@ -77,6 +77,20 @@
                                                 <td></td>
                                                 <td><h4>{{ $kar->DepartemenKar }}</h4></td>
                                             </tr>
+                                            <tr>
+                                                <td><h4>Alamat</h4></td>
+                                                <td></td>
+                                                <td><h4>:</h4></td>
+                                                <td></td>
+                                                <td><h4>{{ $kar->AlamatKaryawan }}</h4></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h4>Telepon</h4></td>
+                                                <td></td>
+                                                <td><h4>:</h4></td>
+                                                <td></td>
+                                                <td><h4>{{ $kar->Telepon }}</h4></td>
+                                            </tr>
                                         </thead>
                                     </table>
                                     <?php $i = 1; ?>

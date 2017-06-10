@@ -71,6 +71,13 @@
                                                 <td><h4>{{ $supplier->Alamat }}</h4></td>
                                             </tr>
                                             <tr>
+                                                <td><h4>Telepon Supplier</h4></td>
+                                                <td>&emsp;</td>
+                                                <td><h4>:</h4></td>
+                                                <td>&nbsp;</td>
+                                                <td><h4>{{ $supplier->Telepon }}</h4></td>
+                                            </tr>
+                                            <tr>
                                                 <td><h4>Kota Supplier</h4></td>
                                                 <td></td>
                                                 <td><h4>:</h4></td>

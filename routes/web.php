@@ -20,8 +20,6 @@ Route::get('/', ['as'=>'dashboard', function () {
 
 Route::get('send','mailController@send');
 
-// Route::get('/home', 'HomeController@index');
-
 //download excel
 Route::get('downloadSeragam/{type}', 'ImportSeragamController@downloadSeragam');
 Route::get('downloadPreused/{type}', 'ImportPreusedController@downloadPreused');

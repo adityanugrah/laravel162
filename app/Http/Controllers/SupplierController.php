@@ -43,6 +43,7 @@ class SupplierController extends Controller
             $supplier->NamaSupplier  = $request->NamaSupplier;
             $supplier->Keterangan    = $request->Keterangan;   
             $supplier->Alamat        = $request->Alamat;   
+            $supplier->Telepon       = $request->Telepon;   
             $supplier->KotaSupplier  = $request->KotaSupplier;  
 
             $photo=$request->file('Picture');
@@ -102,6 +103,7 @@ class SupplierController extends Controller
             $supplier->NamaSupplier  = $request->NamaSupplier;
             $supplier->Keterangan    = $request->Keterangan;   
             $supplier->Alamat        = $request->Alamat;   
+            $supplier->Telepon       = $request->Telepon;   
             $supplier->KotaSupplier  = $request->KotaSupplier;   
 
             if ($request->hasFile('Picture')) {

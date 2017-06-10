@@ -30,6 +30,8 @@ class Karyawan extends Authenticatable
 	'NamaKaryawan',
     'Status',
     'DepartemenKar',
+    'AlamatKaryawan',
+    'Telepon',
     'Picture',
     'email',
     'password',

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Karyawan;
 use App\Departemen;
 use App\Role;
+use App\RoleUser;
 use Validator;
 use Auth;
 
@@ -27,11 +28,11 @@ class KaryawanController extends Controller
 
        }
     */
-        // $data = $this->data['roles'] = Role::all();
         $data = Role::all();
+        $roleuser = RoleUser::all();
         $deps = Departemen::orderBy('KodeDepartemen')->get();
         $kar  = Karyawan::orderBy('KodeKaryawan')->get(); 
-        return view('karyawan.index', compact('kar','deps','data'));
+        return view('karyawan.index', compact('kar','deps','data','roleuser'));
     }
 
     /**
@@ -53,24 +54,29 @@ class KaryawanController extends Controller
     public function store(Request $request)
     {
         try {
-
+            
             $kar = new Karyawan;
+            $idTr = Karyawan::orderBy('id', 'desc')->first();
+            $ambil = $idTr->id;
+            $ambil++;
+            $kar->id=$ambil;
             $kar->KodeKaryawan  = $request->KodeKaryawan;
             $kar->NamaKaryawan  = $request->NamaKaryawan;
             $kar->Status        = $request->Status;
             $kar->DepartemenKar = $request->DepartemenKar;
+            $kar->AlamatKaryawan= $request->Alamat;
+            $kar->Telepon       = $request->Telepon;
             $kar->password      = $request->Password;
-            $kar->email         = $request->Email;
-            $kar->attachRole($request->HakAkses);
-
+            $kar->email         = $request->Email;            
+            
             $photo=$request->file('Picture');
             $destination=base_path().'/public/img/karyawan';
             $filename=time().'.'.$photo->getClientOriginalExtension();          
             $photo->move($destination,$filename);           
-            $kar['Picture']=$filename; 
-        
-            $kar->save();
+            $kar['Picture']=$filename;
             
+            $kar->attachRole($request->HakAkses, $kar->id);
+            $kar->save();
             return redirect('/karyawan')->with('pesan_sukses', 'Data karyawan has been saved.');
         
             if ($validator -> fails()) {
@@ -118,12 +124,16 @@ class KaryawanController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $kar = Karyawan::find($id);
+            // $kar = Karyawan::find($id);
+            $kar = Karyawan::where('KodeKaryawan', $id)->first();
             $kar->KodeKaryawan  = $request->KodeKaryawan;
             $kar->NamaKaryawan  = $request->NamaKaryawan;
             $kar->Status        = $request->Status;
             $kar->DepartemenKar = $request->DepartemenKar;
-            $kar->attachRole($id);
+            $kar->AlamatKaryawan= $request->AlamatKaryawan;
+            $kar->Telepon       = $request->Telepon;
+            $kar->password      = $request->Password;
+            $kar->email         = $request->email;
 
             if ($request->hasFile('Picture')) {
                 $img = Karyawan::find($id);
@@ -140,6 +150,7 @@ class KaryawanController extends Controller
                 $kar['Picture']=$filename;
             }
 
+            $kar->attachRole($request->HakAkses, $kar->id);
             $kar->save();
             return redirect('/karyawan')->with('pesan_sukses', 'Data berhasil.');
 
@@ -160,11 +171,11 @@ class KaryawanController extends Controller
     public function destroy($id)
     {
         try {
-            $photo=Karyawan::find($id);
+            $photo = Karyawan::where('KodeKaryawan', $id)->first();
             $location=base_path().'/public/img/karyawan/' .$photo->Picture;
             $cc = unlink($location);
 
-            Karyawan::find($id)->delete();          
+            Karyawan::where('KodeKaryawan', $id)->delete();          
             return redirect('/karyawan')->with('pesan_sukses', 'Data karyawan successfully removed .');
         }
         catch(Exception $e) {

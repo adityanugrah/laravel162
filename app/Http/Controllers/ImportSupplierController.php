@@ -47,7 +47,14 @@ class ImportSupplierController extends Controller
                 foreach ($data->toArray() as $key => $value) {
                     if(!empty($value)){
                         foreach ($value as $v) {        
-                            $insert[] = ['KodeSupplier' => $v['kodesupplier'], 'NamaSupplier' => $v['namasupplier'],'Keterangan' => $v['keterangan'], 'Alamat' => $v['alamat'], 'KotaSupplier' => $v['kotasupplier'],'Picture' => $v['picture']];
+                            $insert[] = [
+                            'KodeSupplier' => $v['kodesupplier'], 
+                            'NamaSupplier' => $v['namasupplier'],
+                            'Keterangan' => $v['keterangan'], 
+                            'Alamat' => $v['alamat'], 
+                            'Telepon' => $v['telepon'], 
+                            'KotaSupplier' => $v['kotasupplier'],
+                            'Picture' => $v['picture']];
                         }
                     }
                 }

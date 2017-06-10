@@ -53,6 +53,8 @@ class ImportKaryawanController extends Controller
                             'NamaKaryawan'  => $v['namakaryawan'],
                             'Status' 		=> $v['status'],
                             'DepartemenKar' => $v['departemenkar'],
+                            'AlamatKaryawan'=> $v['alamatkaryawan'],
+                            'Telepon'       => $v['telepon'],
                             'Picture'       => $v['picture'],
                             'email'         => $v['email'],
                             'password' 		=> bcrypt($v['password'])

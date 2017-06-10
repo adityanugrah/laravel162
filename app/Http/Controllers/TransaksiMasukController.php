@@ -87,6 +87,24 @@ class TransaksiMasukController extends Controller
                     $_SESSION["isi"]++;
                 }
 
+                if ($request->JenisBrg=="Seragam") {
+                    $barang = Seragam::where('NamaSeragam', $request->NamaBrg)->first();
+                    $barang->HrgSeragam = str_replace(".", "",$request->HargaBrg);
+                    $barang -> save(); 
+                } else if ($request->JenisBrg=="Preused") {
+                    $barang = Preused::where('NamaPreused', $request->NamaBrg)->first();
+                    $barang->HrgPreused = str_replace(".", "",$request->HargaBrg);
+                    $barang -> save();
+                } else if ($request->JenisBrg=="Loker") {
+                    $barang = Loker::where('NamaLoker', $request->NamaBrg)->first();
+                    $barang->HrgLoker = str_replace(".", "",$request->HargaBrg);
+                    $barang -> save();
+                } else if ($request->JenisBrg=="Loker") {
+                    $barang = Loker::where('NamaLoker', $request->NamaBrg)->first();
+                    $barang->HrgTools = str_replace(".", "",$request->HargaBrg);
+                    $barang -> save();
+                }
+
                 $_SESSION['data'][$_SESSION["isi"]] = array(
                     $request->KodeMasuk,
                     $request->Tgl_Masuk,
@@ -94,25 +112,9 @@ class TransaksiMasukController extends Controller
                     $request->JenisBrg,
                     $request->NamaBrg,
                     $request->JumlahBrg,
-                    str_replace(".", "",$request->HargaBrg));
-                    $i=0;
-                    if ($_SESSION['data'][$i][3]=="Seragam") {
-                        $barang1 = Seragam::where('NamaSeragam', $request->NamaBrg)->first();
-                        $barang1->HrgSeragam = $request->HargaBrg;
-                        $barang1 -> save(); 
-                    } else if ($_SESSION['data'][$i][3]=="Preused") {
-                        $barang2 = Preused::where('NamaPreused', $request->NamaBrg)->first();
-                        $barang2->HrgPreused = $request->HargaBrg;
-                        $barang2 -> save();
-                    } else if ($_SESSION['data'][$i][3]=="Loker") {
-                        $barang3 = Loker::where('NamaLoker', $request->NamaBrg)->first();
-                        $barang3->HrgLoker = $request->HargaBrg;
-                        $barang3 -> save();
-                    } else if ($_SESSION['data'][$i][3]=="Loker") {
-                        $barang4 = Loker::where('NamaLoker', $request->NamaBrg)->first();
-                        $barang4->HrgTools = $request->HargaBrg;
-                        $barang4 -> save();
-                    }          
+                    str_replace(".", "",$request->HargaBrg)
+                );              
+                          
             }
             return redirect('transaksi/transaksimasuk');
         } else if($request->aksi==2) {

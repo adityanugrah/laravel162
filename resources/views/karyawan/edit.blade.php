@@ -60,14 +60,34 @@
                         </select>
                       </div>
                     </div>
-                    <div class="form-group {{ $errors->has('email') ? 'has-error has-feedback' : '' }}">
+                    <div class="form-group {{ $errors->has('Alamat') ? 'has-error has-feedback' : '' }}">
+                      <div class = "col-md-3">
+                      {!! Form::label('Alamat', 'Alamat', ['class' => 'control-label']) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        {!! Form::text('AlamatKaryawan',null,['class'=>'form-control', 'placeholder'=>'Alamat Karyawan', 'required']) !!}
+                        {!! $errors->first('Alamat', '<span class="fa fa-times form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                      </div>
+                    </div>
+                    <div class="form-group {{ $errors->has('Telepon') ? 'has-error has-feedback' : '' }}">
+                      <div class = "col-md-3">
+                      {!! Form::label('Telepon', 'Telepon', ['class' => 'control-label']) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        {!! Form::number('Telepon',null,['class'=>'form-control', 'placeholder'=>'Telepon', 'required']) !!}
+                        {!! $errors->first('Telepon', '<span class="fa fa-times form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                      </div>
+                    </div>
+                    <div class="form-group {{ $errors->has('Email') ? 'has-error has-feedback' : '' }}">
                       <div class = "col-md-3">
                       {!! Form::label('Email','Email', ['class' => 'control-label']) !!}
                       <span style="color: red">*</span>
                       </div>
                       <div class="col-md-7">
-                        {!! Form::email('email',null,['class'=>'form-control']) !!}
-                        {!! $errors->first('email', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                        {!! Form::email('email',null,['class'=>'form-control', 'placeholder'=>'Email','required']) !!}
+                        {!! $errors->first('Email', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                       </div>
                     </div>
                     <div class="form-group">
@@ -90,14 +110,26 @@
                     </div>
                     <div class="form-group {{ $errors->has('HakAkses') ? 'has-error has-feedback' : '' }}">
                       <div class = "col-md-3">
-                      {!! Form::label('Hak Akses','HakAkses', ['class' => 'control-label']) !!}
+                      {!! Form::label('Hak Akses','Hak Akses', ['class' => 'control-label']) !!}
                       <span style="color: red">*</span>
                       </div>
                       <div class="col-md-7">
                         <select required name="HakAkses" id="HakAkses" class="form-control">
                           <option value="">Pilih Hak Akses</option>
-                          @foreach ($data as $datas)
-                            <option value="{{$datas -> id}}">{{$datas -> name}}</option>
+                          @foreach ($roleuser as $user)
+                              @if($user->user_id==$kar->id)
+                                @foreach ($data as $datas)
+                                  @if($datas->id==$user->role_id)
+                                    @if($datas->id==2)
+                                    <option value="1">Admin</option>
+                                    @endif
+                                    <option selected value="{{$datas -> id}}">{{$datas -> name}}</option>
+                                    @if($datas->id==1)
+                                    <option value="2">Employee</option>
+                                    @endif                                    
+                                  @endif
+                                @endforeach
+                              @endif
                           @endforeach
                         </select>
                       </div>

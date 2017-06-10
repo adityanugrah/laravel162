@@ -80,9 +80,9 @@
                     <span style="color: red">*</span>
                     {!! Form::text('HargaBrg',null,['id'=>'HargaBrg', 'class'=>'form-control', 'placeholder'=>'Harga Barang', 'required']) !!}
                     {!! $errors->first('HargaBrg', '<span class="glyphicon glyphicon-remove form-control-feedback"></span><span class="help-block">:message</span>'); !!}
-                    <script type="text/javascript">
-                        $("#HargaBrg").maskMoney({prefix:'', thousands:'.', decimal:',', precision:0});    
-                    </script>                    
+                    <script>
+                      $("#HargaBrg").maskMoney({prefix:'', thousands:'.', decimal:',', precision:0});
+                    </script>                  
                 </div>
             </div>
             <div class="col-sm-4">

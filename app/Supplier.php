@@ -18,6 +18,7 @@ class Supplier extends Model
 	'NamaSupplier',
     'Keterangan',
     'Alamat',
+    'Telepon',
     'KotaSupplier',
     'Picture'
 	];

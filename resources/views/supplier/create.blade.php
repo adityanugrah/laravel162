@@ -49,6 +49,16 @@
                         {!! $errors->first('Alamat', '<span class="fa fa-times form-control-feedback"></span><span class="help-block">:message</span>'); !!}
                       </div>
                     </div>
+                    <div class="form-group {{ $errors->has('Telepon') ? 'has-error has-feedback' : '' }}">
+                      <div class = "col-md-3">
+                      {!! Form::label('Telepon', 'Telepon', ['class' => 'control-label']) !!}
+                      <span style="color: red">*</span>
+                      </div>
+                      <div class="col-md-7">
+                        {!! Form::number('Telepon',null,['class'=>'form-control', 'placeholder'=>'Telepon Supplier', 'required']) !!}
+                        {!! $errors->first('Telepon', '<span class="fa fa-times form-control-feedback"></span><span class="help-block">:message</span>'); !!}
+                      </div>
+                    </div>
                     <div class="form-group {{ $errors->has('KotaSupplier') ? 'has-error has-feedback' : '' }}">
                       <div class = "col-md-3">
                       {!! Form::label('KotaSupplier', 'Kota Supplier', ['class' => 'control-label']) !!}

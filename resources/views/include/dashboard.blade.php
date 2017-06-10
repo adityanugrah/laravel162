@@ -10,7 +10,7 @@
                 <div class="ibox-content">
                     <h1 class="no-margins">40 886,200</h1>
                     <!-- <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div> -->
-                    <small>Total income</small>
+                    <small>Total Stok</small>
                 </div>
             </div>
         </div>
