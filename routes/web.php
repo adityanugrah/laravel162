@@ -44,6 +44,8 @@ Route::get('pdfMasuk','LaporanMasukController@pdfMasuk');
 Route::get('pdfKeluar','LaporanKeluarController@pdfKeluar');
 Route::get('pdfKembali','LaporanKembaliController@pdfKembali');
 
+Route::resource('/', 'DashboardController');
+
 //halo
 Route::resource('databarang/seragam', 'SeragamController');
 Route::resource('databarang/preused', 'PreusedController');

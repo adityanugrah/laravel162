@@ -16,7 +16,7 @@ class SeragamController extends Controller
 
     public function index()
     {
-        $seragams = Seragam::orderBy('KodeSeragam')->get(); 
+        $seragams = Seragam::orderby('KodeSeragam')->get(); 
         return view('seragam.index', compact('seragams'));
     }
 
@@ -49,6 +49,8 @@ class SeragamController extends Controller
             $seragam->HrgSeragam  = str_replace(".", "",$request->HrgSeragam);
             $seragam->StokSeragam = $request->StokSeragam;
             $seragam->StokAkhir   = $request->StokSeragam;
+            $seragam->StokMasuk   = 0;
+            $seragam->StokKeluar  = 0;
 
             $photo=$request->file('Picture');
             $destination=base_path().'/public/img/seragam';

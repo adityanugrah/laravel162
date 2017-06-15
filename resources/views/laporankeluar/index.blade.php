@@ -48,7 +48,7 @@
 			                    <tr>
 			                        <th>No</th>
 			                        <th>Kode Keluar</th>
-			                        <th>Nama Karyawan Keluar</th>
+			                        <th>Nama Karyawan</th>
 			                        <th>Departemen</th>
 			                        <th>Tanggal Pinjam</th>
 			                        <th>Tanggal Kembali</th>

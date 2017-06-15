@@ -1,7 +1,6 @@
-ojok lali KP, dang dikerjano progame. (restok Barang) 
+Warning !!! Segera Lakukan restock barang pada list barang dibawah ini.
 <?php 
 
-	echo $_SESSION['NamaBrg']; 
-
+	echo $_SESSION['NamaBrg'] : $_SESSION['JumlahBrg']; 
 
 ?>

@@ -150,7 +150,7 @@ class TransaksiKeluarController extends Controller
                             }
                         } else if ($_SESSION['keluar'][$i][5]=="Preused") {
                             $Preused = Preused::where('NamaPreused',$_SESSION['keluar'][$i][6])->first();
-                            $Preused->StokMasuk = $Preused->StokMasuk+$_SESSION['keluar'][$i][7];
+                            $Preused->StokKeluar = $Preused->StokKeluar+$_SESSION['keluar'][$i][7];
                             $Preused->StokAkhir = $Preused->StokMasuk+$Preused->StokPreused-$Preused->StokKeluar;
                             $Preused->save();
                             if ($Preused->StokAkhir <= 5) {                                
@@ -161,7 +161,7 @@ class TransaksiKeluarController extends Controller
                             }
                         } else if ($_SESSION['keluar'][$i][5]=="Loker") {
                             $Loker = Loker::where('NamaLoker',$_SESSION['keluar'][$i][6])->first();
-                            $Loker->StokMasuk = $Loker->StokMasuk+$_SESSION['keluar'][$i][7];
+                            $Loker->StokKeluar = $Loker->StokKeluar+$_SESSION['keluar'][$i][7];
                             $Loker->StokAkhir = $Loker->StokMasuk+$Loker->StokLoker-$Loker->StokKeluar;
                             $Loker->save();
                             if ($Loker->StokAkhir <= 5) {                                
@@ -172,7 +172,7 @@ class TransaksiKeluarController extends Controller
                             }
                         } else if ($_SESSION['keluar'][$i][5]=="Tools") {
                             $Tools = Tools::where('NamaTools',$_SESSION['keluar'][$i][6])->first();
-                            $Tools->StokMasuk = $Tools->StokMasuk+$_SESSION['keluar'][$i][7];
+                            $Tools->StokKeluar = $Tools->StokKeluar+$_SESSION['keluar'][$i][7];
                             $Tools->StokAkhir = $Tools->StokMasuk+$Tools->StokTools-$Tools->StokKeluar;
                             $Tools->save();
                             if ($Tools->StokAkhir <= 5) {                                

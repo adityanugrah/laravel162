@@ -43,7 +43,9 @@ class ToolsController extends Controller
             $tools->NamaTools   = $request->NamaTools;
             $tools->Keterangan  = $request->Keterangan;
             $tools->StokTools   = $request->StokTools;
-            $tools->StokAkhir   = $tools->StokTools;     
+            $tools->StokAkhir   = $tools->StokTools; 
+            $tools->StokMasuk   = 0;
+            $tools->StokKeluar  = 0;     
 
             $photo=$request->file('Picture');
             $destination=base_path().'/public/img/tools';

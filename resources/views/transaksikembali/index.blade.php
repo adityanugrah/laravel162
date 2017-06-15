@@ -223,7 +223,7 @@
         
         $.get("/transaksi/getData1/"+x.value,function(data1){ 
             if(data1=="null"){
-                alert("Barang Sudah Dikembalikan");
+                alert("Data Tidak Ditemukan");
                 $("#Tgl_Pinjam").val(""); 
             } else {
                 document.getElementById("Tgl_Pinjam").value = data1;

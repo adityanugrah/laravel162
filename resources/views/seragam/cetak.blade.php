@@ -28,6 +28,10 @@
 		</div>
 	</div>	
 	<div class="row">
+		<?php
+			$tgl=date('l, d F Y, h:i:sa');
+			echo $tgl;
+		?>
 		<div class="col-md-12">
 			<h2>Laporan Seragam Baru</h2>
 			<table>
@@ -69,5 +73,13 @@
 			</table>
 		</div>
 	</div>
+	<script src="{{ asset('js/jquery-2.1.1.js') }}" type='text/javascript'></script>
+	<script type="text/javascript">
+		n =  new Date();
+		y = n.getFullYear();
+		m = n.getMonth() + 1;
+		d = n.getDate();
+		document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
+	</script>
 </body>
 </html>

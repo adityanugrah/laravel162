@@ -98,9 +98,10 @@ class KaryawanController extends Controller
     public function show($id)
     {
         $data = Role::all();
+        $roleuser = RoleUser::all();
         $kar = Karyawan::where('KodeKaryawan', $id)->first();
         $deps = Departemen::orderBy('KodeDepartemen')->get();
-        return view('karyawan.show', compact('kar','deps','data'));
+        return view('karyawan.show', compact('kar','deps','data','roleuser'));
     }
 
     /**
@@ -150,6 +151,7 @@ class KaryawanController extends Controller
                 $kar['Picture']=$filename;
             }
 
+            $kar->detachRole($kar->id);
             $kar->attachRole($request->HakAkses, $kar->id);
             $kar->save();
             return redirect('/karyawan')->with('pesan_sukses', 'Data berhasil.');

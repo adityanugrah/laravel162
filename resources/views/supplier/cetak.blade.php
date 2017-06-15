@@ -28,6 +28,10 @@
 		</div>
 	</div>	
 	<div class="row">
+		<?php
+			$tgl=date('l, d F Y, h:i:sa');
+			echo $tgl;
+		?>
 		<div class="col-md-12">
 			<h2>Laporan Supplier Baru</h2>
 			<table>
@@ -38,6 +42,7 @@
 			            <th>Nama Supplier</th>        
 			            <th>Keterangan</th>	           
 			            <th>Alamat</th>	           
+			            <th>Telepon</th>	           
 			            <th>Kota</th>	        
 			        </tr>
 			    </thead>
@@ -50,6 +55,7 @@
 		                <td>{{ $supplier->NamaSupplier }}</td>
 		                <td>{{ $supplier->Keterangan }}</td>
 		                <td>{{ $supplier->Alamat }}</td>
+		                <td>{{ $supplier->Telepon }}</td>
 		                <td>{{ $supplier->KotaSupplier }}</td>
 			        </tr>
 			        @endforeach

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Laporan Preused</title>
+	<title>Laporan Transaksi Masuk</title>
 	<style type="text/css">
 		table, td, th {    
 		    border: 1px solid #ddd;
@@ -33,19 +33,19 @@
 			echo $tgl;
 		?>
 		<div class="col-md-12">
-			<h2>Laporan Preused Baru</h2>
+			<h2>Laporan Transaksi Masuk</h2>
 			<table>
 			 	<thead>
 			        <tr>
 			        	<th>No.</th>
-			            <th>Kode Preused</th>
-			            <th>Nama Preused</th>
+			            <th>Kode Seragam</th>
+			            <th>Nama Seragam</th>
 			            <th>Jenis Karyawan</th>	        
 			            <th>Status</th>	        
 			            <th>Ukuran</th>	        
 			            <th>Keterangan</th>	        
-			            <th>Harga Preused</th>	        
-			            <th>Stok Preused</th>	        
+			            <th>Harga Seragam</th>	        
+			            <th>Stok Seragam</th>	        
 			            <th>Stok Masuk</th>	        
 			            <th>Stok Keluar</th>	        
 			            <th>Stok Akhir</th>	        
@@ -53,20 +53,20 @@
 			    </thead>
 			    <tbody>
 			    	<?php $i = 1; ?>
-					@foreach($preuseds as $preused)
+					@foreach($seragams as $seragam)
 		        	<tr class="gradeA">
 		        		<td>{{ $i++ }}</td>
-		                <td>{{ $preused->KodePreused }}</td>
-		                <td>{{ $preused->NamaPreused }}</td>
-		                <td>{{ $preused->JenisKar }}</td>
-		                <td>{{ $preused->Status }}</td>
-		                <td>{{ $preused->Ukuran }}</td>
-		                <td>{{ $preused->Keterangan }}</td>
-		                <td>{{ $preused->HrgPreused }}</td>
-		                <td>{{ $preused->StokPreused }}</td>
-		                <td>{{ $preused->StokMasuk }}</td>
-		                <td>{{ $preused->StokKeluar }}</td>
-		                <td>{{ $preused->StokAkhir }}</td>
+		                <td>{{ $seragam->KodeSeragam }}</td>
+		                <td>{{ $seragam->NamaSeragam }}</td>
+		                <td>{{ $seragam->JenisKar }}</td>
+		                <td>{{ $seragam->Status }}</td>
+		                <td>{{ $seragam->Ukuran }}</td>
+		                <td>{{ $seragam->Keterangan }}</td>
+		                <td>{{ $seragam->HrgSeragam }}</td>
+		                <td>{{ $seragam->StokSeragam }}</td>
+		                <td>{{ $seragam->StokMasuk }}</td>
+		                <td>{{ $seragam->StokKeluar }}</td>
+		                <td>{{ $seragam->StokAkhir }}</td>
 			        </tr>
 			        @endforeach
 			    </tbody>

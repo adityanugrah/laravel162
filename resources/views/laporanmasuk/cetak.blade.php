@@ -28,6 +28,10 @@
 		</div>
 	</div>	
 	<div class="row">
+		<?php
+			$tgl=date('l, d F Y, h:i:sa');
+			echo $tgl;
+		?>
 		<div class="col-md-12">
 			<h2>Laporan Transaksi Masuk</h2>
 			<table>
@@ -47,9 +51,6 @@
                     <tr class="gradeA">
                         <td>{{ $i++ }}</td>
                         <td>{{ $det->KodeMasuk }}</td>
-                        @foreach($masuk as $kem1)                          
-                            <td>{{ $kem1->Tgl_Masuk }}</td>
-                        @endforeach
                         <td>{{ $det->NamaSupplier }}</td>
                         <td>{{ $det->JenisBrg }}</td>
                         <td>{{ $det->NamaBrg }}</td>

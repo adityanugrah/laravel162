@@ -46,6 +46,8 @@ class LokerController extends Controller
             $loker->Keterangan  = $request->Keterangan; 
             $loker->StokLoker   = $request->StokLoker;
             $loker->StokAkhir   = $loker->StokLoker; 
+            $loker->StokMasuk   = 0;
+            $loker->StokKeluar  = 0;
 
             $photo=$request->file('Picture');
             $destination=base_path().'/public/img/loker';

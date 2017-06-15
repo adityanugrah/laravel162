@@ -1,5 +1,7 @@
 @extends ('welcome')
 @section ('konten')
+<script src="{{ asset('js/jquery-2.1.1.js') }}" type='text/javascript'></script>
+    <script src="{{ asset('js/plugins/dataTables/datatables.min.js') }}"></script>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2>Transaksi Masuk</h2>
@@ -100,7 +102,7 @@
         </div>
         {!! Form::close() !!}
     </div>
-
+    
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">

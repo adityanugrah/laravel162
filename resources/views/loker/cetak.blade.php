@@ -28,6 +28,10 @@
 		</div>
 	</div>	
 	<div class="row">
+		<?php
+			$tgl=date('l, d F Y, h:i:sa');
+			echo $tgl;
+		?>
 		<div class="col-md-12">
 			<h2>Laporan Loker</h2>
 			<table>

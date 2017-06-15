@@ -134,58 +134,32 @@ class TransaksiKembaliController extends Controller
                         $detailkembali->JmlBarang   = $_SESSION['kembali'][$i][9];
                         $detailkembali->save();
 
-                        DetailKeluar::where('kodeKeluar',$_SESSION['kembali'][$i][0] )
-                                    ->where('NamaBrg', $_SESSION['kembali'][$i][7])->delete();
-                                            
-                        // if($_SESSION['kembali'][$i][6]=="Seragam") {
-                        //     $seragam = Seragam::where('NamaSeragam',$_SESSION['kembali'][$i][7])->first();
-                        //     $seragam->StokKeluar = $seragam->StokKeluar+$_SESSION['kembali'][$i][9];
-                        //     $seragam->StokAkhir  = $seragam->StokMasuk+$seragam->StokSeragam-$seragam->StokKeluar;
-                        //     $seragam->save();
-                        //     if ($seragam->StokAkhir <= 5) { 
-                        //         $_SESSION['NamaBrg'] = $detailkeluar->NamaBrg;
-                        //         Mail::send(['text'=>'mail'],['name', 'Sarthak'], function($message) {
-                        //             $message->to('burgerkillselalu@gmail.com', 'Restok') -> subject('Penting');
-                        //             $message->from('burgerkillselalu@gmail.com', 'Bitfumes');
-                        //         });
-                        //     }
-                        // }
-                        // } else if ($_SESSION['keluar'][$i][5]=="Preused") {
-                        //     $Preused = Preused::where('NamaPreused',$_SESSION['keluar'][$i][6])->first();
-                        //     $Preused->StokMasuk = $Preused->StokMasuk+$_SESSION['keluar'][$i][7];
-                        //     $Preused->StokAkhir = $Preused->StokMasuk+$Preused->StokPreused-$Preused->StokKeluar;
-                        //     $Preused->save();
-                        //     if ($Preused->StokAkhir <= 5) {                                
-                        //         Mail::send(['text'=>'mail'],['name', 'Sarthak'], function($message) {
-                        //             $message->to('burgerkillselalu@gmail.com', 'Restok') -> subject('Penting');
-                        //             $message->from('burgerkillselalu@gmail.com', 'Bitfumes');
-                        //         });
-                        //     }
-                        // } else if ($_SESSION['keluar'][$i][5]=="Loker") {
-                        //     $Loker = Loker::where('NamaLoker',$_SESSION['keluar'][$i][6])->first();
-                        //     $Loker->StokMasuk = $Loker->StokMasuk+$_SESSION['keluar'][$i][7];
-                        //     $Loker->StokAkhir = $Loker->StokMasuk+$Loker->StokLoker-$Loker->StokKeluar;
-                        //     $Loker->save();
-                        //     if ($Loker->StokAkhir <= 5) {                                
-                        //         Mail::send(['text'=>'mail'],['name', 'Sarthak'], function($message) {
-                        //             $message->to('burgerkillselalu@gmail.com', 'Restok') -> subject('Penting');
-                        //             $message->from('burgerkillselalu@gmail.com', 'Bitfumes');
-                        //         });
-                        //     }
-                        // } else if ($_SESSION['keluar'][$i][5]=="Tools") {
-                        //     $Tools = Tools::where('NamaTools',$_SESSION['keluar'][$i][6])->first();
-                        //     $Tools->StokMasuk = $Tools->StokMasuk+$_SESSION['keluar'][$i][7];
-                        //     $Tools->StokAkhir = $Tools->StokMasuk+$Tools->StokTools-$Tools->StokKeluar;
-                        //     $Tools->save();
-                        //     if ($Tools->StokAkhir <= 5) {                                
-                        //         Mail::send(['text'=>'mail'],['name', 'Sarthak'], function($message) {
-                        //             $message->to('burgerkillselalu@gmail.com', 'Restok') -> subject('Penting');
-                        //             $message->from('burgerkillselalu@gmail.com', 'Bitfumes');
-                        //         });
-                        //     }
-                        // } else {
-                        //     $data = "Tidak Ada Data";   
-                        // }
+                        // DetailKeluar::where('kodeKeluar',$_SESSION['kembali'][$i][0] )
+                        //             ->where('NamaBrg', $_SESSION['kembali'][$i][7])->delete();
+
+                        if($_SESSION['kembali'][$i][6]=="Seragam") {
+                            $Preused = Preused::where('NamaPreused',$_SESSION['kembali'][$i][7])->first();
+                            $Preused->StokMasuk = $Preused->StokMasuk+$_SESSION['kembali'][$i][9];
+                            $Preused->StokAkhir = $Preused->StokMasuk+$Preused->StokPreused-$Preused->StokKeluar;
+                            $Preused->save();
+                        } else if ($_SESSION['kembali'][$i][6]=="Preused") {
+                            $Preused = Preused::where('NamaPreused',$_SESSION['kembali'][$i][7])->first();
+                            $Preused->StokMasuk = $Preused->StokMasuk+$_SESSION['kembali'][$i][9];
+                            $Preused->StokAkhir = $Preused->StokMasuk+$Preused->StokPreused-$Preused->StokKeluar;
+                            $Preused->save();
+                        } else if ($_SESSION['kembali'][$i][6]=="Loker") {
+                            $Loker = Loker::where('NamaLoker',$_SESSION['kembali'][$i][7])->first();
+                            $Loker->StokMasuk = $Loker->StokMasuk+$_SESSION['kembali'][$i][9];
+                            $Loker->StokAkhir = $Loker->StokMasuk+$Loker->StokLoker-$Loker->StokKeluar;
+                            $Loker->save();
+                        } else if ($_SESSION['kembali'][$i][6]=="Tools") {
+                            $Tools = Tools::where('NamaTools',$_SESSION['kembali'][$i][7])->first();
+                            $Tools->StokMasuk = $Tools->StokMasuk+$_SESSION['kembali'][$i][9];
+                            $Tools->StokAkhir = $Tools->StokMasuk+$Tools->StokTools-$Tools->StokKeluar;
+                            $Tools->save();
+                        } else {
+                            $kembali = "Tidak Ada Data";   
+                        }
                     }
                     $kembali->save(); 
                     session_destroy();

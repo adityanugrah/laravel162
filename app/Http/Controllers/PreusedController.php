@@ -46,7 +46,9 @@ class PreusedController extends Controller
             $preused->Ukuran      = $request->Ukuran;
             $preused->Keterangan  = $request->Keterangan;
             $preused->StokPreused = $request->StokPreused;
-            $preused->StokAkhir   = $preused->StokPreused;  
+            $preused->StokAkhir   = $preused->StokPreused; 
+            $preused->StokMasuk   = 0;
+            $preused->StokKeluar  = 0; 
 
             $photo=$request->file('Picture');
             $destination=base_path().'/public/img/preused';

@@ -3,34 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\TransaksiKembali;
-use App\DetailKembali;
-use PDF;
+use App\Seragam;
+use App\Preused;
+use App\Tools;
+use App\Loker;
+use Validator;
 
-class LaporanKembaliController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function pdfKembali () {
-        set_time_limit(0);
-        ini_set("memory_limit",-1);
-        ini_set('max_execution_time', 0);
-        
-        $TransaksiKembali = TransaksiKembali::all();
-        $detaild = DetailKembali::all();
-        $pdf = PDF::loadView('laporankembali.cetak', ['kembali'=>$TransaksiKembali, 'kembalid'=>$detaild])->setPaper('a4', 'landscape');
-        return $pdf->download('Laporan Pengembalian.pdf');
-    }
-
     public function index()
     {
-        $kembali = TransaksiKembali::orderBy('KodeKembali')->get();
-        $kembalid = DetailKembali::orderBy('KodeKembali')->get();
-        return view('laporankembali.index', compact('kembali','kembalid'));
+        $serag = Seragam::all(); 
+        $pre = Preused::all(); 
+        $tools = Tools::all(); 
+        $loker = Loker::all(); 
+        return view('include.dashboard', compact('serag','pre','tools','loker'));
     }
 
     /**
@@ -62,9 +54,7 @@ class LaporanKembaliController extends Controller
      */
     public function show($id)
     {
-        $kembali1 = TransaksiKembali::where('KodeKembali', "$id")->get();
-        $kembali = DetailKembali::where('KodeKembali', "$id")->get();
-        return view('laporankembali.show', compact('kembali1','kembali'));
+        //
     }
 
     /**

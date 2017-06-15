@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Laporan Masuk</title>
+	<title>Laporan Pengembalian</title>
 	<style type="text/css">
 		table, td, th {    
 		    border: 1px solid #ddd;
@@ -28,33 +28,38 @@
 		</div>
 	</div>	
 	<div class="row">
+		<?php
+			$tgl=date('l, d F Y, h:i:sa');
+			echo $tgl;
+		?>
 		<div class="col-md-12">
-			<h2>Laporan Transaksi Masuk</h2>
+			<h2>Laporan Transaksi Kembali</h2>
 			<table>
 			 	<thead>
 			        <tr>
 			        	<th>No.</th>
-			            <th>Kode Masuk</th>
-			            <th>Nama Supplier</th>
+			            <th>Kode Kembali</th>
+			            <th>Tanggal Pinjam</th>
+			            <th>Tanggal Kembali</th>
 			            <th>Jenis Barang</th>       
 			            <th>Nama Barang</th>        
-			            <th>Jumlah Barang</th>        
-			            <th>Harga Barang</th>		                   
+			            <th>Ukuran</th>        
+			            <th>Jumlah Barang</th>	                   
 			    </thead>
 			    <tbody>
 			    	<?php $i = 1; ?>
-					@foreach($masukd as $det)
+					@foreach($kembalid as $det)
                     <tr class="gradeA">
                         <td>{{ $i++ }}</td>
-                        <td>{{ $det->KodeMasuk }}</td>
-                        @foreach($masuk as $kem1)                          
-                            <td>{{ $kem1->Tgl_Masuk }}</td>
+                        <td>{{ $det->KodeKembali }}</td>
+                        @foreach($kembali as $dets)
+                        	<td>{{ $dets->Tgl_Pinjam }}</td>
+                        	<td>{{ $dets->Tgl_Kembali }}</td>
                         @endforeach
-                        <td>{{ $det->NamaSupplier }}</td>
-                        <td>{{ $det->JenisBrg }}</td>
-                        <td>{{ $det->NamaBrg }}</td>
-                        <td>{{ $det->JumlahBrg }}</td>
-                        <td>{{ $det->HargaBrg }}</td>
+                        <td>{{ $det->JenisBarang }}</td>
+                        <td>{{ $det->NamaBarang }}</td>
+                        <td>{{ $det->SizeBarang }}</td>
+                        <td>{{ $det->JmlBarang }}</td>
                     </tr>
                     @endforeach
 			    </tbody>
